@@ -140,22 +140,6 @@ html, body, [class*="css"] {
 .warning-box { padding:.9rem 1rem; background:var(--warning-bg); color:var(--warning); border:1px solid #fde68a; border-radius:.85rem; margin:.7rem 0; }
 .danger-box { padding:.9rem 1rem; background:var(--danger-bg); color:var(--danger); border:1px solid #fecaca; border-radius:.85rem; margin:.7rem 0; }
 .comparison-win { padding:.8rem 1rem; background:#eff6ff; color:#174ea6; border:1px solid #bfdbfe; border-radius:.85rem; }
-
-.engine-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin:1rem 0 1.25rem; }
-.engine-answer-card { background:rgba(255,255,255,.96); border:1px solid var(--line); border-radius:1.05rem; padding:1.15rem; min-height:240px; box-shadow:0 10px 28px rgba(15,35,64,.06); position:relative; overflow:hidden; }
-.engine-answer-card.focused { border:2px solid #2563eb; box-shadow:0 14px 32px rgba(37,99,235,.12); }
-.engine-answer-card .engine-title { font-size:1.12rem; font-weight:850; color:var(--ink); margin-bottom:.18rem; }
-.engine-answer-card .engine-tech { color:#5b6f8c; font-size:.84rem; margin-bottom:.8rem; }
-.engine-answer-card .answer-text { color:#263a58; line-height:1.6; font-size:1rem; white-space:pre-line; margin:.75rem 0; }
-.engine-answer-card .meta-row { display:flex; flex-wrap:wrap; gap:.4rem; align-items:center; margin-bottom:.55rem; }
-.engine-badge { display:inline-flex; padding:.24rem .55rem; border-radius:999px; background:#eff6ff; color:#174ea6; border:1px solid #bfdbfe; font-weight:800; font-size:.78rem; }
-.intent-badge { display:inline-flex; padding:.24rem .55rem; border-radius:999px; background:#f8fafc; color:#475569; border:1px solid var(--line); font-weight:750; font-size:.78rem; }
-.answer-status { font-size:.8rem; font-weight:800; margin-top:.25rem; }
-.answer-status.ok { color:var(--success); }
-.answer-status.fallback { color:var(--danger); }
-.compare-summary { padding:.8rem 1rem; background:#f8fbff; border:1px solid #dbeafe; border-radius:.9rem; margin:1rem 0; color:#35506f; }
-@media (max-width: 1050px) { .engine-grid { grid-template-columns:1fr; } }
-
 @media (max-width: 900px) { .metric-grid, .kpi-row { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (max-width: 760px) { html{font-size:16px;} .block-container{padding:1.25rem 1rem 2.5rem;} .hero{padding:1.65rem 1.4rem;border-radius:1rem;} .metric-grid,.kpi-row{grid-template-columns:1fr;} }
 </style>
@@ -294,7 +278,7 @@ def render_sidebar() -> tuple[str, str]:
             ["Chatbot", "Model Evaluation", "Dataset Explorer", "System Workflow", "Feedback Analytics"],
             label_visibility="collapsed",
         )
-        st.markdown('<div class="sidebar-label">Highlighted Engine</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sidebar-label">Machine Learning Engine</div>', unsafe_allow_html=True)
         engine = st.radio(
             "Engine",
             ENGINE_NAMES,
@@ -341,112 +325,9 @@ def render_sidebar() -> tuple[str, str]:
     return page, engine
 
 
-def engine_card(engine_name: str, item: Dict[str, Any], question: str, group_id: str, focused: bool = False) -> None:
-    title = engine_name
-    tech_map = {
-        "Naive Bayes": "TF-IDF + Multinomial Naive Bayes",
-        "SVM": "TF-IDF + Linear SVM",
-        "LSTM": "Embedding + BiLSTM",
-    }
-    intent = str(item.get("intent", "unknown"))
-    confidence = float(item.get("confidence", 0.0))
-    fallback = bool(item.get("fallback", False))
-    response = str(item.get("response", ""))
-    focused_class = " focused" if focused else ""
-    status_text = "Low-confidence fallback" if fallback else "Answer generated from university data"
-    status_class = "fallback" if fallback else "ok"
-
-    st.markdown(
-        f'<div class="engine-answer-card{focused_class}">'
-        f'<div class="engine-title">{title}</div>'
-        f'<div class="engine-tech">{tech_map.get(engine_name, "ML Intent Classifier")}</div>'
-        f'<div class="meta-row">'
-        f'<span class="engine-badge">{engine_name}</span>'
-        f'<span class="intent-badge">{intent.replace("_", " ")}</span>'
-        f'{confidence_badge(confidence)}'
-        f'</div>'
-        f'<div class="answer-status {status_class}">{status_text}</div>'
-        f'<div class="answer-text">{response.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\\n", "<br>")}</div>'
-        f'</div>',
-        unsafe_allow_html=True,
-    )
-
-    alternatives = item.get("alternatives", [])
-    if alternatives:
-        with st.expander(f"{engine_name}: top predictions"):
-            rows = [
-                {"Rank": i, "Intent": tag.replace("_", " "), "Confidence": f"{prob:.2%}"}
-                for i, (tag, prob) in enumerate(alternatives[:3], 1)
-            ]
-            st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
-
-    fb1, fb2 = st.columns([1, 1])
-    key_base = f"{group_id}_{engine_name.lower().replace(' ', '_')}"
-    already_rated = any(
-        key in st.session_state.feedback_ids
-        for key in (f"{key_base}_up", f"{key_base}_down")
-    )
-    if already_rated:
-        st.caption(f"Feedback recorded for {engine_name}.")
-        return
-    with fb1:
-        if st.button("👍", key=f"{key_base}_up", use_container_width=True, help=f"Mark {engine_name} answer as helpful"):
-            log_feedback(question, engine_name, intent, confidence, "Helpful")
-            st.session_state.feedback_ids.add(f"{key_base}_up")
-            st.rerun()
-    with fb2:
-        if st.button("👎", key=f"{key_base}_down", use_container_width=True, help=f"Mark {engine_name} answer as not helpful"):
-            log_feedback(question, engine_name, intent, confidence, "Not helpful")
-            st.session_state.feedback_ids.add(f"{key_base}_down")
-            st.rerun()
-
-
 def render_message_details(message: Dict[str, Any]) -> None:
     if message["role"] != "assistant":
         st.write(message["content"])
-        return
-
-    # New format: one question followed by all three engine answers.
-    if message.get("type") == "comparison":
-        question = message.get("question", "")
-        results = message.get("results", {})
-        focus_engine = message.get("focus_engine", "")
-        group_id = message.get("id", "comparison")
-
-        st.markdown(
-            '<div class="section-heading"><div class="eyebrow">Three-engine response</div>'
-            '<h2>Same question, three model answers</h2>'
-            '<p>Each engine independently classified the same user question and produced its own answer.</p></div>',
-            unsafe_allow_html=True,
-        )
-
-        agree_intents = {item.get("intent", "unknown") for item in results.values()}
-        if len(agree_intents) == 1:
-            st.markdown(
-                f'<div class="success-box"><b>Model agreement:</b> all three engines predicted '
-                f'<b>{next(iter(agree_intents)).replace("_", " ")}</b>.</div>',
-                unsafe_allow_html=True,
-            )
-        else:
-            st.markdown(
-                '<div class="warning-box"><b>Model disagreement:</b> at least one engine predicted a different intent. '
-                'This is useful evidence for model comparison.</div>',
-                unsafe_allow_html=True,
-            )
-
-        cols = st.columns(3)
-        for col, engine_name in zip(cols, ENGINE_NAMES):
-            with col:
-                engine_card(engine_name, results[engine_name], question, group_id, engine_name == focus_engine)
-
-        entities = message.get("entities", {})
-        if entities:
-            with st.expander("Detected entities / data fields"):
-                entity_rows = [
-                    {"Entity": key.replace("_", " ").title(), "Value": value}
-                    for key, value in entities.items()
-                ]
-                st.dataframe(pd.DataFrame(entity_rows), hide_index=True, use_container_width=True)
         return
 
     st.write(message["content"])
@@ -480,59 +361,75 @@ def render_message_details(message: Dict[str, Any]) -> None:
             entity_rows = [{"Entity": key.replace("_", " ").title(), "Value": value} for key, value in entities.items()]
             st.dataframe(pd.DataFrame(entity_rows), hide_index=True, use_container_width=True)
 
+    msg_id = message.get("id")
+    if msg_id in st.session_state.feedback_ids:
+        st.caption("Feedback recorded for this answer.")
+        return
 
-def add_comparison_turn(
+    c1, c2, c3 = st.columns([1, 1, 6])
+    with c1:
+        if st.button("👍", key=f"up_{msg_id}"):
+            log_feedback(question, engine, intent, confidence, "Helpful")
+            st.session_state.feedback_ids.add(msg_id)
+            st.rerun()
+    with c2:
+        if st.button("👎", key=f"down_{msg_id}"):
+            log_feedback(question, engine, intent, confidence, "Not helpful")
+            st.session_state.feedback_ids.add(msg_id)
+            st.rerun()
+    with c3:
+        st.caption("Was this answer useful?")
+
+
+def add_chat_turn(
+    engine: str,
     question: str,
-    results: Dict[str, Dict[str, Any]],
+    intent: str,
+    confidence: float,
+    response: str,
+    alternatives: List[tuple[str, float]],
+    fallback: bool,
     entities: Dict[str, str],
-    focus_engine: str,
 ) -> None:
     st.session_state.messages.append({"role": "user", "content": question})
-    group_id = f"cmp_{len(st.session_state.messages) + 1}_{int(time.time() * 1000)}"
+    msg_id = f"m{len(st.session_state.messages) + 1}_{int(time.time() * 1000)}"
     st.session_state.messages.append(
         {
             "role": "assistant",
-            "type": "comparison",
-            "content": "Three-engine comparison",
-            "question": question,
-            "results": results,
+            "content": response,
+            "engine": engine,
+            "intent": intent,
+            "confidence": confidence,
+            "alternatives": alternatives,
+            "fallback": fallback,
             "entities": entities,
-            "focus_engine": focus_engine,
-            "id": group_id,
+            "question": question,
+            "id": msg_id,
         }
     )
+
 
 def render_chatbot(models: ModelBundle, data: Dict[str, Any], responses: Dict[str, List[str]], engine: str) -> None:
     st.markdown(
         '<div class="hero"><div class="eyebrow">University FAQ Assistant</div>'
-        '<h1>Ask one question. Get three ML answers.</h1>'
-        '<p>Every question is processed by Naive Bayes, SVM and LSTM at the same time. '
-        'The three answers are displayed together so you can directly compare intent predictions, confidence and response quality.</p>'
-        '<div class="access-badge"><span class="access-dot"></span> All three models are trained and ready</div></div>',
+        '<h1>Ask your university question.</h1>'
+        '<p>Select an ML engine, enter a question, and the system will classify your intent, '
+        'check confidence, extract useful entities, and retrieve an answer from the supplied university data.</p>'
+        '<div class="access-badge"><span class="access-dot"></span> Models trained and ready</div></div>',
         unsafe_allow_html=True,
     )
 
     c1, c2, c3, c4 = st.columns(4)
     with c1:
-        metric_card("Highlighted Engine", engine, "Selected for visual focus")
+        metric_card("Current Engine", engine, "Selected classifier")
     with c2:
-        metric_card("Fallback Threshold", f"{st.session_state.threshold:.0%}", "Applied to all models")
+        metric_card("Fallback Threshold", f"{st.session_state.threshold:.0%}", "Adjustable in sidebar")
     with c3:
         metric_card("Margin Threshold", f"{st.session_state.margin_threshold:.0%}", "Top-1 vs Top-2")
     with c4:
         metric_card("Dataset Intents", str(len(data.get("intents", []))), "Supported topics")
 
-    st.markdown(
-        '<div class="compare-summary"><b>Comparison mode is always on.</b> '
-        'One user question is sent to all three classifiers. Each engine returns its own intent, confidence score and university answer.</div>',
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
-        '<div class="section-heading"><div class="eyebrow">Quick Questions</div>'
-        '<h2>Try the university assistant</h2><p>Use one of these examples or type your own.</p></div>',
-        unsafe_allow_html=True,
-    )
+    st.markdown('<div class="section-heading"><div class="eyebrow">Quick Questions</div><h2>Try the university assistant</h2><p>Use one of these examples or type your own.</p></div>', unsafe_allow_html=True)
     quick_prompts = [
         "Where is the library?",
         "When is my Data Structures exam?",
@@ -547,6 +444,12 @@ def render_chatbot(models: ModelBundle, data: Dict[str, Any], responses: Dict[st
             if st.button(prompt, key=f"quick_{idx}", use_container_width=True):
                 st.session_state.pending_question = prompt
 
+    compare_mode = st.toggle(
+        "Compare all three engines for the same question",
+        value=False,
+        help="Runs Naive Bayes, SVM and LSTM on the exact same input.",
+    )
+
     for message in st.session_state.messages:
         role = message["role"]
         avatar = "🎓" if role == "assistant" else "🧑‍🎓"
@@ -560,32 +463,68 @@ def render_chatbot(models: ModelBundle, data: Dict[str, Any], responses: Dict[st
     if question:
         threshold = st.session_state.threshold
         margin_threshold = st.session_state.margin_threshold
-        comparison: Dict[str, Dict[str, Any]] = {}
-        entities = extract_entities(data, question)
-        with st.spinner("Running Naive Bayes, SVM and LSTM..."):
-            for model_name in ENGINE_NAMES:
-                result = predict(models, model_name, question, threshold, margin_threshold)
-                intent = "unknown" if result.is_fallback else result.intent
-                if result.is_fallback:
-                    answer = (
-                        "Sorry, I cannot confidently match that question to a supported university service. "
-                        "Please rephrase it or ask about courses, exams, fees, student services, facilities, "
-                        "library, campus locations, or IT support."
-                    )
-                else:
-                    answer = response_for_intent(data, responses, intent, question)
+        with st.spinner(f"Running {engine} model..."):
+            result = predict(models, engine, question, threshold, margin_threshold)
+            entities = extract_entities(data, question)
+            if result.is_fallback:
+                response = (
+                    "Sorry, I cannot confidently match that question to a supported university service. "
+                    "Please rephrase it or ask about courses, exams, fees, student services, facilities, "
+                    "library, campus locations, or IT support."
+                )
+                shown_intent = "unknown"
+            else:
+                shown_intent = result.intent
+                response = response_for_intent(data, responses, result.intent, question)
 
-                comparison[model_name] = {
-                    "intent": intent,
-                    "confidence": result.confidence,
-                    "fallback": result.is_fallback,
-                    "response": answer,
-                    "alternatives": result.alternatives,
-                }
+            comparison = {}
+            if compare_mode:
+                for model_name in ENGINE_NAMES:
+                    comp_result = predict(models, model_name, question, threshold, margin_threshold)
+                    comp_intent = "unknown" if comp_result.is_fallback else comp_result.intent
+                    comparison[model_name] = {
+                        "intent": comp_intent,
+                        "confidence": comp_result.confidence,
+                        "fallback": comp_result.is_fallback,
+                        "response": response_for_intent(data, responses, comp_intent, question)
+                        if not comp_result.is_fallback else "Low-confidence fallback",
+                    }
 
-        add_comparison_turn(question, comparison, entities, engine)
-        st.session_state.last_compare = comparison
+        add_chat_turn(
+            engine,
+            question,
+            shown_intent,
+            result.confidence,
+            response,
+            result.alternatives,
+            result.is_fallback,
+            entities,
+        )
+        st.session_state.last_compare = comparison if compare_mode else None
         st.rerun()
+
+    if st.session_state.get("last_compare"):
+        results = st.session_state.last_compare
+        st.markdown('<div class="section-heading"><div class="eyebrow">Model Comparison</div><h2>Same question, three classifiers</h2><p>Use this to demonstrate how model predictions can agree or disagree.</p></div>', unsafe_allow_html=True)
+        rows = []
+        for model_name, item in results.items():
+            rows.append(
+                {
+                    "Engine": model_name,
+                    "Predicted Intent": item["intent"].replace("_", " "),
+                    "Confidence": item["confidence"],
+                    "Fallback": "Yes" if item["fallback"] else "No",
+                }
+            )
+        comp_df = pd.DataFrame(rows)
+        view_df = comp_df.copy()
+        view_df["Confidence"] = view_df["Confidence"].map(lambda x: f"{x:.2%}")
+        st.dataframe(view_df, hide_index=True, use_container_width=True)
+        intents = {item["intent"] for item in results.values()}
+        if len(intents) == 1:
+            st.markdown('<div class="success-box"><b>Model agreement:</b> all three engines returned the same intent.</div>', unsafe_allow_html=True)
+        else:
+            st.markdown('<div class="warning-box"><b>Model disagreement:</b> the three engines returned different intent predictions.</div>', unsafe_allow_html=True)
 
     st.markdown(
         '<div class="notice"><div class="notice-icon">!</div><div><b>Important:</b> '
@@ -593,6 +532,7 @@ def render_chatbot(models: ModelBundle, data: Dict[str, Any], responses: Dict[st
         'policies and emergency information against current university announcements.</div></div>',
         unsafe_allow_html=True,
     )
+
 
 def render_evaluation(evaluations: Dict[str, Any], models: ModelBundle, data_signature: str) -> None:
     st.markdown(

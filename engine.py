@@ -1,24 +1,17 @@
-
 from __future__ import annotations
 
 import json
-import os
 import random
 import re
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Sequence, Tuple
+from typing import Any, Dict, Iterable, List, Sequence, Tuple
 
 import numpy as np
 import torch
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import (
-    accuracy_score,
-    confusion_matrix,
-    precision_recall_fscore_support,
-)
+from sklearn.metrics import accuracy_score, confusion_matrix, precision_recall_fscore_support
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import FeatureUnion, Pipeline
@@ -29,19 +22,23 @@ from torch.utils.data import DataLoader, TensorDataset
 
 SEED = 42
 ENGINE_NAMES = ["Naive Bayes", "SVM", "LSTM"]
+DEFAULT_FALLBACK_THRESHOLD = 0.60
+DEFAULT_MARGIN_THRESHOLD = 0.08
 
 
 def set_seed(seed: int = SEED) -> None:
-    """Make model training as reproducible as reasonably possible."""
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
+    try:
+        torch.use_deterministic_algorithms(False)
+    except Exception:
+        pass
 
 
 def clean_text(text: str) -> str:
-    """Normalize text while preserving useful alphanumeric tokens."""
     text = str(text).lower().strip()
     text = text.replace("’", "'")
     text = re.sub(r"[^a-z0-9\s']", " ", text)
@@ -56,29 +53,30 @@ def tokenize(text: str) -> List[str]:
 def load_dataset(path: str | Path) -> Dict[str, Any]:
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
-
     if "intents" not in data or not data["intents"]:
         raise ValueError("dataset.json must contain a non-empty 'intents' list.")
-
-    # Keep the original structured data so dynamic answers can use it.
     return data
 
 
 def build_samples(data: Dict[str, Any]) -> Tuple[List[str], List[str], List[str]]:
     texts: List[str] = []
     labels: List[str] = []
-    for intent in data["intents"]:
-        tag = str(intent["tag"])
-        for pattern in intent.get("patterns", []):
-            p = clean_text(pattern)
-            if p:
-                texts.append(p)
-                labels.append(tag)
+    seen_pairs: set[Tuple[str, str]] = set()
 
-    labels_sorted = sorted(set(labels))
-    if len(labels_sorted) < 2:
+    for intent in data["intents"]:
+        tag = str(intent["tag"]).strip()
+        for pattern in intent.get("patterns", []):
+            cleaned = clean_text(pattern)
+            pair = (cleaned, tag)
+            if cleaned and pair not in seen_pairs:
+                texts.append(cleaned)
+                labels.append(tag)
+                seen_pairs.add(pair)
+
+    label_names = sorted(set(labels))
+    if len(label_names) < 2:
         raise ValueError("Dataset must contain at least two distinct intents.")
-    return texts, labels, labels_sorted
+    return texts, labels, label_names
 
 
 def make_shared_split(
@@ -94,11 +92,12 @@ def make_shared_split(
         random_state=seed,
         stratify=labels,
     )
-    x_train = [texts[int(i)] for i in train_idx]
-    x_test = [texts[int(i)] for i in test_idx]
-    y_train = [labels[int(i)] for i in train_idx]
-    y_test = [labels[int(i)] for i in test_idx]
-    return x_train, x_test, y_train, y_test
+    return (
+        [texts[int(i)] for i in train_idx],
+        [texts[int(i)] for i in test_idx],
+        [labels[int(i)] for i in train_idx],
+        [labels[int(i)] for i in test_idx],
+    )
 
 
 @dataclass
@@ -117,26 +116,30 @@ class EvaluationResult:
     confusion: np.ndarray
     training_seconds: float
 
-    def as_dict(self) -> Dict[str, Any]:
-        return {
-            "model": self.model,
-            "accuracy": self.accuracy,
-            "precision": self.precision,
-            "recall": self.recall,
-            "f1": self.f1,
-            "macro_precision": self.macro_precision,
-            "macro_recall": self.macro_recall,
-            "macro_f1": self.macro_f1,
-            "predictions": self.predictions,
-            "y_true": self.y_true,
-            "labels": self.labels,
-            "confusion": self.confusion,
-            "training_seconds": self.training_seconds,
-        }
+
+@dataclass
+class PredictionResult:
+    intent: str
+    confidence: float
+    alternatives: List[Tuple[str, float]]
+    is_fallback: bool
+    reason: str = ""
+
+
+@dataclass
+class ModelBundle:
+    models: Dict[str, Any]
+    lstm: "LSTMEngine"
+    labels: List[str]
+    x_test: List[str]
+    y_test: List[str]
+    x_train: List[str]
+    y_train: List[str]
+    metadata: Dict[str, Any]
 
 
 class Vocabulary:
-    def __init__(self, max_size: int = 5000) -> None:
+    def __init__(self, max_size: int = 8000):
         self.max_size = max_size
         self.word_to_id: Dict[str, int] = {"<PAD>": 0, "<UNK>": 1}
         self.id_to_word: Dict[int, str] = {0: "<PAD>", 1: "<UNK>"}
@@ -146,7 +149,6 @@ class Vocabulary:
         for text in texts:
             for token in tokenize(text):
                 counts[token] = counts.get(token, 0) + 1
-
         ordered = sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))
         for word, _ in ordered[: max(0, self.max_size - 2)]:
             idx = len(self.word_to_id)
@@ -154,7 +156,7 @@ class Vocabulary:
             self.id_to_word[idx] = word
 
     def encode(self, text: str, max_len: int) -> List[int]:
-        ids = [self.word_to_id.get(t, 1) for t in tokenize(text)[:max_len]]
+        ids = [self.word_to_id.get(token, 1) for token in tokenize(text)[:max_len]]
         if len(ids) < max_len:
             ids.extend([0] * (max_len - len(ids)))
         return ids
@@ -184,10 +186,9 @@ class LSTMClassifier(nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         embedded = self.embedding(x)
         _, (hidden, _) = self.lstm(embedded)
-        # Last forward + last backward hidden state.
-        h_forward = hidden[-2]
-        h_backward = hidden[-1]
-        combined = torch.cat([h_forward, h_backward], dim=1)
+        forward_hidden = hidden[-2]
+        backward_hidden = hidden[-1]
+        combined = torch.cat([forward_hidden, backward_hidden], dim=1)
         return self.classifier(self.dropout(combined))
 
 
@@ -195,9 +196,9 @@ class LSTMEngine:
     def __init__(
         self,
         label_names: Sequence[str],
-        max_vocab: int = 5000,
+        max_vocab: int = 8000,
         max_len: int = 32,
-        epochs: int = 20,
+        epochs: int = 18,
         batch_size: int = 32,
         learning_rate: float = 0.002,
     ) -> None:
@@ -210,19 +211,16 @@ class LSTMEngine:
         self.learning_rate = learning_rate
         self.model: LSTMClassifier | None = None
         self.training_seconds = 0.0
+        self.history: List[Dict[str, float]] = []
 
     def _encode_texts(self, texts: Sequence[str]) -> np.ndarray:
-        return np.asarray(
-            [self.vocab.encode(text, self.max_len) for text in texts],
-            dtype=np.int64,
-        )
+        return np.asarray([self.vocab.encode(text, self.max_len) for text in texts], dtype=np.int64)
 
     def fit(self, x_train: Sequence[str], y_train: Sequence[str]) -> None:
         start = time.perf_counter()
         self.vocab.fit(x_train)
-
         x = self._encode_texts(x_train)
-        y = np.asarray([self.label_to_id[yv] for yv in y_train], dtype=np.int64)
+        y = np.asarray([self.label_to_id[label] for label in y_train], dtype=np.int64)
 
         train_idx, val_idx = train_test_split(
             np.arange(len(x)),
@@ -230,32 +228,30 @@ class LSTMEngine:
             random_state=SEED,
             stratify=y,
         )
+
         x_tr = torch.tensor(x[train_idx], dtype=torch.long)
         y_tr = torch.tensor(y[train_idx], dtype=torch.long)
         x_val = torch.tensor(x[val_idx], dtype=torch.long)
         y_val = torch.tensor(y[val_idx], dtype=torch.long)
 
-        train_loader = DataLoader(
-            TensorDataset(x_tr, y_tr),
-            batch_size=self.batch_size,
-            shuffle=True,
-        )
-
-        self.model = LSTMClassifier(
-            vocab_size=len(self.vocab.word_to_id),
-            num_classes=len(self.label_names),
-        )
+        loader = DataLoader(TensorDataset(x_tr, y_tr), batch_size=self.batch_size, shuffle=True)
+        self.model = LSTMClassifier(len(self.vocab.word_to_id), len(self.label_names))
         optimizer = torch.optim.Adam(self.model.parameters(), lr=self.learning_rate)
         criterion = nn.CrossEntropyLoss()
 
         best_val_loss = float("inf")
         best_state: Dict[str, torch.Tensor] | None = None
-        patience = 3
-        stale_epochs = 0
+        patience = 4
+        stale = 0
+        self.history.clear()
 
-        for _epoch in range(self.epochs):
+        for epoch in range(1, self.epochs + 1):
             self.model.train()
-            for xb, yb in train_loader:
+            train_loss = 0.0
+            train_correct = 0
+            train_total = 0
+
+            for xb, yb in loader:
                 optimizer.zero_grad()
                 logits = self.model(xb)
                 loss = criterion(logits, yb)
@@ -263,26 +259,39 @@ class LSTMEngine:
                 torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=2.0)
                 optimizer.step()
 
+                train_loss += float(loss.item()) * len(yb)
+                train_correct += int((logits.argmax(dim=1) == yb).sum().item())
+                train_total += len(yb)
+
             self.model.eval()
             with torch.no_grad():
                 val_logits = self.model(x_val)
                 val_loss = float(criterion(val_logits, y_val).item())
+                val_acc = float((val_logits.argmax(dim=1) == y_val).float().mean().item())
+
+            train_loss /= max(1, train_total)
+            train_acc = train_correct / max(1, train_total)
+            self.history.append(
+                {
+                    "epoch": float(epoch),
+                    "train_loss": train_loss,
+                    "val_loss": val_loss,
+                    "train_accuracy": train_acc,
+                    "val_accuracy": val_acc,
+                }
+            )
 
             if val_loss < best_val_loss - 1e-4:
                 best_val_loss = val_loss
-                best_state = {
-                    key: value.detach().clone()
-                    for key, value in self.model.state_dict().items()
-                }
-                stale_epochs = 0
+                best_state = {k: v.detach().clone() for k, v in self.model.state_dict().items()}
+                stale = 0
             else:
-                stale_epochs += 1
-                if stale_epochs >= patience:
+                stale += 1
+                if stale >= patience:
                     break
 
         if best_state is not None:
             self.model.load_state_dict(best_state)
-
         self.training_seconds = time.perf_counter() - start
 
     def predict_proba(self, texts: Sequence[str]) -> np.ndarray:
@@ -291,19 +300,37 @@ class LSTMEngine:
         x = torch.tensor(self._encode_texts(texts), dtype=torch.long)
         self.model.eval()
         with torch.no_grad():
-            logits = self.model(x)
-            probs = torch.softmax(logits, dim=1).cpu().numpy()
+            probs = torch.softmax(self.model(x), dim=1).cpu().numpy()
         return probs
 
 
-@dataclass
-class ModelBundle:
-    models: Dict[str, Any]
-    lstm: LSTMEngine
-    labels: List[str]
-    x_test: List[str]
-    y_test: List[str]
-    metadata: Dict[str, Any]
+class _FeatureFactory:
+    @staticmethod
+    def build() -> FeatureUnion:
+        return FeatureUnion(
+            [
+                (
+                    "word",
+                    TfidfVectorizer(
+                        ngram_range=(1, 2),
+                        sublinear_tf=True,
+                        min_df=1,
+                        max_df=0.98,
+                        strip_accents="unicode",
+                    ),
+                ),
+                (
+                    "char",
+                    TfidfVectorizer(
+                        analyzer="char_wb",
+                        ngram_range=(3, 5),
+                        sublinear_tf=True,
+                        min_df=1,
+                        strip_accents="unicode",
+                    ),
+                ),
+            ]
+        )
 
 
 def train_all_models(dataset_path: str | Path) -> ModelBundle:
@@ -315,31 +342,7 @@ def train_all_models(dataset_path: str | Path) -> ModelBundle:
     nb_start = time.perf_counter()
     nb = Pipeline(
         [
-            (
-                "features",
-                FeatureUnion(
-                    [
-                        (
-                            "word",
-                            TfidfVectorizer(
-                                ngram_range=(1, 2),
-                                sublinear_tf=True,
-                                min_df=1,
-                                max_df=0.98,
-                            ),
-                        ),
-                        (
-                            "char",
-                            TfidfVectorizer(
-                                analyzer="char_wb",
-                                ngram_range=(3, 5),
-                                sublinear_tf=True,
-                                min_df=1,
-                            ),
-                        ),
-                    ]
-                ),
-            ),
+            ("features", _FeatureFactory.build()),
             ("model", MultinomialNB(alpha=0.05)),
         ]
     )
@@ -349,31 +352,7 @@ def train_all_models(dataset_path: str | Path) -> ModelBundle:
     svm_start = time.perf_counter()
     svm = Pipeline(
         [
-            (
-                "features",
-                FeatureUnion(
-                    [
-                        (
-                            "word",
-                            TfidfVectorizer(
-                                ngram_range=(1, 2),
-                                sublinear_tf=True,
-                                min_df=1,
-                                max_df=0.98,
-                            ),
-                        ),
-                        (
-                            "char",
-                            TfidfVectorizer(
-                                analyzer="char_wb",
-                                ngram_range=(3, 5),
-                                sublinear_tf=True,
-                                min_df=1,
-                            ),
-                        ),
-                    ]
-                ),
-            ),
+            ("features", _FeatureFactory.build()),
             (
                 "model",
                 SVC(
@@ -393,52 +372,43 @@ def train_all_models(dataset_path: str | Path) -> ModelBundle:
 
     return ModelBundle(
         models={
-            "Naive Bayes": {
-                "model": nb,
-                "training_seconds": nb_seconds,
-            },
-            "SVM": {
-                "model": svm,
-                "training_seconds": svm_seconds,
-            },
+            "Naive Bayes": {"model": nb, "training_seconds": nb_seconds},
+            "SVM": {"model": svm, "training_seconds": svm_seconds},
         },
         lstm=lstm,
         labels=label_names,
         x_test=x_test,
         y_test=y_test,
+        x_train=x_train,
+        y_train=y_train,
         metadata={
             "dataset_path": str(dataset_path),
             "num_samples": len(texts),
             "num_intents": len(label_names),
             "train_samples": len(x_train),
             "test_samples": len(x_test),
+            "seed": SEED,
+            "test_size": 0.20,
         },
     )
 
 
 def probabilities_for(bundle: ModelBundle, engine: str, texts: Sequence[str]) -> np.ndarray:
+    cleaned = [clean_text(text) for text in texts]
     if engine == "LSTM":
-        return bundle.lstm.predict_proba(texts)
-    model = bundle.models[engine]["model"]
-    return model.predict_proba(list(texts))
+        return bundle.lstm.predict_proba(cleaned)
+    return bundle.models[engine]["model"].predict_proba(cleaned)
 
 
-def predict_top_k(
-    bundle: ModelBundle,
-    engine: str,
-    text: str,
-    k: int = 3,
-) -> List[Tuple[str, float]]:
-    cleaned = clean_text(text)
-    if not cleaned:
+def predict_top_k(bundle: ModelBundle, engine: str, text: str, k: int = 3) -> List[Tuple[str, float]]:
+    if not clean_text(text):
         return []
-    probs = probabilities_for(bundle, engine, [cleaned])[0]
-    order = np.argsort(probs)[::-1][:k]
-    # LSTM/SVC probabilities are aligned with their own class order.
+    probs = probabilities_for(bundle, engine, [text])[0]
     if engine == "LSTM":
         classes = bundle.lstm.label_names
     else:
         classes = list(bundle.models[engine]["model"].classes_)
+    order = np.argsort(probs)[::-1][:k]
     return [(str(classes[int(i)]), float(probs[int(i)])) for i in order]
 
 
@@ -446,22 +416,36 @@ def predict(
     bundle: ModelBundle,
     engine: str,
     text: str,
-) -> Tuple[str, float, List[Tuple[str, float]]]:
+    threshold: float = DEFAULT_FALLBACK_THRESHOLD,
+    margin_threshold: float = DEFAULT_MARGIN_THRESHOLD,
+) -> PredictionResult:
     top = predict_top_k(bundle, engine, text, k=3)
     if not top:
-        return "unknown", 0.0, [("unknown", 0.0)]
-    return top[0][0], top[0][1], top
+        return PredictionResult("unknown", 0.0, [("unknown", 0.0)], True, "empty_question")
+
+    intent, confidence = top[0]
+    second_confidence = top[1][1] if len(top) > 1 else 0.0
+    margin = confidence - second_confidence
+
+    reasons: List[str] = []
+    fallback = False
+    if intent == "unknown":
+        fallback = True
+        reasons.append("model_predicted_unknown")
+    if confidence < threshold:
+        fallback = True
+        reasons.append(f"confidence_below_{threshold:.2f}")
+    if margin < margin_threshold and confidence < 0.85:
+        fallback = True
+        reasons.append(f"small_top1_top2_margin")
+
+    return PredictionResult(intent, confidence, top, fallback, ", ".join(reasons))
 
 
 def evaluate_engine(bundle: ModelBundle, engine: str) -> EvaluationResult:
-    start = time.perf_counter()
     probs = probabilities_for(bundle, engine, bundle.x_test)
-    if engine == "LSTM":
-        classes = bundle.lstm.label_names
-    else:
-        classes = list(bundle.models[engine]["model"].classes_)
-    pred_ids = np.argmax(probs, axis=1)
-    predictions = np.asarray([classes[i] for i in pred_ids])
+    classes = bundle.lstm.label_names if engine == "LSTM" else list(bundle.models[engine]["model"].classes_)
+    predictions = np.asarray([classes[int(i)] for i in np.argmax(probs, axis=1)])
 
     weighted_p, weighted_r, weighted_f1, _ = precision_recall_fscore_support(
         bundle.y_test,
@@ -477,17 +461,10 @@ def evaluate_engine(bundle: ModelBundle, engine: str) -> EvaluationResult:
         average="macro",
         zero_division=0,
     )
-    cm = confusion_matrix(bundle.y_test, predictions, labels=bundle.labels)
 
-    training_seconds = float(
-        bundle.lstm.training_seconds
-        if engine == "LSTM"
-        else bundle.models[engine]["training_seconds"]
+    training_seconds = (
+        bundle.lstm.training_seconds if engine == "LSTM" else bundle.models[engine]["training_seconds"]
     )
-
-    # Keep the result deterministic; evaluation time is not a model metric.
-    _ = time.perf_counter() - start
-
     return EvaluationResult(
         model=engine,
         accuracy=float(accuracy_score(bundle.y_test, predictions)),
@@ -498,10 +475,10 @@ def evaluate_engine(bundle: ModelBundle, engine: str) -> EvaluationResult:
         macro_recall=float(macro_r),
         macro_f1=float(macro_f1),
         predictions=predictions,
-        y_true=bundle.y_test,
-        labels=bundle.labels,
-        confusion=cm,
-        training_seconds=training_seconds,
+        y_true=list(bundle.y_test),
+        labels=list(bundle.labels),
+        confusion=confusion_matrix(bundle.y_test, predictions, labels=bundle.labels),
+        training_seconds=float(training_seconds),
     )
 
 
@@ -509,10 +486,77 @@ def evaluate_all(bundle: ModelBundle) -> Dict[str, EvaluationResult]:
     return {engine: evaluate_engine(bundle, engine) for engine in ENGINE_NAMES}
 
 
+def evaluate_challenge_set(
+    bundle: ModelBundle,
+    challenge_cases: Sequence[Dict[str, str]],
+    engine: str,
+    threshold: float = DEFAULT_FALLBACK_THRESHOLD,
+    margin_threshold: float = DEFAULT_MARGIN_THRESHOLD,
+) -> Dict[str, Any]:
+    y_true: List[str] = []
+    y_pred: List[str] = []
+    fallback_count = 0
+    rows: List[Dict[str, Any]] = []
+
+    for case in challenge_cases:
+        question = case["question"]
+        expected = case["intent"]
+        result = predict(bundle, engine, question, threshold, margin_threshold)
+        predicted = "unknown" if result.is_fallback else result.intent
+        y_true.append(expected)
+        y_pred.append(predicted)
+        fallback_count += int(result.is_fallback)
+        rows.append(
+            {
+                "Question": question,
+                "Expected": expected,
+                "Predicted": predicted,
+                "Confidence": result.confidence,
+                "Correct": expected == predicted,
+                "Fallback": result.is_fallback,
+                "Reason": result.reason,
+            }
+        )
+
+    labels = sorted(set(y_true) | set(y_pred))
+    accuracy = accuracy_score(y_true, y_pred) if y_true else 0.0
+    precision, recall, f1, _ = precision_recall_fscore_support(
+        y_true, y_pred, labels=labels, average="weighted", zero_division=0
+    )
+    return {
+        "accuracy": float(accuracy),
+        "precision": float(precision),
+        "recall": float(recall),
+        "f1": float(f1),
+        "fallback_count": fallback_count,
+        "total": len(challenge_cases),
+        "rows": rows,
+    }
+
+
 def dataset_statistics(data: Dict[str, Any]) -> Dict[str, Any]:
     patterns = sum(len(i.get("patterns", [])) for i in data["intents"])
     responses = sum(len(i.get("responses", [])) for i in data["intents"])
     counts = {i["tag"]: len(i.get("patterns", [])) for i in data["intents"]}
+
+    normalized_to_tags: Dict[str, set[str]] = {}
+    for item in data["intents"]:
+        for p in item.get("patterns", []):
+            normalized = clean_text(p)
+            normalized_to_tags.setdefault(normalized, set()).add(item["tag"])
+    conflicting = sum(1 for tags in normalized_to_tags.values() if len(tags) > 1)
+    duplicate_exact = sum(max(0, len(tags) - 1) for tags in normalized_to_tags.values() if len(tags) > 1)
+
+    section_names = [
+        "class_timetable",
+        "exam_schedule",
+        "operating_hours",
+        "events",
+        "department_contacts",
+        "campus_places",
+        "course_fees",
+    ]
+
     return {
         "intents": len(data["intents"]),
         "patterns": patterns,
@@ -520,157 +564,215 @@ def dataset_statistics(data: Dict[str, Any]) -> Dict[str, Any]:
         "avg_patterns_per_intent": patterns / max(1, len(data["intents"])),
         "largest_intent": max(counts, key=counts.get),
         "largest_intent_count": counts[max(counts, key=counts.get)],
-        "structured_sections": {
-            key: len(data.get(key, []))
-            for key in [
-                "class_timetable",
-                "exam_schedule",
-                "operating_hours",
-                "events",
-                "department_contacts",
-                "campus_places",
-                "course_fees",
-            ]
-            if key in data
-        },
+        "smallest_intent": min(counts, key=counts.get),
+        "smallest_intent_count": counts[min(counts, key=counts.get)],
+        "pattern_conflicts": conflicting,
+        "pattern_conflict_extras": duplicate_exact,
+        "structured_sections": {key: len(data.get(key, [])) for key in section_names if key in data},
+        "intent_counts": counts,
     }
 
 
 def _tokens_for_matching(text: str) -> set[str]:
-    # Remove common conversational glue words from matching.
     stop = {
-        "the", "a", "an", "is", "are", "where", "what", "when", "how", "can",
-        "could", "please", "tell", "me", "do", "i", "my", "to", "of", "for",
-        "and", "in", "on", "at", "from", "with", "about", "which", "does",
-        "there", "you", "your", "university", "campus"
+        "the", "a", "an", "is", "are", "where", "what", "when", "how", "can", "could",
+        "please", "tell", "me", "do", "i", "my", "to", "of", "for", "and", "in", "on", "at",
+        "from", "with", "about", "which", "does", "there", "you", "your", "university", "campus",
     }
-    return {t for t in tokenize(text) if t not in stop}
+    return {token for token in tokenize(text) if token not in stop}
 
 
-def best_structured_match(query: str, items: Sequence[Dict[str, Any]], fields: Sequence[str]) -> Dict[str, Any] | None:
-    q_tokens = _tokens_for_matching(query)
-    if not q_tokens:
-        return None
-
-    best_item = None
-    best_score = 0.0
-    for item in items:
-        item_text = " ".join(str(item.get(f, "")) for f in fields)
-        item_tokens = _tokens_for_matching(item_text)
-        if not item_tokens:
-            continue
-        overlap = len(q_tokens & item_tokens)
-        exact_bonus = 0.8 if any(
-            q_tokens and qt in clean_text(str(item.get(fields[0], ""))).split()
-            for qt in q_tokens
-        ) else 0.0
-        score = overlap / max(1.0, len(q_tokens)) + exact_bonus
-        if score > best_score:
-            best_score = score
-            best_item = item
-    return best_item if best_score >= 0.35 else None
-
-
-def _find_all_matches(query: str, items: Sequence[Dict[str, Any]], fields: Sequence[str], limit: int = 5) -> List[Dict[str, Any]]:
+def _find_all_matches(
+    query: str,
+    items: Sequence[Dict[str, Any]],
+    fields: Sequence[str],
+    limit: int = 5,
+) -> List[Dict[str, Any]]:
     q_tokens = _tokens_for_matching(query)
     scored: List[Tuple[float, Dict[str, Any]]] = []
+    q_clean = clean_text(query)
+
     for item in items:
-        text = " ".join(str(item.get(f, "")) for f in fields)
-        tokens = _tokens_for_matching(text)
-        overlap = len(q_tokens & tokens)
+        item_text = " ".join(str(item.get(field, "")) for field in fields)
+        item_clean = clean_text(item_text)
+        item_tokens = _tokens_for_matching(item_text)
+        overlap = len(q_tokens & item_tokens)
         score = overlap / max(1.0, len(q_tokens))
+        if item_clean and item_clean in q_clean:
+            score += 1.5
+        for field in fields[:1]:
+            field_value = clean_text(str(item.get(field, "")))
+            if field_value and field_value in q_clean:
+                score += 2.0
         if score > 0:
             scored.append((score, item))
-    scored.sort(key=lambda x: x[0], reverse=True)
-    return [x[1] for x in scored[:limit]]
+
+    scored.sort(key=lambda pair: pair[0], reverse=True)
+    return [item for _, item in scored[:limit]]
+
+
+def extract_entities(data: Dict[str, Any], query: str) -> Dict[str, str]:
+    q = clean_text(query)
+    entities: Dict[str, str] = {}
+
+    # Level entity for fee questions.
+    for level in ["foundation", "diploma", "degree"]:
+        if level in q:
+            entities["level"] = level.title()
+            break
+
+    # Course / programme / place / department exact-ish phrase matching.
+    for item in data.get("course_fees", []):
+        programme = str(item.get("Programme", ""))
+        if programme and clean_text(programme) in q:
+            entities["programme"] = programme
+            entities["level"] = str(item.get("Level", entities.get("level", "")))
+            break
+
+    for item in data.get("class_timetable", []) + data.get("exam_schedule", []):
+        course = str(item.get("Course", ""))
+        if course and clean_text(course) in q:
+            entities["course"] = course
+            break
+        code = course.split()[0] if course else ""
+        if code and code.lower() in q:
+            entities["course"] = course
+            break
+
+    for item in data.get("department_contacts", []):
+        department = str(item.get("Department", ""))
+        if department and clean_text(department) in q:
+            entities["department"] = department
+            break
+
+    for item in data.get("campus_places", []):
+        place = str(item.get("Place", ""))
+        if place and clean_text(place) in q:
+            entities["place"] = place
+            break
+
+    # Helpful short-code/entity patterns.
+    course_code = re.search(r"\b[a-z]{3}\d{4}\b", q)
+    if course_code:
+        entities["course_code"] = course_code.group(0).upper()
+
+    gates = re.search(r"\bgate\s*([1-4])\b", q)
+    if gates:
+        entities["gate"] = f"Gate {gates.group(1)}"
+
+    return {key: value for key, value in entities.items() if value}
 
 
 def dynamic_response(data: Dict[str, Any], intent: str, query: str) -> str | None:
-    """Return a data-backed answer for intents that have structured university records."""
+    entities = extract_entities(data, query)
+
     if intent == "course_fee_inquiry" and data.get("course_fees"):
-        matches = _find_all_matches(
-            query,
-            data["course_fees"],
-            ["Level", "Programme", "Estimated_Fee_Malaysian", "Estimated_Fee_International"],
-            limit=3,
-        )
-        if not matches:
-            return (
-                "I can help with the available estimated course fees. "
-                "Try asking about Foundation, Diploma, or Degree."
+        items = data["course_fees"]
+        matches: List[Dict[str, Any]] = []
+        if entities.get("programme"):
+            matches = [
+                item for item in items
+                if clean_text(str(item.get("Programme", ""))) == clean_text(entities["programme"])
+            ]
+        elif entities.get("level"):
+            matches = [
+                item for item in items
+                if str(item.get("Level", "")).lower() == entities["level"].lower()
+            ]
+        else:
+            matches = _find_all_matches(
+                query,
+                items,
+                ["Level", "Programme", "Estimated_Fee_Malaysian", "Estimated_Fee_International"],
+                limit=3,
             )
-        lines = ["Here are the estimated fees matching your question:"]
-        for item in matches:
+
+        if not matches:
+            return "I can help with the available estimated course fees. Try asking about Foundation, Diploma, or Degree, or name the programme."
+
+        lines = ["Here are the estimated course fees matching your question:"]
+        for item in matches[:5]:
             lines.append(
                 f"• {item['Programme']} ({item['Duration']}): "
                 f"Malaysian {item['Estimated_Fee_Malaysian']}; "
                 f"International {item['Estimated_Fee_International']}."
             )
-        lines.append("These are estimates; please verify the latest official fee schedule before payment.")
+        lines.append("These are estimates; verify the latest official fee schedule before payment.")
         return "\n".join(lines)
 
-    if intent == "timetable" and data.get("class_timetable"):
-        matches = _find_all_matches(
-            query,
-            data["class_timetable"],
-            ["Day", "Time", "Course", "Venue"],
-            limit=6,
+    if intent == "tuition_fee":
+        return (
+            "Tuition fees can normally be paid through the university payment portal or approved payment methods. "
+            "Please check your student account for the exact amount, balance, payment deadline and any refund conditions."
         )
+
+    if intent == "timetable" and data.get("class_timetable"):
+        matches = _find_all_matches(query, data["class_timetable"], ["Day", "Time", "Course", "Venue"], limit=6)
+        if entities.get("course"):
+            matches = [m for m in data["class_timetable"] if clean_text(str(m.get("Course", ""))) == clean_text(entities["course"])]
+        elif entities.get("course_code"):
+            matches = [m for m in data["class_timetable"] if entities["course_code"].lower() in clean_text(str(m.get("Course", "")))]
         if not matches:
             matches = data["class_timetable"][:6]
         lines = ["Class timetable entries:"]
-        for item in matches:
-            lines.append(
-                f"• {item['Day']} {item['Time']} — {item['Course']} at {item['Venue']}."
-            )
+        for item in matches[:6]:
+            lines.append(f"• {item['Day']} {item['Time']} — {item['Course']} at {item['Venue']}.")
         return "\n".join(lines)
 
     if intent == "exam" and data.get("exam_schedule"):
-        matches = _find_all_matches(
-            query,
-            data["exam_schedule"],
-            ["Date", "Time", "Course", "Venue"],
-            limit=6,
-        )
+        matches = _find_all_matches(query, data["exam_schedule"], ["Date", "Time", "Course", "Venue"], limit=6)
+        if entities.get("course"):
+            matches = [m for m in data["exam_schedule"] if clean_text(str(m.get("Course", ""))) == clean_text(entities["course"])]
+        elif entities.get("course_code"):
+            matches = [m for m in data["exam_schedule"] if entities["course_code"].lower() in clean_text(str(m.get("Course", "")))]
         if not matches:
             matches = data["exam_schedule"]
         lines = ["Exam schedule entries:"]
-        for item in matches:
-            lines.append(
-                f"• {item['Date']} {item['Time']} — {item['Course']} at {item['Venue']}."
-            )
+        for item in matches[:6]:
+            lines.append(f"• {item['Date']} {item['Time']} — {item['Course']} at {item['Venue']}.")
         return "\n".join(lines)
 
     if intent in {"library_hours", "office_hours"} and data.get("operating_hours"):
-        q = "library" if intent == "library_hours" else query
-        matches = _find_all_matches(
-            q,
-            data["operating_hours"],
-            ["Service", "Monday-Friday", "Weekend / public holiday", "Phone"],
-            limit=5,
-        )
-        if not matches:
-            matches = data["operating_hours"][:5]
+        if intent == "library_hours":
+            candidates = [
+                item for item in data["operating_hours"]
+                if "library" in clean_text(str(item.get("Service", "")))
+            ]
+        else:
+            candidates = _find_all_matches(
+                query,
+                data["operating_hours"],
+                ["Service", "Monday-Friday", "Weekend / public holiday", "Phone"],
+                limit=5,
+            )
+        if not candidates:
+            candidates = data["operating_hours"][:5]
         lines = ["Service operating hours:"]
-        for item in matches:
-            weekday = item.get("Monday-Friday", "Not listed")
-            weekend = item.get("Weekend / public holiday", "Not listed")
+        for item in candidates[:5]:
             lines.append(
-                f"• {item['Service']}: Monday–Friday {weekday}; weekend/public holiday {weekend}."
+                f"• {item['Service']}: Monday–Friday {item.get('Monday-Friday', 'Not listed')}; "
+                f"weekend/public holiday {item.get('Weekend / public holiday', 'Not listed')}."
             )
         return "\n".join(lines)
 
     if intent == "department_contact" and data.get("department_contacts"):
-        matches = _find_all_matches(
-            query,
-            data["department_contacts"],
-            ["Department", "Help with", "Location", "Phone", "Contact"],
-            limit=3,
-        )
+        matches: List[Dict[str, Any]]
+        if entities.get("department"):
+            matches = [
+                item for item in data["department_contacts"]
+                if clean_text(str(item.get("Department", ""))) == clean_text(entities["department"])
+            ]
+        else:
+            matches = _find_all_matches(
+                query,
+                data["department_contacts"],
+                ["Department", "Help with", "Location", "Phone", "Contact"],
+                limit=3,
+            )
         if not matches:
             matches = data["department_contacts"][:3]
-        lines = ["Relevant department contacts:"]
-        for item in matches:
+        lines = ["Relevant department contact(s):"]
+        for item in matches[:3]:
             lines.append(
                 f"• {item['Department']} — {item.get('Help with', '')}. "
                 f"Phone: {item.get('Phone', 'N/A')}. Email: {item.get('Contact', 'N/A')}. "
@@ -681,23 +783,19 @@ def dynamic_response(data: Dict[str, Any], intent: str, query: str) -> str | Non
     if intent == "campus_events" and data.get("events"):
         lines = ["Upcoming campus events in the supplied dataset:"]
         for item in data["events"]:
-            lines.append(
-                f"• {item['Date']} — {item['Event']} at {item['Location']} ({item['Audience']})."
-            )
+            lines.append(f"• {item['Date']} — {item['Event']} at {item['Location']} ({item['Audience']}).")
         return "\n".join(lines)
 
-    if intent in {
-        "campus_location",
-        "library_location",
-        "campus_dining",
-        "parking",
-        "hostel",
-        "student_services",
-    } and data.get("campus_places"):
+    if intent in {"campus_location", "library_location", "campus_dining", "parking", "hostel", "student_services"} and data.get("campus_places"):
         fields = ["Place", "Category", "Location", "Notes", "Directions"]
-        matches = _find_all_matches(query, data["campus_places"], fields, limit=3)
+        if entities.get("place"):
+            matches = [
+                item for item in data["campus_places"]
+                if clean_text(str(item.get("Place", ""))) == clean_text(entities["place"])
+            ]
+        else:
+            matches = _find_all_matches(query, data["campus_places"], fields, limit=3)
 
-        # Narrow category where the intent suggests one.
         category_map = {
             "library_location": {"Library"},
             "campus_dining": {"Dining"},
@@ -711,17 +809,10 @@ def dynamic_response(data: Dict[str, Any], intent: str, query: str) -> str | Non
                 matches = cat_matches
 
         if not matches:
-            if intent == "library_location":
-                # Exact library record is always useful.
-                matches = [m for m in data["campus_places"] if m.get("Place", "").lower() == "library"][:1]
-            else:
-                matches = data["campus_places"][:3]
-
+            matches = data["campus_places"][:3]
         lines = ["Campus information:"]
         for item in matches[:3]:
-            lines.append(
-                f"• {item['Place']} — {item['Location']}. {item.get('Directions', '')}"
-            )
+            lines.append(f"• {item['Place']} — {item['Location']}. {item.get('Directions', '')}")
         return "\n".join(lines)
 
     return None
@@ -739,12 +830,62 @@ def response_for_intent(
 
     choices = responses.get(intent, [])
     if not choices:
-        return (
-            "Sorry, I could not find a prepared answer for that topic. "
-            "Please contact the relevant university office."
-        )
+        for item in data.get("intents", []):
+            if item.get("tag") == intent:
+                choices = item.get("responses", [])
+                break
+    if not choices:
+        return "Sorry, I could not find a prepared answer for that topic. Please contact the relevant university office."
 
-    # Deterministic response selection makes the demo repeatable.
-    digest = __import__('hashlib').sha256(clean_text(query).encode('utf-8')).hexdigest()
-    idx = int(digest[:12], 16) % len(choices)
-    return choices[idx]
+    digest = __import__("hashlib").sha256(clean_text(query).encode("utf-8")).hexdigest()
+    return choices[int(digest[:12], 16) % len(choices)]
+
+
+def average_inference_ms(bundle: ModelBundle, engine: str, sample_texts: Sequence[str], repeats: int = 10) -> float:
+    samples = list(sample_texts)[: min(10, len(sample_texts))]
+    if not samples:
+        return 0.0
+    start = time.perf_counter()
+    for _ in range(max(1, repeats)):
+        probabilities_for(bundle, engine, samples)
+    elapsed = time.perf_counter() - start
+    calls = max(1, repeats) * len(samples)
+    return elapsed * 1000 / calls
+
+
+@dataclass
+class DataQualityReport:
+    total_patterns: int
+    total_intents: int
+    empty_patterns: int
+    exact_duplicates: int
+    conflicting_patterns: int
+    min_patterns: int
+    max_patterns: int
+    mean_patterns: float
+    intents_under_20: List[str] = field(default_factory=list)
+
+
+def build_quality_report(data: Dict[str, Any]) -> DataQualityReport:
+    counts = {i["tag"]: len(i.get("patterns", [])) for i in data["intents"]}
+    normalized: Dict[str, set[str]] = {}
+    empty = 0
+    for item in data["intents"]:
+        for pattern in item.get("patterns", []):
+            cleaned = clean_text(pattern)
+            if not cleaned:
+                empty += 1
+            normalized.setdefault(cleaned, set()).add(item["tag"])
+    exact_duplicates = sum(max(0, len(tags) - 1) for tags in normalized.values())
+    conflicting = sum(1 for tags in normalized.values() if len(tags) > 1)
+    return DataQualityReport(
+        total_patterns=sum(counts.values()),
+        total_intents=len(counts),
+        empty_patterns=empty,
+        exact_duplicates=exact_duplicates,
+        conflicting_patterns=conflicting,
+        min_patterns=min(counts.values()),
+        max_patterns=max(counts.values()),
+        mean_patterns=float(np.mean(list(counts.values()))),
+        intents_under_20=sorted([tag for tag, count in counts.items() if count < 20]),
+    )

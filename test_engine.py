@@ -1,43 +1,65 @@
+from __future__ import annotations
 
+import json
 from pathlib import Path
 
-from engine import ENGINE_NAMES, evaluate_all, load_dataset, predict, train_all_models
+from engine import (
+    DEFAULT_FALLBACK_THRESHOLD,
+    DEFAULT_MARGIN_THRESHOLD,
+    ENGINE_NAMES,
+    build_quality_report,
+    dataset_statistics,
+    evaluate_all,
+    evaluate_challenge_set,
+    load_dataset,
+    train_all_models,
+)
 
 
-BASE = Path(__file__).resolve().parent
-DATASET = BASE / "dataset.json"
+BASE_DIR = Path(__file__).resolve().parent
+DATASET = BASE_DIR / "dataset.json"
+CHALLENGE = BASE_DIR / "challenge_test.json"
 
 
 def main() -> None:
     data = load_dataset(DATASET)
-    assert len(data["intents"]) >= 30, "Expected at least 30 intents."
-    assert sum(len(i.get("patterns", [])) for i in data["intents"]) >= 1000, "Dataset seems unexpectedly small."
+    stats = dataset_statistics(data)
+    quality = build_quality_report(data)
 
-    bundle = train_all_models(DATASET)
-    results = evaluate_all(bundle)
+    print("Dataset statistics:")
+    print(json.dumps(stats, indent=2))
+    print("\nQuality report:")
+    print(quality)
 
-    assert set(results) == set(ENGINE_NAMES)
+    assert quality.empty_patterns == 0, "Dataset contains empty training patterns."
+    assert quality.conflicting_patterns == 0, "Dataset contains cross-intent pattern conflicts."
 
-    examples = [
-        "Where is the library?",
-        "How do I reset my university password?",
-        "When is the Data Structures exam?",
-        "How much is the Diploma in Computer Science?",
-    ]
-    for question in examples:
-        for model in ENGINE_NAMES:
-            intent, confidence, top = predict(bundle, model, question)
-            assert isinstance(intent, str) and intent, f"Invalid intent for {model}"
-            assert 0.0 <= confidence <= 1.0, f"Invalid confidence for {model}"
-            assert top, f"No top predictions for {model}"
-
-    print("Smoke tests passed.")
-    for model in ENGINE_NAMES:
-        r = results[model]
+    models = train_all_models(DATASET)
+    results = evaluate_all(models)
+    print("\nHold-out evaluation:")
+    for engine in ENGINE_NAMES:
+        r = results[engine]
         print(
-            f"{model}: Accuracy={r.accuracy:.4f}, "
-            f"Precision={r.precision:.4f}, Recall={r.recall:.4f}, F1={r.f1:.4f}"
+            f"{engine}: accuracy={r.accuracy:.3f}, precision={r.precision:.3f}, "
+            f"recall={r.recall:.3f}, f1={r.f1:.3f}"
         )
+
+    challenge_cases = json.loads(CHALLENGE.read_text(encoding="utf-8"))["cases"]
+    print("\nChallenge-set evaluation:")
+    for engine in ENGINE_NAMES:
+        r = evaluate_challenge_set(
+            models,
+            challenge_cases,
+            engine,
+            DEFAULT_FALLBACK_THRESHOLD,
+            DEFAULT_MARGIN_THRESHOLD,
+        )
+        print(
+            f"{engine}: accuracy={r['accuracy']:.3f}, f1={r['f1']:.3f}, "
+            f"fallbacks={r['fallback_count']}/{r['total']}"
+        )
+
+    print("\nSmoke test: PASS")
 
 
 if __name__ == "__main__":

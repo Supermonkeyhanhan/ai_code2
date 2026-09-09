@@ -1,30 +1,42 @@
-# Suggested Test Questions
+# Test Cases
 
-Use the same questions across Naive Bayes, SVM and LSTM so the comparison is fair.
+## Normal university questions
 
-| # | Test question | Expected intent |
+| # | Question | Expected area |
 |---|---|---|
-| 1 | Where is the university library? | library_location |
-| 2 | What time does the library open? | library_hours |
-| 3 | When is the Data Structures exam? | exam |
-| 4 | Where can I pay my tuition fee? | tuition_fee |
-| 5 | How much is the Diploma in Computer Science? | course_fee_inquiry |
-| 6 | Where can I find the FOCS faculty? | campus_location |
-| 7 | How do I reset my university password? | password_problem |
-| 8 | My campus Wi-Fi is not working. | wifi_problem |
-| 9 | Who handles scholarship applications? | scholarship |
-| 10 | I need counselling support. | counselling_booking |
-| 11 | What are the class times for Data Structures? | timetable |
-| 12 | Where can I park my car? | parking |
-| 13 | How do I borrow a library book? | borrowing_books |
-| 14 | Where can I get lunch on campus? | campus_dining |
-| 15 | Who do I contact about admission requirements? | admission_requirements / department_contact depending on wording |
+| 1 | Where is the library? | library_location |
+| 2 | What time does the library close? | library_hours |
+| 3 | How do I borrow a library book? | borrowing_books |
+| 4 | What courses are available? | course_information |
+| 5 | Recommend a programming subject | course_recommendation |
+| 6 | How much is a diploma course? | course_fee_inquiry |
+| 7 | Where can I pay my tuition fee? | tuition_fee |
+| 8 | When is my Data Structures exam? | exam |
+| 9 | Where can I check my timetable? | timetable |
+| 10 | How do I reset my password? | password_problem |
+| 11 | Why is campus Wi-Fi not working? | wifi_problem |
+| 12 | How do I apply for the hostel? | hostel |
+| 13 | Where can I print my assignment? | printing |
+| 14 | Who should I contact about finance? | department_contact |
+| 15 | Are there any campus events? | campus_events |
 
-## Evaluation protocol
+## Unknown / fallback tests
 
-1. Select Naive Bayes and submit all questions.
-2. Record predicted intent and confidence.
-3. Repeat with SVM.
-4. Repeat with LSTM.
-5. Compare Accuracy, Precision, Recall and F1 Score on the Model Evaluation page.
-6. Use the same questions and same dataset for all models.
+These should either classify as `unknown` or trigger the confidence-based fallback depending on model probabilities:
+
+- What's the weather today?
+- Tell me a joke.
+- Recommend a movie.
+- Who won the football match?
+- Give me a pizza recipe.
+
+## Comparison test
+
+Enter the same question with each engine selected, then compare:
+
+- predicted intent
+- confidence
+- fallback decision
+- top alternatives
+
+The Model Evaluation page should be used for the formal held-out metrics.

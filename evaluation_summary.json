@@ -1,30 +1,44 @@
 {
-  "note": "Sample run in the build environment. Re-run train_models.py on the submission machine and use those metrics as the final reported results.",
-  "split": "80/20 stratified hold-out, random_state=42",
-  "results": {
+  "dataset": {
+    "intents": 34,
+    "patterns": 1392,
+    "train_samples": 1113,
+    "test_samples": 279,
+    "split": "80/20 stratified hold-out"
+  },
+  "models": {
     "Naive Bayes": {
-      "accuracy": 0.863799,
-      "precision_weighted": 0.879557,
-      "recall_weighted": 0.863799,
-      "f1_weighted": 0.862509,
-      "f1_macro": 0.854391,
-      "training_seconds": 0.051
+      "accuracy": 0.8637992831541219,
+      "precision": 0.8795570916538659,
+      "recall": 0.8637992831541219,
+      "f1": 0.8625085841830884,
+      "macro_precision": 0.8730455818691114,
+      "macro_recall": 0.8547377937590919,
+      "macro_f1": 0.8543912638463603,
+      "training_seconds": 0.09017723499982822,
+      "average_inference_ms": 0.30013916666575824
     },
     "SVM": {
-      "accuracy": 0.88172,
-      "precision_weighted": 0.896479,
-      "recall_weighted": 0.88172,
-      "f1_weighted": 0.882976,
-      "f1_macro": 0.868703,
-      "training_seconds": 4.151
+      "accuracy": 0.8817204301075269,
+      "precision": 0.8964793868019675,
+      "recall": 0.8817204301075269,
+      "f1": 0.8829755009488023,
+      "macro_precision": 0.8744938884644767,
+      "macro_recall": 0.8771828323806012,
+      "macro_f1": 0.8687033435917975,
+      "training_seconds": 3.8985427249999702,
+      "average_inference_ms": 0.5217161000018677
     },
     "LSTM": {
-      "accuracy": 0.731183,
-      "precision_weighted": 0.764367,
-      "recall_weighted": 0.731183,
-      "f1_weighted": 0.732761,
-      "f1_macro": 0.710372,
-      "training_seconds": 6.269
+      "accuracy": 0.7311827956989247,
+      "precision": 0.764366656839775,
+      "recall": 0.7311827956989247,
+      "f1": 0.732761053436353,
+      "macro_precision": 0.743940894016959,
+      "macro_recall": 0.7098022385547742,
+      "macro_f1": 0.7103721496816965,
+      "training_seconds": 6.146391677999873,
+      "average_inference_ms": 0.201190866679705
     }
   }
 }
