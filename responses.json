@@ -1,0 +1,165 @@
+{
+  "academic_advising": [
+    "You can contact your academic advisor or Academic Office for help with programme planning, subject selection and academic progress.",
+    "Academic advisors can help you understand your programme requirements and choose suitable subjects.",
+    "Your academic advisor can help with subject selection, add/drop decisions and graduation planning — book a consultation through the Academic Office."
+  ],
+  "admission_requirements": [
+    "Admission requirements vary by programme. In general you'll need to meet the minimum academic qualification (e.g. SPM/STPM/diploma or equivalent) set for your chosen programme. Please check the official Admissions page or contact admissions@campusconnect.edu for the exact requirements.",
+    "For entry requirements and the application process, please refer to the Admissions Office. You can also email admissions@campusconnect.edu with your qualifications for a quick eligibility check."
+  ],
+  "assignment": [
+    "Assignment deadlines depend on your course. Please check your LMS or course announcement for the exact submission date.",
+    "You should check the assignment section of your LMS for the latest deadline and submission instructions.",
+    "Deadlines are set per course on the LMS — check the assignment section there for the exact date and submission instructions."
+  ],
+  "borrowing_books": [
+    "1. Find the book – Search the library catalogue or browse the shelves.\n2. Take the book to the counter – Bring the book to the librarian or self-checkout machine.\n3. Show your library card – Scan or provide your library membership card.\n4. Check out the book – The librarian scans the book and records the loan.\n5. Get the due date – Check when the book must be returned.\n6. Take the book home – Keep it safe and return it before the due date."
+  ],
+  "campus_dining": [
+    "TAR UMT has five dining spots: Red Bricks Cafeteria (Block G, near Gate 3), Yum Yum Cafeteria (near Block L), Casuarina Cafe (East Campus, near Block SC, via Gate 7), Heritage Kitchen (inside the Club House at the Sports Complex), and FM Café (near CITC, Gate 2). The Library also has a small cafe corner called Sunnydew. If you tell me which building you're near, I can point you to the closest one.",
+    "For a quick bite near the Main Entrance or Library, try Yum Yum Cafeteria or the Sunnydew corner inside the Library. Near the Sports Complex, Heritage Kitchen at the Club House is convenient. If you're on the East Campus side, Casuarina Cafe near Block SC is your closest option."
+  ],
+  "campus_events": [
+    "You can check the Events & Activities page for the latest clubs discovery day, academic workshops, and sports events. For new students, I'd recommend starting with the Clubs Discovery Day, an academic-support workshop, and one wellbeing or sports activity.",
+    "Upcoming campus activities include club fairs, academic workshops, and sports/wellness events. Visit the Events & Activities page or Student Affairs for the current schedule and how to sign up.",
+    "Check the Events & Activities page for the current calendar — club fairs, workshops and sports/wellness days are usually listed there."
+  ],
+  "campus_location": [
+    "Based on the map: The Main Hall (Dewan Tunku Abdul Rahman / DTAR) and TAR UMT Arena are in the center of West Campus, right past the Main Entrance (Gate 1). Admissions (DACE) and Finance (DFIN) are in Bangunan Tun Tan Siew Sin near Gate 2. The East Campus (Blocks SA-SG) is located across the road, accessible via Gate 7.",
+    "Here are key directions: Student Affairs (DSA) is at Block B Ground Floor (near Gate 1). Cafeterias include Red Bricks (Block G, near Gate 3), Yum Yum (near Block L), and Casuarina Cafe (Block SC, East Campus). The Sports Complex, Swimming Pool, and Hostel are in the northern area near Gate 5.",
+    "To find a specific block: Blocks A to Z, and PA to PZ are in the West Campus. Blocks SA to SG are in the East Campus. The IT Centre (CITC) is near Gate 2 and Bus Stops 1-5. The Health Centre (Klinik LOW) is at the Ground Floor of Block V near Gate 4. Please refer to the visual campus map for exact walking paths.",
+    "Health Centre is located in Ground Floor, Block V, near Gate 4."
+  ],
+  "counselling_booking": [
+    "You can request a counselling appointment through the Student Counselling Service.",
+    "Please contact the Student Counselling Service to check available appointment dates and times.",
+    "The Student Counselling Service can arrange a confidential session — reach out through their booking portal or ask here and I'll point you to it."
+  ],
+  "course_fee_inquiry": [
+    "I can help you check the estimated course fees. Could you please specify if you are looking for Foundation, Diploma, or Degree?",
+    "Sure! To give you the correct price, please let me know which programme or level (Foundation, Diploma, or Degree) you are interested in."
+  ],
+  "course_information": [
+    "The university offers programmes in areas such as computing, business, engineering and other disciplines. You can ask about a specific programme or subject.",
+    "You can check the university academic portal or programme handbook for detailed course information.",
+    "We offer programmes across computing, business, engineering and other disciplines — tell me a field and I can point you to the right subjects."
+  ],
+  "course_recommendation": [
+    "If you are interested in programming, subjects such as Programming Fundamentals, Object-Oriented Programming and Web Development may be suitable.",
+    "For students interested in technology, programming, database, networking and AI-related subjects are good options depending on your goals.",
+    "Tell me what you enjoy or your career goal, and I can suggest programming, database, networking, or AI-related electives that fit."
+  ],
+  "department_contact": [
+    "Here are the key department contacts and locations:\n- Admissions (DACE): Ground Floor, Bangunan Tun Tan Siew Sin (admissions@campusconnect.edu)\n- Finance (DFIN): 1st Floor, Bangunan Tun Tan Siew Sin (finance@campusconnect.edu)\n- Student Affairs (DSA): Ground Floor, Block B\n- Examinations (DECA): 1st Floor, Block A\n- IT Centre (CITC): Near Gate 2 (ithelp@campusconnect.edu).",
+    "Most administrative offices, including Admissions and Finance in Bangunan Tun Tan Siew Sin, are open Monday to Friday, 08:30–16:30, and closed on weekends and public holidays."
+  ],
+  "exam": [
+    "You can check your examination timetable through the student portal or examination office.",
+    "Please refer to the latest examination timetable because exam dates and venues may change.",
+    "Exam dates, venues and results are all published through the student portal or examination office — let me know which one you need."
+  ],
+  "feedback": [
+    "Thank you for wanting to share feedback. Please use the Feedback page to rate your experience and leave any comments — this helps us improve the assistant.",
+    "You can rate this chatbot and leave comments on the Feedback page. We appreciate every rating and suggestion to make the service better.",
+    "You can rate this chatbot and leave comments any time on the Feedback page — every submission helps us improve it."
+  ],
+  "goodbye": [
+    "Goodbye! Have a nice day.",
+    "See you again!",
+    "Thank you for using the University AI Assistant.",
+    "Take care! Come back any time you have a campus question."
+  ],
+  "greeting": [
+    "Hello! How can I help you today?",
+    "Hi! What can I help you with?",
+    "Hello! You can ask me about university courses, exams, assignments, facilities and IT support.",
+    "Hi there! Ask me about courses, exams, fees, facilities, or IT support any time."
+  ],
+  "help": [
+    "I can help with university FAQs, courses, timetable information, assignments, exams, campus facilities, fees, IT troubleshooting and student services.",
+    "You can ask me about academic information, university services, IT problems, campus facilities, exams and assignments.",
+    "Ask me about courses, timetables, exams, assignments, fees, scholarships, hostel, parking, printing, IT issues, or campus locations — I'll do my best to help."
+  ],
+  "hostel": [
+    "The TAR UMT Hostel is located at the top right of the campus map, near Gate 5 and adjacent to the Sports Complex.",
+    "For hostel applications, fees, and room availability, please contact the accommodation or Student Affairs office. The hostel itself is located in the northern area of the campus near Gate 5."
+  ],
+  "it_support": [
+    "The IT Centre (CITC) is located near Gate 2 and Bus Stops 1-5. You can also contact the IT Help Desk via email at ithelp@campusconnect.edu for Wi-Fi, hardware, and software issues.",
+    "For technical problems, please contact the IT support team at ithelp@campusconnect.edu or visit the CITC building near Gate 2. Remember to provide your student ID."
+  ],
+  "library_collection": [
+    "The library's collection includes Comics, Dictionaries, Textbooks, Reference Books, Fiction/Novels, Academic Journals, and Newspapers & Magazines. Ask at the counter or check the catalogue for the exact shelf location of a specific book.",
+    "Yes — the library carries a wide range of materials: comics, dictionaries, textbooks, reference books, novels, journals, and magazines. Each category is shelved in its own section, clearly labelled with signage."
+  ],
+  "library_hours": [
+    "The university library is open from 8:00 AM to 10:00 PM on weekdays. Please check the university website for updated operating hours.",
+    "Library operating hours may change during holidays and examination periods. Please check the latest university announcement.",
+    "On weekdays the library is open 8:00 AM–10:00 PM; weekend and holiday hours can differ, so check the university announcement if you're planning a late visit."
+  ],
+  "library_location": [
+    "The university library is located in the West Campus, centrally surrounded by Block M, Block N, and Block D. It is also situated right next to DK A.",
+    "You can find the library in the West Campus. If you enter from the Main Entrance (Gate 1), walk straight past Dewan Tunku Abdul Rahman (DTAR) and Yum Yum Cafeteria towards Block M.",
+    "The library is located in the West Campus area between Block M and Block N. Please refer to the campus map for exact walking paths."
+  ],
+  "office_hours": [
+    "Most administrative offices (Student Services, Finance Office) are open Monday to Friday, 08:30–16:30, closed on weekends and public holidays. The Campus Health Centre (Klinik LOW) is open Mon-Fri 9:00 AM - 6:00 PM, Sat 9:00 AM - 1:00 PM, and Sun 9:00 AM - 12:00 PM (Closed on Public Holidays).",
+    "Office hours vary by department: Student Services and Finance Office run 08:30–16:30 on weekdays. The Campus Health Centre (Klinik LOW) runs 9:00 AM - 6:00 PM on weekdays, 9:00 AM - 1:00 PM on Saturdays, and 9:00 AM - 12:00 PM on Sundays. Most offices are closed on public holidays."
+  ],
+  "parking": [
+    "Student car parking (marked with a blue 'P' on the map) is available in several areas: near Block H/Block G (Gate 3), near the Sports Complex, and in the East Campus near Blocks SC & SD.",
+    "Motorcycle parking is primarily available near Gate 3 and Gate 4. Please ensure you park in the designated student zones and have a valid permit."
+  ],
+  "password_problem": [
+    "You can reset your password through the university account recovery page. If you cannot recover it, contact the IT support team.",
+    "Please use the official password recovery process. Never share your password with anyone.",
+    "You can self-reset via the account recovery page; if that fails or your account is locked, IT support can unlock it manually."
+  ],
+  "printing": [
+    "Printing and photocopying facilities may be available in the library or designated campus areas. Please check the current campus facilities.",
+    "You can check the library or computer laboratory for available printing services.",
+    "The library and computer labs both offer printing and photocopying — top up your student card if the service uses card-based credit."
+  ],
+  "scholarship": [
+    "Scholarship availability and eligibility depend on the university and programme. Please check the Student Affairs or scholarship office for current opportunities.",
+    "You should review the latest scholarship announcements for eligibility requirements, deadlines and application procedures.",
+    "Scholarship and bursary opportunities, eligibility, and deadlines are posted by Student Affairs — worth checking each semester as new ones open."
+  ],
+  "student_card": [
+    "You can apply for or replace a student card through the Student Affairs Office.",
+    "For a lost or damaged student card, contact Student Affairs to request a replacement.",
+    "Head to the Student Affairs Office with your student ID or a police report (for a lost card) to apply for a replacement."
+  ],
+  "student_services": [
+    "The Department of Student Affairs (DSA) is located on the Ground Floor of Block B. They handle student cards, scholarships, student activities, welfare, and other administrative services.",
+    "For student administration and welfare matters, you can visit the Student Affairs Office (Ground Floor, Block B). They are open Monday to Friday, 08:30–16:30."
+  ],
+  "thanks": [
+    "You're welcome!",
+    "No problem!",
+    "Glad I could help!",
+    "You're very welcome.",
+    "Anytime — happy to help with your next question too."
+  ],
+  "timetable": [
+    "Your timetable can be checked through the university student portal. If you provide your timetable information, I can also help you understand it.",
+    "Please check the student portal for the latest timetable because class schedules may change.",
+    "Your latest personalised timetable is on the student portal — I can also help explain it if you share the details here."
+  ],
+  "tuition_fee": [
+    "Tuition fees can normally be paid through the university payment portal or approved payment methods. Please check your student account for the amount due.",
+    "Please check your student portal for the latest tuition fee balance and payment deadline.",
+    "You can view your balance and pay through the university payment portal — check your student account for the exact amount and due date."
+  ],
+  "unknown": [
+    "Sorry, I cannot confidently match that to a supported university service. Please rephrase it or ask about courses, exams, fees, student services, facilities, or IT support.",
+    "That's outside what I can help with here. I can answer questions about academics, exams, fees, scholarships, timetables, campus facilities, library, IT support, student services, events, or department contacts.",
+    "I'm not able to help with that. Try asking me about university-related topics such as courses, exams, fees, the library, Wi-Fi, student services, or campus locations."
+  ],
+  "wifi_problem": [
+    "Please check that WiFi is enabled, reconnect to the university network and verify your student account credentials. If the problem continues, contact IT support.",
+    "Try disconnecting and reconnecting to the university WiFi. Restart your device if necessary and contact IT support if the issue remains.",
+    "Quick check: is Wi-Fi turned on and are you connected to the right campus network? Restarting your device and re-entering your credentials fixes most issues."
+  ]
+}

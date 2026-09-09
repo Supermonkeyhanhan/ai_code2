@@ -1,0 +1,30 @@
+{
+  "note": "Sample run in the build environment. Re-run train_models.py on the submission machine and use those metrics as the final reported results.",
+  "split": "80/20 stratified hold-out, random_state=42",
+  "results": {
+    "Naive Bayes": {
+      "accuracy": 0.863799,
+      "precision_weighted": 0.879557,
+      "recall_weighted": 0.863799,
+      "f1_weighted": 0.862509,
+      "f1_macro": 0.854391,
+      "training_seconds": 0.051
+    },
+    "SVM": {
+      "accuracy": 0.88172,
+      "precision_weighted": 0.896479,
+      "recall_weighted": 0.88172,
+      "f1_weighted": 0.882976,
+      "f1_macro": 0.868703,
+      "training_seconds": 4.151
+    },
+    "LSTM": {
+      "accuracy": 0.731183,
+      "precision_weighted": 0.764367,
+      "recall_weighted": 0.731183,
+      "f1_weighted": 0.732761,
+      "f1_macro": 0.710372,
+      "training_seconds": 6.269
+    }
+  }
+}
