@@ -1,0 +1,2715 @@
+﻿No,Intent,Category,Question
+1,greeting,Greeting,Hello
+2,greeting,Greeting,Hi
+3,greeting,Greeting,Hey
+4,greeting,Greeting,Good morning
+5,greeting,Greeting,Good afternoon
+6,greeting,Greeting,Good evening
+7,greeting,Greeting,Hello chatbot
+8,greeting,Greeting,Hi assistant
+9,greeting,Greeting,Hey chatbot
+10,greeting,Greeting,Hi there
+11,greeting,Greeting,Hello there
+12,greeting,Greeting,Good day
+13,greeting,Greeting,Is anyone there?
+14,greeting,Greeting,Start chat
+15,greeting,Greeting,Greetings!
+16,greeting,Greeting,Good morning chatbot
+17,greeting,Greeting,Good evening assistant
+18,greeting,Greeting,Yo chatbot
+19,greeting,Greeting,Hi there assistant
+20,greeting,Greeting,Morning!
+21,greeting,Greeting,Evening!
+22,greeting,Greeting,Hiya
+23,greeting,Greeting,Hiya chatbot
+24,greeting,Greeting,What's up?
+25,greeting,Greeting,Sup
+26,greeting,Greeting,Hey there!
+27,greeting,Greeting,Nice to meet you
+28,greeting,Greeting,Good to see you
+29,greeting,Greeting,"Hello, how are you?"
+30,greeting,Greeting,"Hi, how's it going?"
+31,greeting,Greeting,Howdy
+32,greeting,Greeting,Hello CampusConnect
+33,greeting,Greeting,Hi university assistant
+34,greeting,Greeting,Hey there assistant
+35,greeting,Greeting,"Good morning, CampusConnect"
+36,greeting,Greeting,"Hello, I am starting a chat"
+37,greeting,Greeting,Hai
+38,greeting,Greeting,Yo
+39,greeting,Greeting,Hello CampusConnect assistant
+40,greeting,Greeting,Good day chatbot
+41,greeting,Greeting,Can we start a chat?
+42,greeting,Greeting,Hello there assistant
+43,greeting,Greeting,Hi CampusConnect
+44,greeting,Greeting,Hey CampusConnect
+45,greeting,Greeting,Good day assistant
+46,greeting,Greeting,Good afternoon assistant
+47,greeting,Greeting,Morning CampusConnect
+48,greeting,Greeting,"Hello, are you available?"
+49,greeting,Greeting,"Hi, I need some university help"
+50,greeting,Greeting,"Hello, I have a question"
+51,greeting,Greeting,"Hi, can I ask something?"
+52,greeting,Greeting,"Hey, can you help me?"
+53,greeting,Greeting,"Good morning, I have a question"
+54,greeting,Greeting,"Good afternoon, I have a question"
+55,greeting,Greeting,"Good evening, I have a question"
+56,greeting,Greeting,Hi university chatbot
+57,greeting,Greeting,Hello university chatbot
+58,greeting,Greeting,Hey university assistant
+59,goodbye,Goodbye,Bye
+60,goodbye,Goodbye,Goodbye
+61,goodbye,Goodbye,See you
+62,goodbye,Goodbye,See you later
+63,goodbye,Goodbye,I have to go
+64,goodbye,Goodbye,Talk to you later
+65,goodbye,Goodbye,Bye chatbot
+66,goodbye,Goodbye,Goodbye assistant
+67,goodbye,Goodbye,See you again
+68,goodbye,Goodbye,That's all
+69,goodbye,Goodbye,I am done
+70,goodbye,Goodbye,End chat
+71,goodbye,Goodbye,Stop chatting
+72,goodbye,Goodbye,I don't need anything else
+73,goodbye,Goodbye,Thank you bye
+74,goodbye,Goodbye,Bye for now
+75,goodbye,Goodbye,"I hope you have a nice day, goodbye"
+76,goodbye,Goodbye,See you next time
+77,goodbye,Goodbye,I will come back later
+78,goodbye,Goodbye,Close chat
+79,goodbye,Goodbye,Bye bye for now
+80,goodbye,Goodbye,"Got to run, see ya"
+81,goodbye,Goodbye,Talk to you later assistant
+82,goodbye,Goodbye,Catch you later
+83,goodbye,Goodbye,I will leave now
+84,goodbye,Goodbye,Bye now
+85,goodbye,Goodbye,Gtg
+86,goodbye,Goodbye,I'm leaving
+87,goodbye,Goodbye,Done chatting
+88,goodbye,Goodbye,Exit chat
+89,goodbye,Goodbye,"Thanks, I am done"
+90,goodbye,Goodbye,That is all for now
+91,goodbye,Goodbye,End this conversation
+92,goodbye,Goodbye,See you tomorrow
+93,goodbye,Goodbye,Talk to you again soon
+94,goodbye,Goodbye,Goodbye for now
+95,goodbye,Goodbye,I am finished here
+96,goodbye,Goodbye,"No more questions, bye"
+97,goodbye,Goodbye,I have no more questions
+98,goodbye,Goodbye,"That is everything, thank you"
+99,goodbye,Goodbye,"Have a good day, bye"
+100,goodbye,Goodbye,See you next time chatbot
+101,goodbye,Goodbye,Close this conversation
+102,goodbye,Goodbye,I am done with my questions
+103,goodbye,Goodbye,Bye CampusConnect
+104,goodbye,Goodbye,Take care assistant
+105,thanks,Thanks,Thank you
+106,thanks,Thanks,Thanks
+107,thanks,Thanks,Thanks a lot
+108,thanks,Thanks,Thank you so much
+109,thanks,Thanks,I appreciate it
+110,thanks,Thanks,That helps
+111,thanks,Thanks,Very helpful
+112,thanks,Thanks,Thanks for helping
+113,thanks,Thanks,Thank you for your help
+114,thanks,Thanks,I appreciate your help
+115,thanks,Thanks,"Great, thanks"
+116,thanks,Thanks,Okay thanks
+117,thanks,Thanks,Thanks chatbot
+118,thanks,Thanks,Thanks assistant
+119,thanks,Thanks,You helped me
+120,thanks,Thanks,That was useful
+121,thanks,Thanks,Thank you very much
+122,thanks,Thanks,I am grateful
+123,thanks,Thanks,Thanks for the information
+124,thanks,Thanks,Thanks for answering
+125,thanks,Thanks,Many thanks!
+126,thanks,Thanks,Appreciate the quick reply
+127,thanks,Thanks,"Super helpful, thanks!"
+128,thanks,Thanks,Thanks for the breakdown
+129,thanks,Thanks,Much obliged
+130,thanks,Thanks,Ty
+131,thanks,Thanks,Thx
+132,thanks,Thanks,"Nice one, thanks"
+133,thanks,Thanks,"Perfect, thank you"
+134,thanks,Thanks,Thank you for the information
+135,thanks,Thanks,Thanks for the quick answer
+136,thanks,Thanks,I really appreciate your help
+137,thanks,Thanks,Many thanks for the explanation
+138,thanks,Thanks,"Thank you, that was useful"
+139,thanks,Thanks,Thanks for the assistance
+140,thanks,Thanks,"That answers my question, thanks"
+141,thanks,Thanks,"Perfect, thanks"
+142,thanks,Thanks,"Great answer, thank you"
+143,thanks,Thanks,Appreciate the information
+144,thanks,Thanks,Thanks for your support
+145,thanks,Thanks,Thanks for explaining that
+146,thanks,Thanks,Thank you for answering my question
+147,thanks,Thanks,Much appreciated
+148,thanks,Thanks,Thanks a bunch
+149,library_hours,Library Hours,What time does the library open?
+150,library_hours,Library Hours,When does the library open?
+151,library_hours,Library Hours,When is the library open?
+152,library_hours,Library Hours,What are the library opening hours?
+153,library_hours,Library Hours,What are the library hours?
+154,library_hours,Library Hours,Library opening time
+155,library_hours,Library Hours,Library closing time
+156,library_hours,Library Hours,When does the library close?
+157,library_hours,Library Hours,What time does the library close?
+158,library_hours,Library Hours,Is the library open today?
+159,library_hours,Library Hours,Can I visit the library at night?
+160,library_hours,Library Hours,What time can I study in the library?
+161,library_hours,Library Hours,When can students use the library?
+162,library_hours,Library Hours,Library operating hours
+163,library_hours,Library Hours,Library schedule
+164,library_hours,Library Hours,Is the library open on weekends?
+165,library_hours,Library Hours,What are the library working hours?
+166,library_hours,Library Hours,When can I enter the library?
+167,library_hours,Library Hours,Does the library open in the morning?
+168,library_hours,Library Hours,Does the library close at night?
+169,library_hours,Library Hours,Is the library open past 10 PM?
+170,library_hours,Library Hours,What are the weekend library opening times?
+171,library_hours,Library Hours,Can I enter the library early at 7 AM?
+172,library_hours,Library Hours,Are library hours different during final exam week?
+173,library_hours,Library Hours,When does the library close on Friday evenings?
+174,library_hours,Library Hours,What time can I access the library quiet study zone?
+175,library_hours,Library Hours,Does the campus library stay open during public holidays?
+176,library_hours,Library Hours,What is the library timetable for summer semester?
+177,library_hours,Library Hours,Until what time is the library open tonight?
+178,library_hours,Library Hours,Library operating times today
+179,library_hours,Library Hours,Is the library open on Sunday afternoon?
+180,library_hours,Library Hours,Show me library opening and closing hours
+181,library_hours,Library Hours,When does the library open tomorrow morning?
+182,library_hours,Library Hours,Can I stay in the library until midnight?
+183,library_hours,Library Hours,What are the official library service hours?
+184,library_hours,Library Hours,Library hours
+185,library_hours,Library Hours,Library timing
+186,library_hours,Library Hours,Library open now?
+187,library_hours,Library Hours,Library hours today
+188,library_hours,Library Hours,What time library close
+189,library_hours,Library Hours,When can I use the library?
+190,library_hours,Library Hours,What are the library service hours?
+191,library_hours,Library Hours,When is the library available?
+192,library_hours,Library Hours,Is the library open in the evening?
+193,library_hours,Library Hours,Can I study in the library after 8 PM?
+194,library_hours,Library Hours,Can I study in the library on Saturday?
+195,library_hours,Library Hours,What are the library hours during weekdays?
+196,library_hours,Library Hours,Does the library have different holiday hours?
+197,library_hours,Library Hours,What are the library hours during exams?
+198,library_hours,Library Hours,When does the library open on weekdays?
+199,library_hours,Library Hours,When does the library close on weekdays?
+200,library_hours,Library Hours,Can I enter the library late at night?
+201,library_hours,Library Hours,What time does the library start service?
+202,library_hours,Library Hours,What time does the library stop service?
+203,library_hours,Library Hours,Is the library open during the weekend?
+204,library_hours,Library Hours,Can I use the library on Sunday?
+205,library_hours,Library Hours,Is the library open during public holidays?
+206,library_hours,Library Hours,Please tell me the library schedule
+207,library_location,Library Location,Where is the library?
+208,library_location,Library Location,Where can I find the library?
+209,library_location,Library Location,Library location
+210,library_location,Library Location,How do I get to the library?
+211,library_location,Library Location,Where is the university library?
+212,library_location,Library Location,Which building is the library in?
+213,library_location,Library Location,Where can I find the main library?
+214,library_location,Library Location,How can I reach the library?
+215,library_location,Library Location,Where is the library building?
+216,library_location,Library Location,Library address
+217,library_location,Library Location,Which block has the library?
+218,library_location,Library Location,Where is the library study area?
+219,library_location,Library Location,Where is the main library located?
+220,library_location,Library Location,Can you tell me where the library is?
+221,library_location,Library Location,I need directions to the library
+222,library_location,Library Location,How do I find the library?
+223,library_location,Library Location,Which floor is the library?
+224,library_location,Library Location,Where is the campus library?
+225,library_location,Library Location,Where can students find the library?
+226,library_location,Library Location,Tell me the library location
+227,library_location,Library Location,Which floor is the quiet study zone in the library?
+228,library_location,Library Location,How can I walk to the main library building?
+229,library_location,Library Location,Is the library located near the student centre?
+230,library_location,Library Location,Where is the physical entrance of the university library?
+231,library_location,Library Location,Can you direct me to the campus reading hall?
+232,library_location,Library Location,Which block houses the central library?
+233,library_location,Library Location,Where can I find the book borrowing counter?
+234,library_location,Library Location,How do I locate the library reference section?
+235,library_location,Library Location,Where is the library seminar room located?
+236,library_location,Library Location,Is the library next to Block A or Block B?
+237,library_location,Library Location,Can you guide me to the library building?
+238,library_location,Library Location,Where do I find the library discussion rooms?
+239,library_location,Library Location,Directions to the main university library
+240,library_location,Library Location,What is the exact location of the library block?
+241,library_location,Library Location,Which floor has the computer workstations in the library?
+242,library_location,Library Location,How do I reach the library from the main entrance?
+243,library_location,Library Location,Show me the route to the library building
+244,library_location,Library Location,Which campus building contains the library?
+245,library_location,Library Location,Where is the library reading room?
+246,library_location,Library Location,Please direct me to the library entrance
+247,library_location,Library Location,How many books can I borrow at once?
+248,library_location,Library Location,How do I reserve a book that is not available?
+249,library_location,Library Location,How do I check which books I currently have on loan?
+250,library_location,Library Location,Where's the library
+251,library_location,Library Location,Library directions
+252,library_location,Library Location,How to reach library
+253,library_location,Library Location,Where can I find the main library entrance?
+254,library_location,Library Location,Which part of campus has the library?
+255,library_location,Library Location,Which block is the library next to?
+256,library_location,Library Location,Is the library near Block M?
+257,library_location,Library Location,Is the library near Block N?
+258,library_location,Library Location,How do I get to the library from Gate 1?
+259,library_location,Library Location,How do I get to the library from Gate 3?
+260,library_location,Library Location,Where is the library reading area?
+261,library_location,Library Location,Where is the library reference area?
+262,library_location,Library Location,Where are the library discussion rooms?
+263,library_location,Library Location,Where is the library seminar room?
+264,library_location,Library Location,Can you give me directions to the main library?
+265,library_location,Library Location,Is the library in West Campus?
+266,library_location,Library Location,Where is the library from the main entrance?
+267,library_location,Library Location,How far is the library from Gate 1?
+268,library_location,Library Location,What building is beside the library?
+269,library_location,Library Location,Which campus area contains the library?
+270,library_location,Library Location,Where is Library?
+271,library_location,Library Location,How do I get to Library?
+272,library_location,Library Location,Which gate is closest to Library?
+273,library_location,Library Location,Which block is Library next to?
+274,library_location,Library Location,library where
+275,library_location,Library Location,where library
+276,library_location,Library Location,can you tell me library location
+277,library_location,Library Location,need direction to library
+278,library_location,Library Location,how to go library
+279,library_location,Library Location,library在哪
+280,course_information,Course Information,What courses are available?
+281,course_information,Course Information,What subjects can I take?
+282,course_information,Course Information,Tell me about the courses
+283,course_information,Course Information,What programmes does the university offer?
+284,course_information,Course Information,What subjects does the university offer?
+285,course_information,Course Information,What degrees are offered?
+286,course_information,Course Information,How many courses are available?
+287,course_information,Course Information,What can I study at the university?
+288,course_information,Course Information,What study programmes do you have?
+289,course_information,Course Information,What is the course syllabus for Computer Science?
+290,course_information,Course Information,How many credit hours are required for this subject?
+291,course_information,Course Information,Can you provide details about degree prerequisites?
+292,course_information,Course Information,What modules are included in the IT diploma programme?
+293,course_information,Course Information,Where can I read the full course outline?
+294,course_information,Course Information,What subjects are taught in the Software Engineering degree?
+295,course_information,Course Information,Tell me about the curriculum for Business Administration.
+296,course_information,Course Information,What are the elective modules available for Year 2 students?
+297,course_information,Course Information,Are there any prerequisite subjects for Data Structures?
+298,course_information,Course Information,What is covered in the Data Mining course?
+299,course_information,Course Information,Can I get a breakdown of the subject structure?
+300,course_information,Course Information,What academic prerequisites do I need for this programme?
+301,course_information,Course Information,Tell me the list of subjects in the semester handbook.
+302,course_information,Course Information,What core modules are offered by the Computing Faculty?
+303,course_information,Course Information,I want to know the detailed course structure.
+304,course_information,Course Information,What major subjects can I take in artificial intelligence?
+305,course_information,Course Information,Where is the full programme brochure available?
+306,course_information,Course Information,What is the credit value for Discrete Mathematics?
+307,course_information,Course Information,Which subjects are compulsory for this semester?
+308,course_information,Course Information,Can you list the subjects offered under Information Technology?
+309,course_information,Course Information,Where can I check the course outline for my major?
+310,course_information,Course Information,What topics are included in the Web Development syllabus?
+311,course_information,Course Information,Can you show me the degree module specifications?
+312,course_information,Course Information,What subjects do first year computing students take?
+313,course_information,Course Information,Tell me about the course content for Cyber Security.
+314,course_information,Course Information,What subjects are included in the Information Technology programme?
+315,course_information,Course Information,Explain the syllabus topics for Database Systems.
+316,course_information,Course Information,Is Data Structures a compulsory module or an elective?
+317,course_information,Course Information,What are the programme requirements for a Computing degree?
+318,course_information,Course Information,Which modules are listed in the Software Engineering curriculum?
+319,course_information,Course Information,Where can I find official details about course credits?
+320,course_information,Course Information,Course info
+321,course_information,Course Information,Programme list
+322,course_information,Course Information,Degree programmes
+323,course_information,Course Information,Available courses
+324,course_information,Course Information,What can I study
+325,course_information,Course Information,What degree programmes can I study?
+326,course_information,Course Information,What diploma programmes are available?
+327,course_information,Course Information,What foundation programmes are available?
+328,course_information,Course Information,Which programmes are offered in computing?
+329,course_information,Course Information,What programmes are offered in business?
+330,course_information,Course Information,What programmes are offered in engineering?
+331,course_information,Course Information,Where can I find programme details?
+332,course_information,Course Information,Where can I find the curriculum?
+333,course_information,Course Information,Where can I find the subject list?
+334,course_information,Course Information,Can I see the course structure?
+335,course_information,Course Information,Can you explain the programme requirements?
+336,course_information,Course Information,What modules are in my programme?
+337,course_information,Course Information,Which subjects are compulsory?
+338,course_information,Course Information,Where can I check credit hours?
+339,course_information,Course Information,Can I see the course outline?
+340,course_information,Course Information,What subjects are offered in IT?
+341,course_information,Course Information,What courses are available for a computing student?
+342,course_information,Course Information,Which subjects are included in the degree?
+343,course_information,Course Information,What subjects do students take in the programme?
+344,course_information,Course Information,Please give me information about courses
+345,course_information,Course Information,I need course information
+346,course_information,Course Information,Where can I learn more about university programmes?
+347,course_information,Course Information,Can you explain the available programmes?
+348,course_recommendation,Course Recommendation,Which programming course should I take?
+349,course_recommendation,Course Recommendation,Recommend a programming subject
+350,course_recommendation,Course Recommendation,What course should I choose?
+351,course_recommendation,Course Recommendation,Can you recommend a course?
+352,course_recommendation,Course Recommendation,Which subject is suitable for me?
+353,course_recommendation,Course Recommendation,What programming subject is good?
+354,course_recommendation,Course Recommendation,Which course is best for programming?
+355,course_recommendation,Course Recommendation,Can you suggest a subject?
+356,course_recommendation,Course Recommendation,I need a recommendation for choosing a course
+357,course_recommendation,Course Recommendation,What subject should I study?
+358,course_recommendation,Course Recommendation,Recommend a university course
+359,course_recommendation,Course Recommendation,Which subject should I choose?
+360,course_recommendation,Course Recommendation,I want a course recommendation
+361,course_recommendation,Course Recommendation,What course is suitable for a beginner?
+362,course_recommendation,Course Recommendation,Which IT course should I take?
+363,course_recommendation,Course Recommendation,Suggest a programming course
+364,course_recommendation,Course Recommendation,Which computing subject should I choose?
+365,course_recommendation,Course Recommendation,Can you help me select a course?
+366,course_recommendation,Course Recommendation,What course is good for someone interested in technology?
+367,course_recommendation,Course Recommendation,Please recommend subjects based on my interests
+368,course_recommendation,Course Recommendation,Which elective course is beginner friendly for programming?
+369,course_recommendation,Course Recommendation,Can you suggest a good course for AI enthusiasts?
+370,course_recommendation,Course Recommendation,What is the best elective to pick for networking?
+371,course_recommendation,Course Recommendation,Could you recommend a light workload subject?
+372,course_recommendation,Course Recommendation,Which subject should I select for web design?
+373,course_recommendation,Course Recommendation,What programming elective would you advise taking?
+374,course_recommendation,Course Recommendation,Suggest a good course to improve data analytics skills.
+375,course_recommendation,Course Recommendation,"I am lost on which course to pick, any suggestions?"
+376,course_recommendation,Course Recommendation,Which computing track is best for future job opportunities?
+377,course_recommendation,Course Recommendation,Can you give me recommendations for software electives?
+378,course_recommendation,Course Recommendation,What is a recommended subject for beginners in Python?
+379,course_recommendation,Course Recommendation,Which course would you recommend for game development?
+380,course_recommendation,Course Recommendation,What elective is highly rated by senior students?
+381,course_recommendation,Course Recommendation,Which subject is most useful for cloud computing?
+382,course_recommendation,Course Recommendation,Can you guide me on which optional subject to select?
+383,course_recommendation,Course Recommendation,Recommend an elective for someone who enjoys coding
+384,course_recommendation,Course Recommendation,Which course would suit my interest in cybersecurity?
+385,course_recommendation,Course Recommendation,Suggest a module that matches a career in data analysis
+386,course_recommendation,Course Recommendation,"I want a recommendation, not a course description"
+387,course_recommendation,Course Recommendation,What elective do you recommend for a beginner in web development?
+388,course_recommendation,Course Recommendation,Help me choose between programming and networking electives
+389,course_recommendation,Course Recommendation,Course recommendation
+390,course_recommendation,Course Recommendation,Recommend a subject
+391,course_recommendation,Course Recommendation,Suggest a course
+392,course_recommendation,Course Recommendation,What should I study
+393,course_recommendation,Course Recommendation,Which course would be good for me?
+394,course_recommendation,Course Recommendation,Can you help me pick an elective?
+395,course_recommendation,Course Recommendation,What should I take if I enjoy coding?
+396,course_recommendation,Course Recommendation,What should I study if I like AI?
+397,course_recommendation,Course Recommendation,What should I take if I like networking?
+398,course_recommendation,Course Recommendation,Which subject is suitable for a beginner?
+399,course_recommendation,Course Recommendation,Which elective is good for web development?
+400,course_recommendation,Course Recommendation,Which subject helps with data analytics?
+401,course_recommendation,Course Recommendation,What should I choose for a software career?
+402,course_recommendation,Course Recommendation,Which course is useful for cybersecurity?
+403,course_recommendation,Course Recommendation,What subject should I choose for cloud computing?
+404,course_recommendation,Course Recommendation,Can you suggest a computing elective?
+405,course_recommendation,Course Recommendation,Which course would fit someone new to programming?
+406,course_recommendation,Course Recommendation,Help me decide between two electives
+407,course_recommendation,Course Recommendation,What should I study for a technology career?
+408,course_recommendation,Course Recommendation,Which module should I choose based on my interests?
+409,timetable,Timetable,What is my timetable?
+410,timetable,Timetable,Show my timetable
+411,timetable,Timetable,What classes do I have today?
+412,timetable,Timetable,When is my next class?
+413,timetable,Timetable,Class schedule
+414,timetable,Timetable,Where can I see my timetable?
+415,timetable,Timetable,What time is my class?
+416,timetable,Timetable,When do I have class?
+417,timetable,Timetable,What classes are scheduled today?
+418,timetable,Timetable,Can I check my class timetable?
+419,timetable,Timetable,Tell me my class schedule
+420,timetable,Timetable,When is my next lecture?
+421,timetable,Timetable,What is my class schedule?
+422,timetable,Timetable,Where can I find the timetable?
+423,timetable,Timetable,Show me today's classes
+424,timetable,Timetable,Do I have class today?
+425,timetable,Timetable,What time is my next lecture?
+426,timetable,Timetable,When is my next lesson?
+427,timetable,Timetable,How can I check my timetable?
+428,timetable,Timetable,I want to view my timetable
+429,timetable,Timetable,Where can I download my class schedule PDF?
+430,timetable,Timetable,What venue is my Discrete Mathematics class held at?
+431,timetable,Timetable,Can you show my daily lecture timetable?
+432,timetable,Timetable,What time does my morning tutorial start?
+433,timetable,Timetable,Which classroom is assigned for my lab class today?
+434,timetable,Timetable,When is my next tutorial session?
+435,timetable,Timetable,How do I access my personalized student timetable?
+436,timetable,Timetable,Are there any timetable clashes in my course schedule?
+437,timetable,Timetable,What time is my Database Systems lecture on Thursday?
+438,timetable,Timetable,Where is my Data Structures lab located today?
+439,timetable,Timetable,Can I check my class schedule for next week?
+440,timetable,Timetable,Show me my weekly class lecture timetable.
+441,timetable,Timetable,What time should I arrive for my Monday class?
+442,timetable,Timetable,Which room is designated for Ethics & Civilisation?
+443,timetable,Timetable,How can I view my updated tutorial schedule?
+444,timetable,Timetable,Class timetable
+445,timetable,Timetable,My schedule
+446,timetable,Timetable,Today's classes
+447,timetable,Timetable,Next class
+448,timetable,Timetable,Can I see today's classes?
+449,timetable,Timetable,Can you show the class schedule?
+450,timetable,Timetable,What lectures do I have today?
+451,timetable,Timetable,Which class is next?
+452,timetable,Timetable,What is my class timetable for this week?
+453,timetable,Timetable,Where can I view my timetable?
+454,timetable,Timetable,What time is the next lecture?
+455,timetable,Timetable,What classes are on Monday?
+456,timetable,Timetable,What classes are on Tuesday?
+457,timetable,Timetable,What classes are on Wednesday?
+458,timetable,Timetable,What classes are on Thursday?
+459,timetable,Timetable,What classes are on Friday?
+460,timetable,Timetable,What room is my class in?
+461,timetable,Timetable,Where is my next class?
+462,timetable,Timetable,Can you check my class schedule?
+463,timetable,Timetable,Which course do I have at 9 AM?
+464,timetable,Timetable,What time does Data Structures start?
+465,timetable,Timetable,Where is my Data Structures class?
+466,timetable,Timetable,When is my Database Systems class?
+467,timetable,Timetable,When is CSC2103 Data Structures?
+468,timetable,Timetable,What time is CSC2103 Data Structures?
+469,timetable,Timetable,Where is CSC2103 Data Structures held?
+470,timetable,Timetable,Which day is CSC2103 Data Structures?
+471,timetable,Timetable,What is the venue for CSC2103 Data Structures?
+472,timetable,Timetable,Where is my CSC2103 Data Structures class?
+473,timetable,Timetable,When do I have CSC2103 Data Structures?
+474,timetable,Timetable,What room is CSC2103 Data Structures in?
+475,timetable,Timetable,When is CSC2104 Object-Oriented Programming?
+476,timetable,Timetable,What time is CSC2104 Object-Oriented Programming?
+477,timetable,Timetable,Where is CSC2104 Object-Oriented Programming held?
+478,timetable,Timetable,Which day is CSC2104 Object-Oriented Programming?
+479,timetable,Timetable,What is the venue for CSC2104 Object-Oriented Programming?
+480,timetable,Timetable,Where is my CSC2104 Object-Oriented Programming class?
+481,timetable,Timetable,When do I have CSC2104 Object-Oriented Programming?
+482,timetable,Timetable,What room is CSC2104 Object-Oriented Programming in?
+483,timetable,Timetable,When is MPU3123 Bahasa Kebangsaan A?
+484,timetable,Timetable,What time is MPU3123 Bahasa Kebangsaan A?
+485,timetable,Timetable,Where is MPU3123 Bahasa Kebangsaan A held?
+486,timetable,Timetable,Which day is MPU3123 Bahasa Kebangsaan A?
+487,timetable,Timetable,What is the venue for MPU3123 Bahasa Kebangsaan A?
+488,timetable,Timetable,Where is my MPU3123 Bahasa Kebangsaan A class?
+489,timetable,Timetable,When do I have MPU3123 Bahasa Kebangsaan A?
+490,timetable,Timetable,What room is MPU3123 Bahasa Kebangsaan A in?
+491,timetable,Timetable,When is CSC2201 Database Systems - Tutorial?
+492,timetable,Timetable,What time is CSC2201 Database Systems - Tutorial?
+493,timetable,Timetable,Where is CSC2201 Database Systems - Tutorial held?
+494,timetable,Timetable,Which day is CSC2201 Database Systems - Tutorial?
+495,timetable,Timetable,What is the venue for CSC2201 Database Systems - Tutorial?
+496,timetable,Timetable,Where is my CSC2201 Database Systems - Tutorial class?
+497,timetable,Timetable,When do I have CSC2201 Database Systems - Tutorial?
+498,timetable,Timetable,What room is CSC2201 Database Systems - Tutorial in?
+499,timetable,Timetable,When is CSC2501 Web Development?
+500,timetable,Timetable,What time is CSC2501 Web Development?
+501,timetable,Timetable,Where is CSC2501 Web Development held?
+502,timetable,Timetable,Which day is CSC2501 Web Development?
+503,timetable,Timetable,What is the venue for CSC2501 Web Development?
+504,timetable,Timetable,Where is my CSC2501 Web Development class?
+505,timetable,Timetable,When do I have CSC2501 Web Development?
+506,timetable,Timetable,What room is CSC2501 Web Development in?
+507,timetable,Timetable,When is CSC2205 Computer Networks?
+508,timetable,Timetable,What time is CSC2205 Computer Networks?
+509,timetable,Timetable,Where is CSC2205 Computer Networks held?
+510,timetable,Timetable,Which day is CSC2205 Computer Networks?
+511,timetable,Timetable,What is the venue for CSC2205 Computer Networks?
+512,timetable,Timetable,Where is my CSC2205 Computer Networks class?
+513,timetable,Timetable,When do I have CSC2205 Computer Networks?
+514,timetable,Timetable,What room is CSC2205 Computer Networks in?
+515,timetable,Timetable,When is CSC2301 Operating Systems?
+516,timetable,Timetable,What time is CSC2301 Operating Systems?
+517,timetable,Timetable,Where is CSC2301 Operating Systems held?
+518,timetable,Timetable,Which day is CSC2301 Operating Systems?
+519,timetable,Timetable,What is the venue for CSC2301 Operating Systems?
+520,timetable,Timetable,Where is my CSC2301 Operating Systems class?
+521,timetable,Timetable,When do I have CSC2301 Operating Systems?
+522,timetable,Timetable,What room is CSC2301 Operating Systems in?
+523,timetable,Timetable,When is ENG2101 Academic English - Tutorial?
+524,timetable,Timetable,What time is ENG2101 Academic English - Tutorial?
+525,timetable,Timetable,Where is ENG2101 Academic English - Tutorial held?
+526,timetable,Timetable,Which day is ENG2101 Academic English - Tutorial?
+527,timetable,Timetable,What is the venue for ENG2101 Academic English - Tutorial?
+528,timetable,Timetable,Where is my ENG2101 Academic English - Tutorial class?
+529,timetable,Timetable,When do I have ENG2101 Academic English - Tutorial?
+530,timetable,Timetable,What room is ENG2101 Academic English - Tutorial in?
+531,timetable,Timetable,When is MAT2102 Discrete Mathematics?
+532,timetable,Timetable,What time is MAT2102 Discrete Mathematics?
+533,timetable,Timetable,Where is MAT2102 Discrete Mathematics held?
+534,timetable,Timetable,Which day is MAT2102 Discrete Mathematics?
+535,timetable,Timetable,What is the venue for MAT2102 Discrete Mathematics?
+536,timetable,Timetable,Where is my MAT2102 Discrete Mathematics class?
+537,timetable,Timetable,When do I have MAT2102 Discrete Mathematics?
+538,timetable,Timetable,What room is MAT2102 Discrete Mathematics in?
+539,timetable,Timetable,When is CSC2701 Artificial Intelligence Fundamentals?
+540,timetable,Timetable,What time is CSC2701 Artificial Intelligence Fundamentals?
+541,timetable,Timetable,Where is CSC2701 Artificial Intelligence Fundamentals held?
+542,timetable,Timetable,Which day is CSC2701 Artificial Intelligence Fundamentals?
+543,timetable,Timetable,What is the venue for CSC2701 Artificial Intelligence Fundamentals?
+544,timetable,Timetable,Where is my CSC2701 Artificial Intelligence Fundamentals class?
+545,timetable,Timetable,When do I have CSC2701 Artificial Intelligence Fundamentals?
+546,timetable,Timetable,What room is CSC2701 Artificial Intelligence Fundamentals in?
+547,timetable,Timetable,When is CSC2103 Data Structures - Lab?
+548,timetable,Timetable,What time is CSC2103 Data Structures - Lab?
+549,timetable,Timetable,Where is CSC2103 Data Structures - Lab held?
+550,timetable,Timetable,Which day is CSC2103 Data Structures - Lab?
+551,timetable,Timetable,What is the venue for CSC2103 Data Structures - Lab?
+552,timetable,Timetable,Where is my CSC2103 Data Structures - Lab class?
+553,timetable,Timetable,When do I have CSC2103 Data Structures - Lab?
+554,timetable,Timetable,What room is CSC2103 Data Structures - Lab in?
+555,timetable,Timetable,When is MPU3203 Ethics & Civilisation?
+556,timetable,Timetable,What time is MPU3203 Ethics & Civilisation?
+557,timetable,Timetable,Where is MPU3203 Ethics & Civilisation held?
+558,timetable,Timetable,Which day is MPU3203 Ethics & Civilisation?
+559,timetable,Timetable,What is the venue for MPU3203 Ethics & Civilisation?
+560,timetable,Timetable,Where is my MPU3203 Ethics & Civilisation class?
+561,timetable,Timetable,When do I have MPU3203 Ethics & Civilisation?
+562,timetable,Timetable,What room is MPU3203 Ethics & Civilisation in?
+563,timetable,Timetable,When is MAT2102 Discrete Mathematics - Tutorial?
+564,timetable,Timetable,What time is MAT2102 Discrete Mathematics - Tutorial?
+565,timetable,Timetable,Where is MAT2102 Discrete Mathematics - Tutorial held?
+566,timetable,Timetable,Which day is MAT2102 Discrete Mathematics - Tutorial?
+567,timetable,Timetable,What is the venue for MAT2102 Discrete Mathematics - Tutorial?
+568,timetable,Timetable,Where is my MAT2102 Discrete Mathematics - Tutorial class?
+569,timetable,Timetable,When do I have MAT2102 Discrete Mathematics - Tutorial?
+570,timetable,Timetable,What room is MAT2102 Discrete Mathematics - Tutorial in?
+571,timetable,Timetable,When is CSC2401 Software Engineering?
+572,timetable,Timetable,What time is CSC2401 Software Engineering?
+573,timetable,Timetable,Where is CSC2401 Software Engineering held?
+574,timetable,Timetable,Which day is CSC2401 Software Engineering?
+575,timetable,Timetable,What is the venue for CSC2401 Software Engineering?
+576,timetable,Timetable,Where is my CSC2401 Software Engineering class?
+577,timetable,Timetable,When do I have CSC2401 Software Engineering?
+578,timetable,Timetable,What room is CSC2401 Software Engineering in?
+579,timetable,Timetable,When is CSC2801 Mobile App Development?
+580,timetable,Timetable,What time is CSC2801 Mobile App Development?
+581,timetable,Timetable,Where is CSC2801 Mobile App Development held?
+582,timetable,Timetable,Which day is CSC2801 Mobile App Development?
+583,timetable,Timetable,What is the venue for CSC2801 Mobile App Development?
+584,timetable,Timetable,Where is my CSC2801 Mobile App Development class?
+585,timetable,Timetable,When do I have CSC2801 Mobile App Development?
+586,timetable,Timetable,What room is CSC2801 Mobile App Development in?
+587,timetable,Timetable,When is CSC2104 Object-Oriented Programming - Lab?
+588,timetable,Timetable,What time is CSC2104 Object-Oriented Programming - Lab?
+589,timetable,Timetable,Where is CSC2104 Object-Oriented Programming - Lab held?
+590,timetable,Timetable,Which day is CSC2104 Object-Oriented Programming - Lab?
+591,timetable,Timetable,What is the venue for CSC2104 Object-Oriented Programming - Lab?
+592,timetable,Timetable,Where is my CSC2104 Object-Oriented Programming - Lab class?
+593,timetable,Timetable,When do I have CSC2104 Object-Oriented Programming - Lab?
+594,timetable,Timetable,What room is CSC2104 Object-Oriented Programming - Lab in?
+595,timetable,Timetable,When is MAT2201 Linear Algebra?
+596,timetable,Timetable,What time is MAT2201 Linear Algebra?
+597,timetable,Timetable,Where is MAT2201 Linear Algebra held?
+598,timetable,Timetable,Which day is MAT2201 Linear Algebra?
+599,timetable,Timetable,What is the venue for MAT2201 Linear Algebra?
+600,timetable,Timetable,Where is my MAT2201 Linear Algebra class?
+601,timetable,Timetable,When do I have MAT2201 Linear Algebra?
+602,timetable,Timetable,What room is MAT2201 Linear Algebra in?
+603,timetable,Timetable,When is CSC2201 Database Systems?
+604,timetable,Timetable,What time is CSC2201 Database Systems?
+605,timetable,Timetable,Where is CSC2201 Database Systems held?
+606,timetable,Timetable,Which day is CSC2201 Database Systems?
+607,timetable,Timetable,What is the venue for CSC2201 Database Systems?
+608,timetable,Timetable,Where is my CSC2201 Database Systems class?
+609,timetable,Timetable,When do I have CSC2201 Database Systems?
+610,timetable,Timetable,What room is CSC2201 Database Systems in?
+611,timetable,Timetable,When is CSC2601 Human-Computer Interaction?
+612,timetable,Timetable,What time is CSC2601 Human-Computer Interaction?
+613,timetable,Timetable,Where is CSC2601 Human-Computer Interaction held?
+614,timetable,Timetable,Which day is CSC2601 Human-Computer Interaction?
+615,timetable,Timetable,What is the venue for CSC2601 Human-Computer Interaction?
+616,timetable,Timetable,Where is my CSC2601 Human-Computer Interaction class?
+617,timetable,Timetable,When do I have CSC2601 Human-Computer Interaction?
+618,timetable,Timetable,What room is CSC2601 Human-Computer Interaction in?
+619,timetable,Timetable,When is MPU3243 Falsafah dan Isu Semasa?
+620,timetable,Timetable,What time is MPU3243 Falsafah dan Isu Semasa?
+621,timetable,Timetable,Where is MPU3243 Falsafah dan Isu Semasa held?
+622,timetable,Timetable,Which day is MPU3243 Falsafah dan Isu Semasa?
+623,timetable,Timetable,What is the venue for MPU3243 Falsafah dan Isu Semasa?
+624,timetable,Timetable,Where is my MPU3243 Falsafah dan Isu Semasa class?
+625,timetable,Timetable,When do I have MPU3243 Falsafah dan Isu Semasa?
+626,timetable,Timetable,What room is MPU3243 Falsafah dan Isu Semasa in?
+627,timetable,Timetable,When is ENG2101 Academic English?
+628,timetable,Timetable,What time is ENG2101 Academic English?
+629,timetable,Timetable,Where is ENG2101 Academic English held?
+630,timetable,Timetable,Which day is ENG2101 Academic English?
+631,timetable,Timetable,What is the venue for ENG2101 Academic English?
+632,timetable,Timetable,Where is my ENG2101 Academic English class?
+633,timetable,Timetable,When do I have ENG2101 Academic English?
+634,timetable,Timetable,What room is ENG2101 Academic English in?
+635,timetable,Timetable,When is CSC2205 Computer Networks - Lab?
+636,timetable,Timetable,What time is CSC2205 Computer Networks - Lab?
+637,timetable,Timetable,Where is CSC2205 Computer Networks - Lab held?
+638,timetable,Timetable,Which day is CSC2205 Computer Networks - Lab?
+639,timetable,Timetable,What is the venue for CSC2205 Computer Networks - Lab?
+640,timetable,Timetable,Where is my CSC2205 Computer Networks - Lab class?
+641,timetable,Timetable,When do I have CSC2205 Computer Networks - Lab?
+642,timetable,Timetable,What room is CSC2205 Computer Networks - Lab in?
+643,timetable,Timetable,When is CSC2901 Computer Architecture?
+644,timetable,Timetable,What time is CSC2901 Computer Architecture?
+645,timetable,Timetable,Where is CSC2901 Computer Architecture held?
+646,timetable,Timetable,Which day is CSC2901 Computer Architecture?
+647,timetable,Timetable,What is the venue for CSC2901 Computer Architecture?
+648,timetable,Timetable,Where is my CSC2901 Computer Architecture class?
+649,timetable,Timetable,When do I have CSC2901 Computer Architecture?
+650,timetable,Timetable,What room is CSC2901 Computer Architecture in?
+651,timetable,Timetable,When is CSC2103 Data Structures - Tutorial?
+652,timetable,Timetable,What time is CSC2103 Data Structures - Tutorial?
+653,timetable,Timetable,Where is CSC2103 Data Structures - Tutorial held?
+654,timetable,Timetable,Which day is CSC2103 Data Structures - Tutorial?
+655,timetable,Timetable,What is the venue for CSC2103 Data Structures - Tutorial?
+656,timetable,Timetable,Where is my CSC2103 Data Structures - Tutorial class?
+657,timetable,Timetable,When do I have CSC2103 Data Structures - Tutorial?
+658,timetable,Timetable,What room is CSC2103 Data Structures - Tutorial in?
+659,timetable,Timetable,When is MPU2001 Co-Curricular Activities?
+660,timetable,Timetable,What time is MPU2001 Co-Curricular Activities?
+661,timetable,Timetable,Where is MPU2001 Co-Curricular Activities held?
+662,timetable,Timetable,Which day is MPU2001 Co-Curricular Activities?
+663,timetable,Timetable,What is the venue for MPU2001 Co-Curricular Activities?
+664,timetable,Timetable,Where is my MPU2001 Co-Curricular Activities class?
+665,timetable,Timetable,When do I have MPU2001 Co-Curricular Activities?
+666,timetable,Timetable,What room is MPU2001 Co-Curricular Activities in?
+667,timetable,Timetable,I need help with my timetable
+668,timetable,Timetable,Can you help me find my class schedule?
+669,timetable,Timetable,I want to check my timetable
+670,assignment,Assignment,When is my assignment due?
+671,assignment,Assignment,Assignment deadline
+672,assignment,Assignment,When do I submit my assignment?
+673,assignment,Assignment,What is the assignment submission date?
+674,assignment,Assignment,Assignment due date
+675,assignment,Assignment,When should I submit my assignment?
+676,assignment,Assignment,What is my assignment deadline?
+677,assignment,Assignment,When is the coursework due?
+678,assignment,Assignment,Where can I check assignment deadlines?
+679,assignment,Assignment,When do assignments need to be submitted?
+680,assignment,Assignment,How can I find my assignment deadline?
+681,assignment,Assignment,What is the submission deadline?
+682,assignment,Assignment,When should I hand in my assignment?
+683,assignment,Assignment,Is my assignment due soon?
+684,assignment,Assignment,When does the assignment close?
+685,assignment,Assignment,Assignment submission date
+686,assignment,Assignment,Tell me my assignment deadline
+687,assignment,Assignment,Where can I see my assignment?
+688,assignment,Assignment,When must I submit my coursework?
+689,assignment,Assignment,How do I check assignment due dates?
+690,assignment,Assignment,How do I submit my assignment on LMS?
+691,assignment,Assignment,When is the final deadline for the programming project?
+692,assignment,Assignment,What is the cut-off date for coursework submission?
+693,assignment,Assignment,Can I get an extension on my assignment due date?
+694,assignment,Assignment,Where do I upload my assignment file online?
+695,assignment,Assignment,What happens if I submit my assignment late?
+696,assignment,Assignment,Is there a penalty for late coursework submission?
+697,assignment,Assignment,What time does the assignment portal close tonight?
+698,assignment,Assignment,When is the submission deadline for Database assignment?
+699,assignment,Assignment,Where can I check the rubric for my coursework assignment?
+700,assignment,Assignment,How many days left before my assignment is due?
+701,assignment,Assignment,When must the group assignment report be handed in?
+702,assignment,Assignment,Where do students turn in their written assignments?
+703,assignment,Assignment,What is the exact due date for assignment 1?
+704,assignment,Assignment,Can I resubmit my assignment before the deadline?
+705,assignment,Assignment,Assignment info
+706,assignment,Assignment,Coursework deadline
+707,assignment,Assignment,Submission date
+708,assignment,Assignment,When's it due
+709,assignment,Assignment,Where can I see my assignment deadline?
+710,assignment,Assignment,When is my coursework submission due?
+711,assignment,Assignment,What date is my assignment due?
+712,assignment,Assignment,What is the due date for this assignment?
+713,assignment,Assignment,Where do I check coursework deadlines?
+714,assignment,Assignment,When should I submit my coursework?
+715,assignment,Assignment,Can you tell me the assignment submission date?
+716,assignment,Assignment,What is the deadline to submit my work?
+717,assignment,Assignment,When is the next assignment due?
+718,assignment,Assignment,How do I check my assignment due date?
+719,assignment,Assignment,Is there a deadline for my assignment?
+720,assignment,Assignment,When do I need to hand in my assignment?
+721,assignment,Assignment,Where can I find coursework due dates?
+722,assignment,Assignment,When should coursework be submitted?
+723,assignment,Assignment,I need help with an assignment deadline
+724,assignment,Assignment,Can you help me find my coursework deadline?
+725,assignment,Assignment,Where are assignment submission dates listed?
+726,exam,Exam,When is my exam?
+727,exam,Exam,Exam timetable
+728,exam,Exam,Final exam date
+729,exam,Exam,When are the final exams?
+730,exam,Exam,Where can I check my exam schedule?
+731,exam,Exam,When is my final exam?
+732,exam,Exam,What date is my exam?
+733,exam,Exam,Exam schedule
+734,exam,Exam,Where is the exam timetable?
+735,exam,Exam,When do examinations start?
+736,exam,Exam,What time is my exam?
+737,exam,Exam,How can I check my exam date?
+738,exam,Exam,Tell me my exam schedule
+739,exam,Exam,When is the examination?
+740,exam,Exam,Where can I find examination information?
+741,exam,Exam,What are my exam dates?
+742,exam,Exam,When is the final assessment?
+743,exam,Exam,How do I check my exam timetable?
+744,exam,Exam,Is the exam timetable available?
+745,exam,Exam,I want to see my exam schedule
+746,exam,Exam,Where is Exam Hall 1 located on campus?
+747,exam,Exam,When is the final examination period starting?
+748,exam,Exam,What venue is set for the Discrete Math examination?
+749,exam,Exam,Can I view my personal exam slip online?
+750,exam,Exam,What time does the afternoon exam paper begin?
+751,exam,Exam,When will the final exam dates be published?
+752,exam,Exam,What items am I allowed to bring into the exam hall?
+753,exam,Exam,Where can I check the seating plan for my exam?
+754,exam,Exam,What is the date for the Academic English exam?
+755,exam,Exam,How long is the duration of the final examination?
+756,exam,Exam,When are mid-term exam dates announced?
+757,exam,Exam,Where can I find my official exam timetable?
+758,exam,Exam,What happens if I miss a final exam due to illness?
+759,exam,Exam,When is the final exam date for Data Structures?
+760,exam,Exam,Is the exam scheduled for morning or afternoon?
+761,exam,Exam,When will my exam results be released?
+762,exam,Exam,How do I check my exam results?
+763,exam,Exam,Where can I view my grades?
+764,exam,Exam,How do I access my semester results?
+765,exam,Exam,When are results usually announced?
+766,exam,Exam,I want to know my exam grade
+767,exam,Exam,How do I get my transcript of results?
+768,exam,Exam,Where can I appeal my exam result?
+769,exam,Exam,How do I request a result recheck?
+770,exam,Exam,Who do I contact to remark an exam paper?
+771,exam,Exam,What is the procedure for a resit exam?
+772,exam,Exam,How do I register for a supplementary exam?
+773,exam,Exam,When is the resit exam period?
+774,exam,Exam,What happens if I fail an exam?
+775,exam,Exam,Do I need to pay for a resit exam?
+776,exam,Exam,How many times can I resit a failed subject?
+777,exam,Exam,What is the passing grade for an exam?
+778,exam,Exam,Where do I check the resit exam timetable?
+779,exam,Exam,Exam info
+780,exam,Exam,Exam date
+781,exam,Exam,Exam results
+782,exam,Exam,My exam schedule
+783,exam,Exam,Exam venue
+784,exam,Exam,When is the next examination?
+785,exam,Exam,Where can I find my examination timetable?
+786,exam,Exam,What day is my final exam?
+787,exam,Exam,Which room is my exam in?
+788,exam,Exam,What time does my exam start?
+789,exam,Exam,Can you show me the exam schedule?
+790,exam,Exam,Where will my examination be held?
+791,exam,Exam,What is the date of my final?
+792,exam,Exam,When do finals begin?
+793,exam,Exam,When does my exam finish?
+794,exam,Exam,Where is the examination venue?
+795,exam,Exam,Can I see the examination schedule?
+796,exam,Exam,Which hall is my exam in?
+797,exam,Exam,When is the Data Structures exam?
+798,exam,Exam,Where is the Data Structures exam?
+799,exam,Exam,When is the Discrete Mathematics exam?
+800,exam,Exam,Where is the Database Systems exam?
+801,exam,Exam,When is the CSC2103 Data Structures exam?
+802,exam,Exam,What time is the CSC2103 Data Structures examination?
+803,exam,Exam,Where is the CSC2103 Data Structures exam?
+804,exam,Exam,Which hall is the CSC2103 Data Structures exam in?
+805,exam,Exam,What date is the CSC2103 Data Structures final?
+806,exam,Exam,When do I sit for CSC2103 Data Structures?
+807,exam,Exam,When is the MAT2102 Discrete Mathematics exam?
+808,exam,Exam,What time is the MAT2102 Discrete Mathematics examination?
+809,exam,Exam,Where is the MAT2102 Discrete Mathematics exam?
+810,exam,Exam,Which hall is the MAT2102 Discrete Mathematics exam in?
+811,exam,Exam,What date is the MAT2102 Discrete Mathematics final?
+812,exam,Exam,When do I sit for MAT2102 Discrete Mathematics?
+813,exam,Exam,When is the CSC2201 Database Systems exam?
+814,exam,Exam,What time is the CSC2201 Database Systems examination?
+815,exam,Exam,Where is the CSC2201 Database Systems exam?
+816,exam,Exam,Which hall is the CSC2201 Database Systems exam in?
+817,exam,Exam,What date is the CSC2201 Database Systems final?
+818,exam,Exam,When do I sit for CSC2201 Database Systems?
+819,exam,Exam,When is the ENG2101 Academic English exam?
+820,exam,Exam,What time is the ENG2101 Academic English examination?
+821,exam,Exam,Where is the ENG2101 Academic English exam?
+822,exam,Exam,Which hall is the ENG2101 Academic English exam in?
+823,exam,Exam,What date is the ENG2101 Academic English final?
+824,exam,Exam,When do I sit for ENG2101 Academic English?
+825,exam,Exam,I need help finding my exam schedule
+826,exam,Exam,Can you help me check an examination date?
+827,exam,Exam,Where are final exam details listed?
+828,campus_location,Campus Location,Where is the computer lab?
+829,campus_location,Campus Location,Where is Block A?
+830,campus_location,Campus Location,Where is Block B?
+831,campus_location,Campus Location,Where is Block C?
+832,campus_location,Campus Location,Where is Block D?
+833,campus_location,Campus Location,Where is Block E?
+834,campus_location,Campus Location,Where is Block G?
+835,campus_location,Campus Location,Where is Block H?
+836,campus_location,Campus Location,Where is Block K?
+837,campus_location,Campus Location,Where is Block L?
+838,campus_location,Campus Location,Where is Block M?
+839,campus_location,Campus Location,Where is Block N?
+840,campus_location,Campus Location,Where is Block P?
+841,campus_location,Campus Location,Where is Block PA?
+842,campus_location,Campus Location,Where is Block PB?
+843,campus_location,Campus Location,Where is Block Q?
+844,campus_location,Campus Location,Where is Block R?
+845,campus_location,Campus Location,Where is Block S?
+846,campus_location,Campus Location,Where is Block T?
+847,campus_location,Campus Location,Where is Block UA?
+848,campus_location,Campus Location,Where is Block V?
+849,campus_location,Campus Location,Where is Block W?
+850,campus_location,Campus Location,Where is Block X?
+851,campus_location,Campus Location,Where is Block Y?
+852,campus_location,Campus Location,Where is Block Z?
+853,campus_location,Campus Location,Where is Block SA?
+854,campus_location,Campus Location,Where is Block SB?
+855,campus_location,Campus Location,Where is Block SC?
+856,campus_location,Campus Location,Where is Block SD?
+857,campus_location,Campus Location,Where is Block SE?
+858,campus_location,Campus Location,Where is Block SF?
+859,campus_location,Campus Location,Where is Block SG?
+860,campus_location,Campus Location,How do I get to Block A?
+861,campus_location,Campus Location,How do I find Block SA?
+862,campus_location,Campus Location,Where is DK A?
+863,campus_location,Campus Location,Where is DK B?
+864,campus_location,Campus Location,Where is DK C?
+865,campus_location,Campus Location,Where is DK D?
+866,campus_location,Campus Location,Where is DK E?
+867,campus_location,Campus Location,Where is DK W?
+868,campus_location,Campus Location,Where is DK X?
+869,campus_location,Campus Location,Where is DK Y?
+870,campus_location,Campus Location,Where is DK Z?
+871,campus_location,Campus Location,Where is DK 1?
+872,campus_location,Campus Location,Where is DK 2?
+873,campus_location,Campus Location,Where is DK 3?
+874,campus_location,Campus Location,Where is DK 4?
+875,campus_location,Campus Location,Where is DK 5?
+876,campus_location,Campus Location,Where is DK 6?
+877,campus_location,Campus Location,Where is DK 7?
+878,campus_location,Campus Location,Where is DK 8?
+879,campus_location,Campus Location,Where is DK ABA?
+880,campus_location,Campus Location,Where is DK ABB?
+881,campus_location,Campus Location,Where is DK ABC?
+882,campus_location,Campus Location,Where is DK ABD?
+883,campus_location,Campus Location,Where is DK ABE?
+884,campus_location,Campus Location,Where is DK ABF?
+885,campus_location,Campus Location,Where is Gate 1?
+886,campus_location,Campus Location,Where is Gate 2?
+887,campus_location,Campus Location,Where is Gate 3?
+888,campus_location,Campus Location,Where is Gate 4?
+889,campus_location,Campus Location,Where is Gate 5?
+890,campus_location,Campus Location,Where is Gate 6?
+891,campus_location,Campus Location,Where is Gate 7?
+892,campus_location,Campus Location,Where is the Main Entrance?
+893,campus_location,Campus Location,How do I get to the Main Entrance?
+894,campus_location,Campus Location,Where is Dewan Tunku Abdul Rahman?
+895,campus_location,Campus Location,Where is DTAR?
+896,campus_location,Campus Location,Where is TAR UMT Arena?
+897,campus_location,Campus Location,Where is the Main Hall?
+898,campus_location,Campus Location,Where is the main auditorium located on campus?
+899,campus_location,Campus Location,Where is the cafeteria?
+900,campus_location,Campus Location,How do I walk to the cafeteria?
+901,campus_location,Campus Location,Where is the Sports Complex?
+902,campus_location,Campus Location,Where is the Swimming Pool?
+903,campus_location,Campus Location,Where is Club House?
+904,campus_location,Campus Location,Where is Fern House?
+905,campus_location,Campus Location,Where is The Rimba?
+906,campus_location,Campus Location,Where is the football field?
+907,campus_location,Campus Location,Where are the Pickleball Courts?
+908,campus_location,Campus Location,Where are the Volleyball Courts?
+909,campus_location,Campus Location,Where is the 3x3 Basketball Court?
+910,campus_location,Campus Location,Where is the Futsal Court?
+911,campus_location,Campus Location,Where is the Netball Court?
+912,campus_location,Campus Location,Where is Bangunan Tun Tan Siew Sin?
+913,campus_location,Campus Location,Where is CITC?
+914,campus_location,Campus Location,Where is the Communication & Information Technology Centre?
+915,campus_location,Campus Location,Where is Klinik LOW?
+916,campus_location,Campus Location,Where is the health centre?
+917,campus_location,Campus Location,Where is the campus clinic located?
+918,campus_location,Campus Location,How do I get to the health centre?
+919,campus_location,Campus Location,Where is Taska & Tadika CECE?
+920,campus_location,Campus Location,Where is VTAR Institute?
+921,campus_location,Campus Location,Where is the East Campus?
+922,campus_location,Campus Location,How do I go to East Campus?
+923,campus_location,Campus Location,Where is the West Campus?
+924,campus_location,Campus Location,How do I go to West Campus?
+925,campus_location,Campus Location,Where is the LRT Station?
+926,campus_location,Campus Location,How to get to LRT Taman Melati Station?
+927,campus_location,Campus Location,Where is DACE?
+928,campus_location,Campus Location,Where is the Department of Admissions & Credit Evaluation?
+929,campus_location,Campus Location,Where is DFIN?
+930,campus_location,Campus Location,Where is the Department of Finance?
+931,campus_location,Campus Location,Where is DSA?
+932,campus_location,Campus Location,Where is the Department of Student Affairs?
+933,campus_location,Campus Location,Where is DECA?
+934,campus_location,Campus Location,Where is the Department of Examinations and Credit Accumulation?
+935,campus_location,Campus Location,Where is DOS?
+936,campus_location,Campus Location,Where is the Department of Security?
+937,campus_location,Campus Location,Where is DISO?
+938,campus_location,Campus Location,Where is the Department of International Student Office?
+939,campus_location,Campus Location,Where is DFM?
+940,campus_location,Campus Location,Where is the Department of Facilities Management?
+941,campus_location,Campus Location,Where is DAR?
+942,campus_location,Campus Location,Where is the Department of Alumni Relations?
+943,campus_location,Campus Location,Where is the administration office?
+944,campus_location,Campus Location,Where is the administration building counter?
+945,campus_location,Campus Location,Where is the lecture hall?
+946,campus_location,Campus Location,Where are the classrooms?
+947,campus_location,Campus Location,Where is the student centre?
+948,campus_location,Campus Location,Where is the campus security guard house?
+949,campus_location,Campus Location,Where is the nearest bus stop on campus?
+950,campus_location,Campus Location,Where is Bus Stop 1-5?
+951,campus_location,Campus Location,How do I navigate to the engineering laboratory?
+952,campus_location,Campus Location,How do I reach the main hall from Block B?
+953,campus_location,Campus Location,Show me walking directions to the campus health clinic
+954,campus_location,Campus Location,Find the location of room C-201 on campus
+955,campus_location,Campus Location,Show the route from the main entrance to the student centre
+956,campus_location,Campus Location,Is the sports complex close to Block C?
+957,campus_location,Campus Location,Where on campus is the administration building?
+958,campus_location,Campus Location,Campus map
+959,campus_location,Campus Location,Map
+960,campus_location,Campus Location,Show me the campus map
+961,campus_location,Campus Location,Where can I view the campus map?
+962,campus_location,Campus Location,I need a map of the campus
+963,campus_location,Campus Location,Do you have a campus map?
+964,campus_location,Campus Location,Campus directory map
+965,campus_location,Campus Location,View campus map
+966,campus_location,Campus Location,Open the campus map
+967,campus_location,Campus Location,Where is the health centre located?
+968,campus_location,Campus Location,What block is the health centre in?
+969,campus_location,Campus Location,Which floor is the health centre on?
+970,campus_location,Campus Location,Health centre location
+971,campus_location,Campus Location,Find the health centre on campus
+972,campus_location,Campus Location,Which gate is closest to the health centre?
+973,campus_location,Campus Location,Where is Faculty of Applied Sciences (FOAS)?
+974,campus_location,Campus Location,How do I get to Faculty of Applied Sciences (FOAS)?
+975,campus_location,Campus Location,Which gate is closest to Faculty of Applied Sciences (FOAS)?
+976,campus_location,Campus Location,Which building is Faculty of Applied Sciences (FOAS) in?
+977,campus_location,Campus Location,Which campus area has Faculty of Applied Sciences (FOAS)?
+978,campus_location,Campus Location,Where is Faculty of Computing & Information Technology (FOCS)?
+979,campus_location,Campus Location,How do I get to Faculty of Computing & Information Technology (FOCS)?
+980,campus_location,Campus Location,Which gate is closest to Faculty of Computing & Information Technology (FOCS)?
+981,campus_location,Campus Location,Which building is Faculty of Computing & Information Technology (FOCS) in?
+982,campus_location,Campus Location,Which campus area has Faculty of Computing & Information Technology (FOCS)?
+983,campus_location,Campus Location,"Where is Faculty of Accounting, Finance and Business (FAFB)?"
+984,campus_location,Campus Location,"How do I get to Faculty of Accounting, Finance and Business (FAFB)?"
+985,campus_location,Campus Location,"Which gate is closest to Faculty of Accounting, Finance and Business (FAFB)?"
+986,campus_location,Campus Location,"Which building is Faculty of Accounting, Finance and Business (FAFB) in?"
+987,campus_location,Campus Location,"Which campus area has Faculty of Accounting, Finance and Business (FAFB)?"
+988,campus_location,Campus Location,Where is Faculty of Engineering and Technology (FOET)?
+989,campus_location,Campus Location,How do I get to Faculty of Engineering and Technology (FOET)?
+990,campus_location,Campus Location,Which gate is closest to Faculty of Engineering and Technology (FOET)?
+991,campus_location,Campus Location,Which building is Faculty of Engineering and Technology (FOET) in?
+992,campus_location,Campus Location,Which campus area has Faculty of Engineering and Technology (FOET)?
+993,campus_location,Campus Location,Where is Faculty of Built Environment (FOBE)?
+994,campus_location,Campus Location,How do I get to Faculty of Built Environment (FOBE)?
+995,campus_location,Campus Location,Which gate is closest to Faculty of Built Environment (FOBE)?
+996,campus_location,Campus Location,Which building is Faculty of Built Environment (FOBE) in?
+997,campus_location,Campus Location,Which campus area has Faculty of Built Environment (FOBE)?
+998,campus_location,Campus Location,Where is Faculty of Social Science and Humanities (FSSH)?
+999,campus_location,Campus Location,How do I get to Faculty of Social Science and Humanities (FSSH)?
+1000,campus_location,Campus Location,Which gate is closest to Faculty of Social Science and Humanities (FSSH)?
+1001,campus_location,Campus Location,Which building is Faculty of Social Science and Humanities (FSSH) in?
+1002,campus_location,Campus Location,Which campus area has Faculty of Social Science and Humanities (FSSH)?
+1003,campus_location,Campus Location,Where is Faculty of Communication and Creative Industries (FCCI)?
+1004,campus_location,Campus Location,How do I get to Faculty of Communication and Creative Industries (FCCI)?
+1005,campus_location,Campus Location,Which gate is closest to Faculty of Communication and Creative Industries (FCCI)?
+1006,campus_location,Campus Location,Which building is Faculty of Communication and Creative Industries (FCCI) in?
+1007,campus_location,Campus Location,Which campus area has Faculty of Communication and Creative Industries (FCCI)?
+1008,campus_location,Campus Location,Where is Centre for Pre-University Studies (CPUS)?
+1009,campus_location,Campus Location,How do I get to Centre for Pre-University Studies (CPUS)?
+1010,campus_location,Campus Location,Which gate is closest to Centre for Pre-University Studies (CPUS)?
+1011,campus_location,Campus Location,Which building is Centre for Pre-University Studies (CPUS) in?
+1012,campus_location,Campus Location,Which campus area has Centre for Pre-University Studies (CPUS)?
+1013,campus_location,Campus Location,Where is Centre for Postgraduate Studies and Research (CPSR)?
+1014,campus_location,Campus Location,How do I get to Centre for Postgraduate Studies and Research (CPSR)?
+1015,campus_location,Campus Location,Which gate is closest to Centre for Postgraduate Studies and Research (CPSR)?
+1016,campus_location,Campus Location,Which building is Centre for Postgraduate Studies and Research (CPSR) in?
+1017,campus_location,Campus Location,Which campus area has Centre for Postgraduate Studies and Research (CPSR)?
+1018,campus_location,Campus Location,Where is Centre for Continuing & Professional Education (CPE)?
+1019,campus_location,Campus Location,How do I get to Centre for Continuing & Professional Education (CPE)?
+1020,campus_location,Campus Location,Which gate is closest to Centre for Continuing & Professional Education (CPE)?
+1021,campus_location,Campus Location,Which building is Centre for Continuing & Professional Education (CPE) in?
+1022,campus_location,Campus Location,Which campus area has Centre for Continuing & Professional Education (CPE)?
+1023,campus_location,Campus Location,Where is Centre for Business Incubation & Entrepreneurial Ventures (CBEIV)?
+1024,campus_location,Campus Location,How do I get to Centre for Business Incubation & Entrepreneurial Ventures (CBEIV)?
+1025,campus_location,Campus Location,Which gate is closest to Centre for Business Incubation & Entrepreneurial Ventures (CBEIV)?
+1026,campus_location,Campus Location,Which building is Centre for Business Incubation & Entrepreneurial Ventures (CBEIV) in?
+1027,campus_location,Campus Location,Which campus area has Centre for Business Incubation & Entrepreneurial Ventures (CBEIV)?
+1028,campus_location,Campus Location,Where is Department of Student Affairs (DSA)?
+1029,campus_location,Campus Location,How do I get to Department of Student Affairs (DSA)?
+1030,campus_location,Campus Location,Which gate is closest to Department of Student Affairs (DSA)?
+1031,campus_location,Campus Location,Which building is Department of Student Affairs (DSA) in?
+1032,campus_location,Campus Location,Which campus area has Department of Student Affairs (DSA)?
+1033,campus_location,Campus Location,Where is Department of Alumni Relations (DAR)?
+1034,campus_location,Campus Location,How do I get to Department of Alumni Relations (DAR)?
+1035,campus_location,Campus Location,Which gate is closest to Department of Alumni Relations (DAR)?
+1036,campus_location,Campus Location,Which building is Department of Alumni Relations (DAR) in?
+1037,campus_location,Campus Location,Which campus area has Department of Alumni Relations (DAR)?
+1038,campus_location,Campus Location,Where is Department of Examinations and Credit Accumulation (DECA)?
+1039,campus_location,Campus Location,How do I get to Department of Examinations and Credit Accumulation (DECA)?
+1040,campus_location,Campus Location,Which gate is closest to Department of Examinations and Credit Accumulation (DECA)?
+1041,campus_location,Campus Location,Which building is Department of Examinations and Credit Accumulation (DECA) in?
+1042,campus_location,Campus Location,Which campus area has Department of Examinations and Credit Accumulation (DECA)?
+1043,campus_location,Campus Location,Where is Department of Admissions & Credit Evaluation (DACE)?
+1044,campus_location,Campus Location,How do I get to Department of Admissions & Credit Evaluation (DACE)?
+1045,campus_location,Campus Location,Which gate is closest to Department of Admissions & Credit Evaluation (DACE)?
+1046,campus_location,Campus Location,Which building is Department of Admissions & Credit Evaluation (DACE) in?
+1047,campus_location,Campus Location,Which campus area has Department of Admissions & Credit Evaluation (DACE)?
+1048,campus_location,Campus Location,Where is Department of International Student Office (DISO)?
+1049,campus_location,Campus Location,How do I get to Department of International Student Office (DISO)?
+1050,campus_location,Campus Location,Which gate is closest to Department of International Student Office (DISO)?
+1051,campus_location,Campus Location,Which building is Department of International Student Office (DISO) in?
+1052,campus_location,Campus Location,Which campus area has Department of International Student Office (DISO)?
+1053,campus_location,Campus Location,Where is Department of Finance (DFIN)?
+1054,campus_location,Campus Location,How do I get to Department of Finance (DFIN)?
+1055,campus_location,Campus Location,Which gate is closest to Department of Finance (DFIN)?
+1056,campus_location,Campus Location,Which building is Department of Finance (DFIN) in?
+1057,campus_location,Campus Location,Which campus area has Department of Finance (DFIN)?
+1058,campus_location,Campus Location,Where is Department of Security (DOS)?
+1059,campus_location,Campus Location,How do I get to Department of Security (DOS)?
+1060,campus_location,Campus Location,Which gate is closest to Department of Security (DOS)?
+1061,campus_location,Campus Location,Which building is Department of Security (DOS) in?
+1062,campus_location,Campus Location,Which campus area has Department of Security (DOS)?
+1063,campus_location,Campus Location,Where is Communication & Information Technology Centre (CITC)?
+1064,campus_location,Campus Location,How do I get to Communication & Information Technology Centre (CITC)?
+1065,campus_location,Campus Location,Which gate is closest to Communication & Information Technology Centre (CITC)?
+1066,campus_location,Campus Location,Which building is Communication & Information Technology Centre (CITC) in?
+1067,campus_location,Campus Location,Which campus area has Communication & Information Technology Centre (CITC)?
+1068,campus_location,Campus Location,Where is Department of Facilities Management (DFM)?
+1069,campus_location,Campus Location,How do I get to Department of Facilities Management (DFM)?
+1070,campus_location,Campus Location,Which gate is closest to Department of Facilities Management (DFM)?
+1071,campus_location,Campus Location,Which building is Department of Facilities Management (DFM) in?
+1072,campus_location,Campus Location,Which campus area has Department of Facilities Management (DFM)?
+1073,campus_location,Campus Location,Where is Campus Health Centre (Klinik LOW)?
+1074,campus_location,Campus Location,How do I get to Campus Health Centre (Klinik LOW)?
+1075,campus_location,Campus Location,Which gate is closest to Campus Health Centre (Klinik LOW)?
+1076,campus_location,Campus Location,Which building is Campus Health Centre (Klinik LOW) in?
+1077,campus_location,Campus Location,Which campus area has Campus Health Centre (Klinik LOW)?
+1078,campus_location,Campus Location,Where is First Aid Unit (FAU)?
+1079,campus_location,Campus Location,How do I get to First Aid Unit (FAU)?
+1080,campus_location,Campus Location,Which gate is closest to First Aid Unit (FAU)?
+1081,campus_location,Campus Location,Which building is First Aid Unit (FAU) in?
+1082,campus_location,Campus Location,Which campus area has First Aid Unit (FAU)?
+1083,campus_location,Campus Location,Where is Main Gate Guard House?
+1084,campus_location,Campus Location,How do I get to Main Gate Guard House?
+1085,campus_location,Campus Location,Which gate is closest to Main Gate Guard House?
+1086,campus_location,Campus Location,Which building is Main Gate Guard House in?
+1087,campus_location,Campus Location,Which campus area has Main Gate Guard House?
+1088,campus_location,Campus Location,Where is East Campus Guard House?
+1089,campus_location,Campus Location,How do I get to East Campus Guard House?
+1090,campus_location,Campus Location,Which gate is closest to East Campus Guard House?
+1091,campus_location,Campus Location,Which building is East Campus Guard House in?
+1092,campus_location,Campus Location,Which campus area has East Campus Guard House?
+1093,campus_location,Campus Location,Where is Sports Complex?
+1094,campus_location,Campus Location,How do I get to Sports Complex?
+1095,campus_location,Campus Location,Which gate is closest to Sports Complex?
+1096,campus_location,Campus Location,Which building is Sports Complex in?
+1097,campus_location,Campus Location,Which campus area has Sports Complex?
+1098,campus_location,Campus Location,Where is Swimming Pool?
+1099,campus_location,Campus Location,How do I get to Swimming Pool?
+1100,campus_location,Campus Location,Which gate is closest to Swimming Pool?
+1101,campus_location,Campus Location,Which building is Swimming Pool in?
+1102,campus_location,Campus Location,Which campus area has Swimming Pool?
+1103,campus_location,Campus Location,How do I get to Club House?
+1104,campus_location,Campus Location,Which gate is closest to Club House?
+1105,campus_location,Campus Location,Which building is Club House in?
+1106,campus_location,Campus Location,Which campus area has Club House?
+1107,campus_location,Campus Location,How do I get to TAR UMT Arena?
+1108,campus_location,Campus Location,Which gate is closest to TAR UMT Arena?
+1109,campus_location,Campus Location,Which building is TAR UMT Arena in?
+1110,campus_location,Campus Location,Which campus area has TAR UMT Arena?
+1111,campus_location,Campus Location,Where is Futsal / Netball Court?
+1112,campus_location,Campus Location,How do I get to Futsal / Netball Court?
+1113,campus_location,Campus Location,Which gate is closest to Futsal / Netball Court?
+1114,campus_location,Campus Location,Which building is Futsal / Netball Court in?
+1115,campus_location,Campus Location,Which campus area has Futsal / Netball Court?
+1116,campus_location,Campus Location,Where is Pickleball Courts?
+1117,campus_location,Campus Location,How do I get to Pickleball Courts?
+1118,campus_location,Campus Location,Which gate is closest to Pickleball Courts?
+1119,campus_location,Campus Location,Which building is Pickleball Courts in?
+1120,campus_location,Campus Location,Which campus area has Pickleball Courts?
+1121,campus_location,Campus Location,Where is Basketball Courts?
+1122,campus_location,Campus Location,How do I get to Basketball Courts?
+1123,campus_location,Campus Location,Which gate is closest to Basketball Courts?
+1124,campus_location,Campus Location,Which building is Basketball Courts in?
+1125,campus_location,Campus Location,Which campus area has Basketball Courts?
+1126,campus_location,Campus Location,Where is Volleyball Courts?
+1127,campus_location,Campus Location,How do I get to Volleyball Courts?
+1128,campus_location,Campus Location,Which gate is closest to Volleyball Courts?
+1129,campus_location,Campus Location,Which building is Volleyball Courts in?
+1130,campus_location,Campus Location,Which campus area has Volleyball Courts?
+1131,campus_location,Campus Location,Where is Dewan Tunku Abdul Rahman (DTAR)?
+1132,campus_location,Campus Location,How do I get to Dewan Tunku Abdul Rahman (DTAR)?
+1133,campus_location,Campus Location,Which gate is closest to Dewan Tunku Abdul Rahman (DTAR)?
+1134,campus_location,Campus Location,Which building is Dewan Tunku Abdul Rahman (DTAR) in?
+1135,campus_location,Campus Location,Which campus area has Dewan Tunku Abdul Rahman (DTAR)?
+1136,campus_location,Campus Location,How do I get to VTAR Institute?
+1137,campus_location,Campus Location,Which gate is closest to VTAR Institute?
+1138,campus_location,Campus Location,Which building is VTAR Institute in?
+1139,campus_location,Campus Location,Which campus area has VTAR Institute?
+1140,campus_location,Campus Location,How do I get to Taska & Tadika Cece?
+1141,campus_location,Campus Location,Which gate is closest to Taska & Tadika Cece?
+1142,campus_location,Campus Location,Which building is Taska & Tadika Cece in?
+1143,campus_location,Campus Location,Which campus area has Taska & Tadika Cece?
+1144,campus_location,Campus Location,Where is Gate 1 (Main Entrance)?
+1145,campus_location,Campus Location,How do I get to Gate 1 (Main Entrance)?
+1146,campus_location,Campus Location,Which gate is closest to Gate 1 (Main Entrance)?
+1147,campus_location,Campus Location,Which building is Gate 1 (Main Entrance) in?
+1148,campus_location,Campus Location,Which campus area has Gate 1 (Main Entrance)?
+1149,campus_location,Campus Location,How do I get to Gate 2?
+1150,campus_location,Campus Location,Which gate is closest to Gate 2?
+1151,campus_location,Campus Location,Which building is Gate 2 in?
+1152,campus_location,Campus Location,Which campus area has Gate 2?
+1153,campus_location,Campus Location,How do I get to Gate 3?
+1154,campus_location,Campus Location,Which gate is closest to Gate 3?
+1155,campus_location,Campus Location,Which building is Gate 3 in?
+1156,campus_location,Campus Location,Which campus area has Gate 3?
+1157,campus_location,Campus Location,How do I get to Gate 4?
+1158,campus_location,Campus Location,Which gate is closest to Gate 4?
+1159,campus_location,Campus Location,Which building is Gate 4 in?
+1160,campus_location,Campus Location,Which campus area has Gate 4?
+1161,campus_location,Campus Location,Where is Gate 5 (Hostel Gate)?
+1162,campus_location,Campus Location,How do I get to Gate 5 (Hostel Gate)?
+1163,campus_location,Campus Location,Which gate is closest to Gate 5 (Hostel Gate)?
+1164,campus_location,Campus Location,Which building is Gate 5 (Hostel Gate) in?
+1165,campus_location,Campus Location,Which campus area has Gate 5 (Hostel Gate)?
+1166,campus_location,Campus Location,How do I get to Gate 6?
+1167,campus_location,Campus Location,Which gate is closest to Gate 6?
+1168,campus_location,Campus Location,Which building is Gate 6 in?
+1169,campus_location,Campus Location,Which campus area has Gate 6?
+1170,campus_location,Campus Location,How do I get to Gate 7?
+1171,campus_location,Campus Location,Which gate is closest to Gate 7?
+1172,campus_location,Campus Location,Which building is Gate 7 in?
+1173,campus_location,Campus Location,Which campus area has Gate 7?
+1174,campus_location,Campus Location,Where is LRT Taman Melati Station?
+1175,campus_location,Campus Location,How do I get to LRT Taman Melati Station?
+1176,campus_location,Campus Location,Which gate is closest to LRT Taman Melati Station?
+1177,campus_location,Campus Location,Which building is LRT Taman Melati Station in?
+1178,campus_location,Campus Location,Which campus area has LRT Taman Melati Station?
+1179,campus_location,Campus Location,Where is Bus Stop (LRT Wangsa Maju)?
+1180,campus_location,Campus Location,How do I get to Bus Stop (LRT Wangsa Maju)?
+1181,campus_location,Campus Location,Which gate is closest to Bus Stop (LRT Wangsa Maju)?
+1182,campus_location,Campus Location,Which building is Bus Stop (LRT Wangsa Maju) in?
+1183,campus_location,Campus Location,Which campus area has Bus Stop (LRT Wangsa Maju)?
+1184,campus_location,Campus Location,Where is Bus Stops 1-5?
+1185,campus_location,Campus Location,How do I get to Bus Stops 1-5?
+1186,campus_location,Campus Location,Which gate is closest to Bus Stops 1-5?
+1187,campus_location,Campus Location,Which building is Bus Stops 1-5 in?
+1188,campus_location,Campus Location,Which campus area has Bus Stops 1-5?
+1189,campus_location,Campus Location,How do I enter campus through Gate 1 (Main Entrance)?
+1190,campus_location,Campus Location,What is Gate 1 (Main Entrance) used for?
+1191,campus_location,Campus Location,Which places are convenient from Gate 1 (Main Entrance)?
+1192,campus_location,Campus Location,How do I enter campus through Gate 2?
+1193,campus_location,Campus Location,What is Gate 2 used for?
+1194,campus_location,Campus Location,Which places are convenient from Gate 2?
+1195,campus_location,Campus Location,How do I enter campus through Gate 3?
+1196,campus_location,Campus Location,What is Gate 3 used for?
+1197,campus_location,Campus Location,Which places are convenient from Gate 3?
+1198,campus_location,Campus Location,How do I enter campus through Gate 4?
+1199,campus_location,Campus Location,What is Gate 4 used for?
+1200,campus_location,Campus Location,Which places are convenient from Gate 4?
+1201,campus_location,Campus Location,How do I enter campus through Gate 5 (Hostel Gate)?
+1202,campus_location,Campus Location,What is Gate 5 (Hostel Gate) used for?
+1203,campus_location,Campus Location,Which places are convenient from Gate 5 (Hostel Gate)?
+1204,campus_location,Campus Location,How do I enter campus through Gate 6?
+1205,campus_location,Campus Location,What is Gate 6 used for?
+1206,campus_location,Campus Location,Which places are convenient from Gate 6?
+1207,campus_location,Campus Location,How do I enter campus through Gate 7?
+1208,campus_location,Campus Location,What is Gate 7 used for?
+1209,campus_location,Campus Location,Which places are convenient from Gate 7?
+1210,campus_location,Campus Location,Which gate is near LRT Taman Melati Station?
+1211,campus_location,Campus Location,Is LRT Taman Melati Station near campus?
+1212,campus_location,Campus Location,Which gate is near Bus Stop (LRT Wangsa Maju)?
+1213,campus_location,Campus Location,Is Bus Stop (LRT Wangsa Maju) near campus?
+1214,campus_location,Campus Location,Which gate is near Bus Stops 1-5?
+1215,campus_location,Campus Location,Is Bus Stops 1-5 near campus?
+1216,campus_location,Campus Location,Where is FOCS?
+1217,campus_location,Campus Location,Where is FOAS?
+1218,campus_location,Campus Location,Where is FOET?
+1219,campus_location,Campus Location,Where is FOBE?
+1220,campus_location,Campus Location,Where is FSSH?
+1221,campus_location,Campus Location,Where is FCCI?
+1222,campus_location,Campus Location,Where is CPUS?
+1223,campus_location,Campus Location,Where is CPSR?
+1224,campus_location,Campus Location,Where is CPE?
+1225,campus_location,Campus Location,Where is CBEIV?
+1226,campus_location,Campus Location,Where is the Club House?
+1227,campus_location,Campus Location,Where are the futsal and netball courts?
+1228,campus_location,Campus Location,Where are the basketball courts?
+1229,campus_location,Campus Location,Where is the LRT Wangsa Maju bus stop?
+1230,campus_location,Campus Location,Where are Bus Stops 1-5?
+1231,wifi_problem,Wifi Problem,My WiFi is not working
+1232,wifi_problem,Wifi Problem,I cannot connect to WiFi
+1233,wifi_problem,Wifi Problem,University WiFi problem
+1234,wifi_problem,Wifi Problem,WiFi connection problem
+1235,wifi_problem,Wifi Problem,Why can't I access university WiFi?
+1236,wifi_problem,Wifi Problem,Campus WiFi is not working
+1237,wifi_problem,Wifi Problem,I cannot connect to campus internet
+1238,wifi_problem,Wifi Problem,The university WiFi does not work
+1239,wifi_problem,Wifi Problem,My internet connection is not working
+1240,wifi_problem,Wifi Problem,WiFi keeps disconnecting
+1241,wifi_problem,Wifi Problem,I lost my WiFi connection
+1242,wifi_problem,Wifi Problem,Campus internet problem
+1243,wifi_problem,Wifi Problem,How do I connect to university WiFi?
+1244,wifi_problem,Wifi Problem,University network problem
+1245,wifi_problem,Wifi Problem,WiFi login problem
+1246,wifi_problem,Wifi Problem,I cannot access the student WiFi
+1247,wifi_problem,Wifi Problem,The WiFi connection is slow
+1248,wifi_problem,Wifi Problem,Why is campus WiFi not connecting?
+1249,wifi_problem,Wifi Problem,I have a problem with university internet
+1250,wifi_problem,Wifi Problem,Help me fix the WiFi
+1251,wifi_problem,Wifi Problem,Why does the campus Wi-Fi say invalid authentication?
+1252,wifi_problem,Wifi Problem,I am connected to Wi-Fi but there is no internet access.
+1253,wifi_problem,Wifi Problem,How do I re-authenticate my device on campus Wi-Fi?
+1254,wifi_problem,Wifi Problem,The student Wi-Fi network is extremely slow today.
+1255,wifi_problem,Wifi Problem,Why does campus internet keep dropping connection?
+1256,wifi_problem,Wifi Problem,How do I configure Wi-Fi settings on my mobile phone?
+1257,wifi_problem,Wifi Problem,I cannot log in to the campus wireless network.
+1258,wifi_problem,Wifi Problem,Why is the Wi-Fi signal so weak in Block B?
+1259,wifi_problem,Wifi Problem,Is the university Wi-Fi server currently down?
+1260,wifi_problem,Wifi Problem,How can I solve the Wi-Fi IP configuration error?
+1261,wifi_problem,Wifi Problem,Why can't my laptop detect the campus Wi-Fi SSID?
+1262,wifi_problem,Wifi Problem,The campus Wi-Fi login portal is not loading.
+1263,wifi_problem,Wifi Problem,How do I connect my tablet to student Wi-Fi?
+1264,wifi_problem,Wifi Problem,My Wi-Fi keeps disconnecting every few minutes.
+1265,wifi_problem,Wifi Problem,Who can fix my campus wireless connection issue?
+1266,wifi_problem,Wifi Problem,Wifi issue
+1267,wifi_problem,Wifi Problem,Wifi down
+1268,wifi_problem,Wifi Problem,No internet
+1269,wifi_problem,Wifi Problem,Wifi not connecting
+1270,wifi_problem,Wifi Problem,Fix my wifi
+1271,wifi_problem,Wifi Problem,Campus Wi-Fi is down
+1272,wifi_problem,Wifi Problem,My campus internet is offline
+1273,wifi_problem,Wifi Problem,The university WiFi keeps dropping
+1274,wifi_problem,Wifi Problem,Why does the campus WiFi disconnect?
+1275,wifi_problem,Wifi Problem,My laptop cannot join the university network
+1276,wifi_problem,Wifi Problem,My phone will not connect to campus WiFi
+1277,wifi_problem,Wifi Problem,I cannot access the campus network
+1278,wifi_problem,Wifi Problem,The wireless network is unstable
+1279,wifi_problem,Wifi Problem,Campus internet keeps disconnecting
+1280,wifi_problem,Wifi Problem,How do I fix my university WiFi?
+1281,wifi_problem,Wifi Problem,Why is my WiFi connection so slow?
+1282,wifi_problem,Wifi Problem,My university WiFi stopped working
+1283,wifi_problem,Wifi Problem,I need help with campus WiFi
+1284,wifi_problem,Wifi Problem,How can I reconnect to the university wireless network?
+1285,wifi_problem,Wifi Problem,The WiFi login is not working
+1286,wifi_problem,Wifi Problem,I need help with campus internet
+1287,wifi_problem,Wifi Problem,Can someone help me connect to WiFi?
+1288,wifi_problem,Wifi Problem,My wireless access is having problems
+1289,password_problem,Password Problem,I forgot my password
+1290,password_problem,Password Problem,How can I reset my password?
+1291,password_problem,Password Problem,Student portal password problem
+1292,password_problem,Password Problem,Cannot login to my account
+1293,password_problem,Password Problem,Password reset
+1294,password_problem,Password Problem,I cannot remember my password
+1295,password_problem,Password Problem,How do I change my password?
+1296,password_problem,Password Problem,My password does not work
+1297,password_problem,Password Problem,I forgot my student portal password
+1298,password_problem,Password Problem,I cannot access my account
+1299,password_problem,Password Problem,How can I recover my password?
+1300,password_problem,Password Problem,My login password is not working
+1301,password_problem,Password Problem,I need to reset my account password
+1302,password_problem,Password Problem,How do I recover my student account?
+1303,password_problem,Password Problem,I cannot log into the portal
+1304,password_problem,Password Problem,Student account login problem
+1305,password_problem,Password Problem,My university account is locked
+1306,password_problem,Password Problem,How can I unlock my account?
+1307,password_problem,Password Problem,I have a password issue
+1308,password_problem,Password Problem,Help me with my student login
+1309,password_problem,Password Problem,How do I reset my forgotten student portal password?
+1310,password_problem,Password Problem,My account is locked due to multiple wrong password attempts.
+1311,password_problem,Password Problem,Where is the self-service password reset link?
+1312,password_problem,Password Problem,How do I update my expired student account password?
+1313,password_problem,Password Problem,I cannot log in because of password authentication error.
+1314,password_problem,Password Problem,How do I unblock my locked university login account?
+1315,password_problem,Password Problem,I am unable to access my student email password.
+1316,password_problem,Password Problem,Where can I change my portal login credentials?
+1317,password_problem,Password Problem,Why is my password being rejected by the system?
+1318,password_problem,Password Problem,How long does it take for a password reset link to arrive?
+1319,password_problem,Password Problem,Can I change my password from my phone?
+1320,password_problem,Password Problem,What are the password security requirements for student accounts?
+1321,password_problem,Password Problem,"Help, my student account has been locked out!"
+1322,password_problem,Password Problem,How do I recover access after forgetting my password?
+1323,password_problem,Password Problem,Who can unlock my account if password reset fails?
+1324,password_problem,Password Problem,Reset password
+1325,password_problem,Password Problem,Forgot password
+1326,password_problem,Password Problem,Locked out
+1327,password_problem,Password Problem,Can't log in
+1328,password_problem,Password Problem,I cannot log into the student portal
+1329,password_problem,Password Problem,My student portal credentials do not work
+1330,password_problem,Password Problem,How do I recover my portal password?
+1331,password_problem,Password Problem,How do I update my student password?
+1332,password_problem,Password Problem,My login password has expired
+1333,password_problem,Password Problem,What do I do if I am locked out?
+1334,password_problem,Password Problem,I am locked out of my university account
+1335,password_problem,Password Problem,Can the IT desk reset my password?
+1336,password_problem,Password Problem,How can I change my portal password?
+1337,password_problem,Password Problem,My account password is incorrect
+1338,password_problem,Password Problem,I need help with my student login
+1339,password_problem,Password Problem,Why can't I sign in to the portal?
+1340,password_problem,Password Problem,How do I regain access to my student account?
+1341,password_problem,Password Problem,I need help accessing my account
+1342,password_problem,Password Problem,I have a student login problem
+1343,password_problem,Password Problem,I need help recovering my account
+1344,student_card,Student Card,How do I get a student card?
+1345,student_card,Student Card,Student ID card
+1346,student_card,Student Card,Where can I apply for student card?
+1347,student_card,Student Card,I lost my student card
+1348,student_card,Student Card,Student card application
+1349,student_card,Student Card,How can I get my student ID?
+1350,student_card,Student Card,Where can I collect my student card?
+1351,student_card,Student Card,My student card is lost
+1352,student_card,Student Card,I need a replacement student card
+1353,student_card,Student Card,How do I replace my student card?
+1354,student_card,Student Card,Student identification card
+1355,student_card,Student Card,Where can I request a student ID?
+1356,student_card,Student Card,What should I do if I lose my student card?
+1357,student_card,Student Card,Student card replacement
+1358,student_card,Student Card,How can I apply for an ID card?
+1359,student_card,Student Card,Where is the student card office?
+1360,student_card,Student Card,Can I replace a damaged student card?
+1361,student_card,Student Card,My student ID is damaged
+1362,student_card,Student Card,How long does it take to get a student card?
+1363,student_card,Student Card,I need information about my student card
+1364,student_card,Student Card,What is the fee for replacing a lost student card?
+1365,student_card,Student Card,Where do I submit a photo for my student ID card?
+1366,student_card,Student Card,How long does it take to process a new student ID?
+1367,student_card,Student Card,My student card barcode is not scanning at the gate.
+1368,student_card,Student Card,Where is the counter to collect my new student ID?
+1369,student_card,Student Card,What documents are needed to apply for a student card?
+1370,student_card,Student Card,Can I get a temporary student ID card while waiting?
+1371,student_card,Student Card,"My student ID card is cracked, how do I replace it?"
+1372,student_card,Student Card,Who handles lost and found student identification cards?
+1373,student_card,Student Card,Is there a charge for renewing a damaged student card?
+1374,student_card,Student Card,Where can I update my details on my student ID?
+1375,student_card,Student Card,How do I report a missing student card to security?
+1376,student_card,Student Card,Where do new intake students collect their ID cards?
+1377,student_card,Student Card,Can I upload a new photo for my replacement card?
+1378,student_card,Student Card,What should I do if my student card stops working at the door?
+1379,student_card,Student Card,Student card
+1380,student_card,Student Card,Lost card
+1381,student_card,Student Card,Replace ID
+1382,student_card,Student Card,Damaged student card
+1383,student_card,Student Card,Where do I get my campus ID?
+1384,student_card,Student Card,How can I collect my student ID?
+1385,student_card,Student Card,What do I do about a damaged student card?
+1386,student_card,Student Card,My campus card is missing
+1387,student_card,Student Card,My ID card was lost
+1388,student_card,Student Card,How do I request a replacement ID?
+1389,student_card,Student Card,Can I replace my student card?
+1390,student_card,Student Card,Where can I apply for an ID card?
+1391,student_card,Student Card,What should I do if my student ID is lost?
+1392,student_card,Student Card,Who handles student card issues?
+1393,student_card,Student Card,Where do I collect my campus card?
+1394,student_card,Student Card,I need help with my student identification
+1395,student_card,Student Card,I have a problem with my campus ID
+1396,student_card,Student Card,Who handles student ID cards?
+1397,tuition_fee,Tuition Fee,How do I pay my tuition fee?
+1398,tuition_fee,Tuition Fee,Tuition fee payment
+1399,tuition_fee,Tuition Fee,How much is my university fee?
+1400,tuition_fee,Tuition Fee,When should I pay my fees?
+1401,tuition_fee,Tuition Fee,Fee payment method
+1402,tuition_fee,Tuition Fee,How can I pay university fees?
+1403,tuition_fee,Tuition Fee,Where can I pay my tuition?
+1404,tuition_fee,Tuition Fee,When is the tuition fee deadline?
+1405,tuition_fee,Tuition Fee,How much do I need to pay?
+1406,tuition_fee,Tuition Fee,Where can I check my outstanding fees?
+1407,tuition_fee,Tuition Fee,Can I pay my fees online?
+1408,tuition_fee,Tuition Fee,What payment methods are available?
+1409,tuition_fee,Tuition Fee,How do I check my tuition balance?
+1410,tuition_fee,Tuition Fee,When is my fee payment due?
+1411,tuition_fee,Tuition Fee,University payment information
+1412,tuition_fee,Tuition Fee,How can I settle my fees?
+1413,tuition_fee,Tuition Fee,Where can I find fee information?
+1414,tuition_fee,Tuition Fee,What is the deadline for fee payment?
+1415,tuition_fee,Tuition Fee,I want to check my tuition fees
+1416,tuition_fee,Tuition Fee,Help me with tuition payment
+1417,tuition_fee,Tuition Fee,What are the online payment channels for university fees?
+1418,tuition_fee,Tuition Fee,How can I check my remaining tuition fee balance?
+1419,tuition_fee,Tuition Fee,Can I pay my tuition fees in monthly installments?
+1420,tuition_fee,Tuition Fee,What is the late penalty fee for overdue tuition payments?
+1421,tuition_fee,Tuition Fee,Where do I upload my payment receipt for tuition?
+1422,tuition_fee,Tuition Fee,Can I pay my semester fees using online banking FPX?
+1423,tuition_fee,Tuition Fee,How do I request an official tuition fee receipt?
+1424,tuition_fee,Tuition Fee,When is the final cut-off date to clear outstanding fees?
+1425,tuition_fee,Tuition Fee,Where can I view my fee breakdown for this semester?
+1426,tuition_fee,Tuition Fee,What happens if I miss the tuition payment deadline?
+1427,tuition_fee,Tuition Fee,Can I pay my tuition fees at the finance counter directly?
+1428,tuition_fee,Tuition Fee,How do I check if my tuition payment was received?
+1429,tuition_fee,Tuition Fee,What is the total fee for this academic semester?
+1430,tuition_fee,Tuition Fee,Where do I apply for a fee payment deferment?
+1431,tuition_fee,Tuition Fee,How can I get an invoice for my tuition fees?
+1432,tuition_fee,Tuition Fee,How do I apply for a tuition fee refund?
+1433,tuition_fee,Tuition Fee,What is the refund policy if I withdraw?
+1434,tuition_fee,Tuition Fee,Can I get a refund after withdrawing from a course?
+1435,tuition_fee,Tuition Fee,How long does a fee refund take to process?
+1436,tuition_fee,Tuition Fee,What happens to my fees if I drop out?
+1437,tuition_fee,Tuition Fee,"I want to withdraw from my programme, what about my fees?"
+1438,tuition_fee,Tuition Fee,Is there a refund if I cancel my enrolment?
+1439,tuition_fee,Tuition Fee,What is the withdrawal deadline for a fee refund?
+1440,tuition_fee,Tuition Fee,Who do I contact about a refund request?
+1441,tuition_fee,Tuition Fee,How much of my tuition fee is refundable?
+1442,tuition_fee,Tuition Fee,Do I get a partial refund for a late withdrawal?
+1443,tuition_fee,Tuition Fee,What documents do I need for a tuition refund?
+1444,tuition_fee,Tuition Fee,Tuition fee
+1445,tuition_fee,Tuition Fee,Fee payment
+1446,tuition_fee,Tuition Fee,Pay fees
+1447,tuition_fee,Tuition Fee,Outstanding balance
+1448,tuition_fee,Tuition Fee,Fee deadline
+1449,tuition_fee,Tuition Fee,How do I settle my university fees?
+1450,tuition_fee,Tuition Fee,How do I make a fee payment?
+1451,tuition_fee,Tuition Fee,Can I pay my tuition through the portal?
+1452,tuition_fee,Tuition Fee,How do I check my fee balance?
+1453,tuition_fee,Tuition Fee,Where can I see outstanding fees?
+1454,tuition_fee,Tuition Fee,When do I need to pay tuition?
+1455,tuition_fee,Tuition Fee,What is the tuition payment procedure?
+1456,tuition_fee,Tuition Fee,Who can help with tuition payments?
+1457,tuition_fee,Tuition Fee,Can I get a fee receipt?
+1458,tuition_fee,Tuition Fee,How do I ask about a fee refund?
+1459,tuition_fee,Tuition Fee,Can I pay my university fees online?
+1460,tuition_fee,Tuition Fee,What happens if I miss a fee payment?
+1461,tuition_fee,Tuition Fee,Where do I get my tuition invoice?
+1462,tuition_fee,Tuition Fee,How can I confirm my payment?
+1463,tuition_fee,Tuition Fee,I need help with my tuition payment
+1464,tuition_fee,Tuition Fee,Can someone help with university fees?
+1465,tuition_fee,Tuition Fee,I have a question about paying tuition
+1466,counselling_booking,Counselling Booking,I want to book counselling
+1467,counselling_booking,Counselling Booking,How can I book a counselling appointment?
+1468,counselling_booking,Counselling Booking,Book a counsellor
+1469,counselling_booking,Counselling Booking,Counselling appointment
+1470,counselling_booking,Counselling Booking,I need a counselling appointment
+1471,counselling_booking,Counselling Booking,Can I schedule a counselling session?
+1472,counselling_booking,Counselling Booking,Where can I book counselling?
+1473,counselling_booking,Counselling Booking,How do I meet a university counsellor?
+1474,counselling_booking,Counselling Booking,I want to see a counsellor
+1475,counselling_booking,Counselling Booking,Counsellor appointment booking
+1476,counselling_booking,Counselling Booking,How can I schedule counselling?
+1477,counselling_booking,Counselling Booking,Can I make an appointment with a counsellor?
+1478,counselling_booking,Counselling Booking,Where is the counselling service?
+1479,counselling_booking,Counselling Booking,I need help booking counselling
+1480,counselling_booking,Counselling Booking,How do I contact the counsellor?
+1481,counselling_booking,Counselling Booking,I would like a counselling session
+1482,counselling_booking,Counselling Booking,Can students book counselling?
+1483,counselling_booking,Counselling Booking,Counselling service appointment
+1484,counselling_booking,Counselling Booking,I need to talk to a counsellor
+1485,counselling_booking,Counselling Booking,Book a student counselling session
+1486,counselling_booking,Counselling Booking,How do I schedule an appointment with a mental health counsellor?
+1487,counselling_booking,Counselling Booking,Is student counselling free of charge at the university?
+1488,counselling_booking,Counselling Booking,Where is the student counselling unit located?
+1489,counselling_booking,Counselling Booking,Can I book a confidential counselling session online?
+1490,counselling_booking,Counselling Booking,How do I speak with a counsellor regarding exam stress?
+1491,counselling_booking,Counselling Booking,What are the available slots for individual counselling?
+1492,counselling_booking,Counselling Booking,Can I request a female or male counsellor?
+1493,counselling_booking,Counselling Booking,How can counselling services help with personal issues?
+1494,counselling_booking,Counselling Booking,Where can I find psychological support on campus?
+1495,counselling_booking,Counselling Booking,How do I contact the campus mental health team?
+1496,counselling_booking,Counselling Booking,Are counselling sessions kept completely private?
+1497,counselling_booking,Counselling Booking,How can I reschedule my counselling appointment?
+1498,counselling_booking,Counselling Booking,Can I walk in for emergency counselling without booking?
+1499,counselling_booking,Counselling Booking,"I need someone to talk to about anxiety, how to book?"
+1500,counselling_booking,Counselling Booking,What services does the counselling centre offer students?
+1501,counselling_booking,Counselling Booking,Book counselling
+1502,counselling_booking,Counselling Booking,Counselling
+1503,counselling_booking,Counselling Booking,Talk to counsellor
+1504,counselling_booking,Counselling Booking,Need someone to talk to
+1505,counselling_booking,Counselling Booking,How can I arrange a counselling session?
+1506,counselling_booking,Counselling Booking,Can I book a student counselling appointment?
+1507,counselling_booking,Counselling Booking,I would like to speak to a counsellor
+1508,counselling_booking,Counselling Booking,Where can I schedule counselling?
+1509,counselling_booking,Counselling Booking,How do I make a counselling booking?
+1510,counselling_booking,Counselling Booking,I need to talk to someone at counselling
+1511,counselling_booking,Counselling Booking,Can I get a mental health appointment?
+1512,counselling_booking,Counselling Booking,How do I contact the counselling centre?
+1513,counselling_booking,Counselling Booking,Where is the counselling centre?
+1514,counselling_booking,Counselling Booking,Can I request a counselling session?
+1515,counselling_booking,Counselling Booking,Who do I contact for personal counselling?
+1516,counselling_booking,Counselling Booking,I want to see a student counsellor
+1517,counselling_booking,Counselling Booking,How can I schedule an appointment with a counsellor?
+1518,it_support,It Support,I need IT support
+1519,it_support,It Support,How can I contact IT?
+1520,it_support,It Support,Computer problem
+1521,it_support,It Support,Technical support
+1522,it_support,It Support,Contact IT department
+1523,it_support,It Support,I need technical help
+1524,it_support,It Support,Where can I get IT assistance?
+1525,it_support,It Support,How do I contact technical support?
+1526,it_support,It Support,University IT help
+1527,it_support,It Support,I have a computer problem
+1528,it_support,It Support,IT service desk
+1529,it_support,It Support,Where is the IT support office?
+1530,it_support,It Support,How can IT help me?
+1531,it_support,It Support,I need help with university technology
+1532,it_support,It Support,Technical issue
+1533,it_support,It Support,Who should I contact for computer problems?
+1534,it_support,It Support,IT department contact
+1535,it_support,It Support,I need assistance with my computer
+1536,it_support,It Support,Can IT help me?
+1537,it_support,It Support,Where can I report an IT problem?
+1538,it_support,It Support,Where is the IT helpdesk counter located on campus?
+1539,it_support,It Support,How do I submit an IT support ticket for computer issues?
+1540,it_support,It Support,Can IT help me install required software on my laptop?
+1541,it_support,It Support,What is the email contact for technical IT assistance?
+1542,it_support,It Support,"My laptop screen is broken, can IT support take a look?"
+1543,it_support,It Support,How do I report a broken printer or PC in the computer lab?
+1544,it_support,It Support,Who can help fix software errors on my student laptop?
+1545,it_support,It Support,What are the operating hours of the IT service desk?
+1546,it_support,It Support,Can IT help me set up student email on my smartphone?
+1547,it_support,It Support,How do I get technical assistance for university systems?
+1548,it_support,It Support,Where can I find an IT technician on campus?
+1549,it_support,It Support,Can the IT department help clean viruses from my PC?
+1550,it_support,It Support,Who should I report a system bug on student portal to?
+1551,it_support,It Support,What software license keys does the university provide?
+1552,it_support,It Support,How fast does IT support respond to ticket inquiries?
+1553,it_support,It Support,IT support
+1554,it_support,It Support,Computer help
+1555,it_support,It Support,Tech issue
+1556,it_support,It Support,IT helpdesk
+1557,it_support,It Support,Where do I go for technical support?
+1558,it_support,It Support,Who handles university IT problems?
+1559,it_support,It Support,Where is the IT help desk?
+1560,it_support,It Support,Can I get help with Moodle?
+1561,it_support,It Support,Who can help with my computer issue?
+1562,it_support,It Support,Where can I get help with technical issues?
+1563,it_support,It Support,I need support for a university system
+1564,it_support,It Support,Which office handles IT support?
+1565,it_support,It Support,Who can assist with login or system issues?
+1566,it_support,It Support,Can the IT desk help with WiFi problems?
+1567,it_support,It Support,I need help with a technical service
+1568,scholarship,Scholarship,How can I apply for scholarship?
+1569,scholarship,Scholarship,Scholarship information
+1570,scholarship,Scholarship,Are there any scholarships?
+1571,scholarship,Scholarship,Financial aid
+1572,scholarship,Scholarship,Scholarship application
+1573,scholarship,Scholarship,How do I get a scholarship?
+1574,scholarship,Scholarship,What scholarships are available?
+1575,scholarship,Scholarship,Can students apply for scholarships?
+1576,scholarship,Scholarship,Where can I apply for financial aid?
+1577,scholarship,Scholarship,Scholarship requirements
+1578,scholarship,Scholarship,What are the scholarship eligibility requirements?
+1579,scholarship,Scholarship,How can I find scholarships?
+1580,scholarship,Scholarship,University scholarship opportunities
+1581,scholarship,Scholarship,Where can I get scholarship information?
+1582,scholarship,Scholarship,Are there financial assistance programmes?
+1583,scholarship,Scholarship,I need information about scholarships
+1584,scholarship,Scholarship,Can I get financial support?
+1585,scholarship,Scholarship,How do I apply for financial assistance?
+1586,scholarship,Scholarship,What financial aid does the university provide?
+1587,scholarship,Scholarship,Tell me about university scholarships
+1588,scholarship,Scholarship,What CGPA requirement is needed to maintain my scholarship?
+1589,scholarship,Scholarship,Where can I find the application form for financial bursaries?
+1590,scholarship,Scholarship,When is the application deadline for university scholarships?
+1591,scholarship,Scholarship,Are there any merit-based scholarships for current students?
+1592,scholarship,Scholarship,How do I submit supporting documents for financial aid?
+1593,scholarship,Scholarship,Where is the scholarship and financial assistance office?
+1594,scholarship,Scholarship,Can international students apply for university bursaries?
+1595,scholarship,Scholarship,How do I check the status of my scholarship application?
+1596,scholarship,Scholarship,What partial or full scholarships are currently open?
+1597,scholarship,Scholarship,Does the university offer PTPTN or government loan advice?
+1598,scholarship,Scholarship,How do I apply for emergency financial assistance?
+1599,scholarship,Scholarship,What criteria are required for sports scholarships?
+1600,scholarship,Scholarship,When will the scholarship disbursement be credited?
+1601,scholarship,Scholarship,Where can I read the terms for fee discount scholarships?
+1602,scholarship,Scholarship,Can I hold two scholarships at the same time?
+1603,scholarship,Scholarship,Scholarship info
+1604,scholarship,Scholarship,Apply for scholarship
+1605,scholarship,Scholarship,Bursary
+1606,scholarship,Scholarship,Where can I apply for a scholarship?
+1607,scholarship,Scholarship,What financial aid can students get?
+1608,scholarship,Scholarship,Where can I find scholarship information?
+1609,scholarship,Scholarship,Can I apply for a bursary?
+1610,scholarship,Scholarship,Is PTPTN support available?
+1611,scholarship,Scholarship,Who handles scholarship applications?
+1612,scholarship,Scholarship,What are the requirements for financial aid?
+1613,scholarship,Scholarship,How do I request a bursary?
+1614,scholarship,Scholarship,Which office handles scholarships?
+1615,scholarship,Scholarship,Are there financial aid options for students?
+1616,scholarship,Scholarship,Where can I get help with scholarship forms?
+1617,scholarship,Scholarship,How can I check scholarship eligibility?
+1618,scholarship,Scholarship,I need scholarship information
+1619,scholarship,Scholarship,I have a question about financial aid
+1620,scholarship,Scholarship,Can someone help me find scholarship information?
+1621,help,Help,What can you do?
+1622,help,Help,What can I ask you?
+1623,help,Help,Help me
+1624,help,Help,What services do you provide?
+1625,help,Help,How can you help me?
+1626,help,Help,What questions can I ask?
+1627,help,Help,What information can you provide?
+1628,help,Help,What are your functions?
+1629,help,Help,What can this chatbot do?
+1630,help,Help,How does this chatbot help students?
+1631,help,Help,What topics can I ask about?
+1632,help,Help,Tell me what you can do
+1633,help,Help,What university services can you help with?
+1634,help,Help,Do you provide general help to students?
+1635,help,Help,What features do you have?
+1636,help,Help,Show me your functions
+1637,help,Help,What can I use you for?
+1638,help,Help,Which questions can you answer?
+1639,help,Help,How can this assistant help me?
+1640,help,Help,Give me a list of things you can help with
+1641,help,Help,List all topics you can assist me with.
+1642,help,Help,What features can I ask this AI assistant?
+1643,help,Help,Show me the main menu of chatbot capabilities.
+1644,help,Help,What automated services can this assistant perform?
+1645,help,Help,How to use this chatbot effectively?
+1646,help,Help,Are you available to explain your supported topics?
+1647,help,Help,Can I ask what topics this chatbot supports?
+1648,help,Help,Can you explain how this assistant can help me?
+1649,help,Help,Please show the help menu and supported services
+1650,help,Help,What type of question can I ask this chatbot?
+1651,help,Help,I want to know this assistant's capabilities
+1652,help,Help,Which campus questions are supported by this chatbot?
+1653,help,Help,Give me an overview of the services you can answer
+1654,help,Help,How do I use the chatbot help function?
+1655,help,Help,Help
+1656,help,Help,Menu
+1657,help,Help,Options
+1658,help,Help,Commands
+1659,help,Help,What can you help me with?
+1660,help,Help,What university topics can I ask about?
+1661,help,Help,Which services are supported?
+1662,help,Help,Can you show me the help options?
+1663,help,Help,What can this assistant answer?
+1664,help,Help,What kinds of student questions can I ask?
+1665,help,Help,Which campus services can you provide information about?
+1666,help,Help,Show me what this chatbot can do
+1667,help,Help,What information is available here?
+1668,help,Help,What university questions are supported?
+1669,help,Help,Can you list the topics you know?
+1670,help,Help,What can I use this chatbot for?
+1671,hostel,Hostel,How can I apply for hostel?
+1672,hostel,Hostel,Hostel application
+1673,hostel,Hostel,Where is the student hostel?
+1674,hostel,Hostel,How do I get hostel accommodation?
+1675,hostel,Hostel,Can I apply for university accommodation?
+1676,hostel,Hostel,Hostel registration
+1677,hostel,Hostel,Student accommodation
+1678,hostel,Hostel,Where can I apply for hostel?
+1679,hostel,Hostel,How much is hostel accommodation?
+1680,hostel,Hostel,Hostel fees
+1681,hostel,Hostel,Are hostel rooms available?
+1682,hostel,Hostel,How can I reserve a hostel room?
+1683,hostel,Hostel,University accommodation information
+1684,hostel,Hostel,Student residence
+1685,hostel,Hostel,Where do students stay?
+1686,hostel,Hostel,How do I apply for student housing?
+1687,hostel,Hostel,Hostel application deadline
+1688,hostel,Hostel,What are the hostel requirements?
+1689,hostel,Hostel,Can first year students stay in hostel?
+1690,hostel,Hostel,I need information about university hostel
+1691,hostel,Hostel,What is the monthly rental rate for hostel rooms?
+1692,hostel,Hostel,Are air-conditioned rooms available in the student hostel?
+1693,hostel,Hostel,How do I apply for on-campus hostel accommodation?
+1694,hostel,Hostel,When is the check-in date for new hostel residents?
+1695,hostel,Hostel,What facilities are included in the student dormitory?
+1696,hostel,Hostel,Where is the hostel management office located?
+1697,hostel,Hostel,Can I choose my roommate for the university hostel?
+1698,hostel,Hostel,What is the curfew time for student accommodation?
+1699,hostel,Hostel,How do I request a hostel room maintenance repair?
+1700,hostel,Hostel,Is cooking allowed inside the student hostel rooms?
+1701,hostel,Hostel,What items should I bring when moving into the hostel?
+1702,hostel,Hostel,How do I apply for hostel refund upon check-out?
+1703,hostel,Hostel,Are single occupancy rooms available in campus housing?
+1704,hostel,Hostel,What are the rules and regulations for hostel residents?
+1705,hostel,Hostel,Where can visitors park at the student hostel blocks?
+1706,hostel,Hostel,Hostel
+1707,hostel,Hostel,Accommodation
+1708,hostel,Hostel,Apply hostel
+1709,hostel,Hostel,Dorm info
+1710,hostel,Hostel,How do I apply for accommodation?
+1711,hostel,Hostel,Where is the hostel office?
+1712,hostel,Hostel,Can I book a hostel room?
+1713,hostel,Hostel,Where is student accommodation?
+1714,hostel,Hostel,How much does student housing cost?
+1715,hostel,Hostel,Who manages hostel rooms?
+1716,hostel,Hostel,How do I request a hostel room?
+1717,hostel,Hostel,What are the accommodation options?
+1718,hostel,Hostel,Where is the TAR UMT Hostel?
+1719,hostel,Hostel,How do I get to the hostel?
+1720,hostel,Hostel,Can I stay in the student accommodation blocks?
+1721,hostel,Hostel,Where are the accommodation blocks?
+1722,hostel,Hostel,How do I contact the hostel office?
+1723,hostel,Hostel,When can I apply for hostel accommodation?
+1724,hostel,Hostel,Where is TAR UMT Hostel?
+1725,hostel,Hostel,How do I get to TAR UMT Hostel?
+1726,hostel,Hostel,Which gate is closest to TAR UMT Hostel?
+1727,hostel,Hostel,Can students use TAR UMT Hostel?
+1728,hostel,Hostel,Where is Student Accommodation Blocks (DK Series)?
+1729,hostel,Hostel,How do I get to Student Accommodation Blocks (DK Series)?
+1730,hostel,Hostel,Which gate is closest to Student Accommodation Blocks (DK Series)?
+1731,hostel,Hostel,Can students use Student Accommodation Blocks (DK Series)?
+1732,hostel,Hostel,I need accommodation information
+1733,hostel,Hostel,I have a question about hostel
+1734,hostel,Hostel,Can someone help with student accommodation?
+1735,student_services,Student Services,What student services are available?
+1736,student_services,Student Services,Student affairs services
+1737,student_services,Student Services,What services can students use?
+1738,student_services,Student Services,Where is student affairs?
+1739,student_services,Student Services,How can Student Affairs help me?
+1740,student_services,Student Services,Student service information
+1741,student_services,Student Services,What does Student Affairs do?
+1742,student_services,Student Services,Where can I get student support?
+1743,student_services,Student Services,Student support services
+1744,student_services,Student Services,What administrative support is available from Student Affairs?
+1745,student_services,Student Services,Where can students ask for help?
+1746,student_services,Student Services,Student affairs office
+1747,student_services,Student Services,How do I contact Student Affairs?
+1748,student_services,Student Services,What university student services are available?
+1749,student_services,Student Services,Can Student Affairs help me?
+1750,student_services,Student Services,Where can I get administrative help?
+1751,student_services,Student Services,Student administration support
+1752,student_services,Student Services,I need student services
+1753,student_services,Student Services,How can I contact student services?
+1754,student_services,Student Services,Tell me about student support
+1755,student_services,Student Services,Where can I request an official university status letter?
+1756,student_services,Student Services,How do I get an official academic transcript printed?
+1757,student_services,Student Services,Where is the student welfare and administrative counter?
+1758,student_services,Student Services,How can Student Affairs help with student club activities?
+1759,student_services,Student Services,Where do I submit forms for leave of absence?
+1760,student_services,Student Services,What administrative support is provided at the student center?
+1761,student_services,Student Services,How do I request verification letters for visa or insurance?
+1762,student_services,Student Services,Where do I collect official university documents?
+1763,student_services,Student Services,How can I register a new student society or club?
+1764,student_services,Student Services,Where is the student welfare office located?
+1765,student_services,Student Services,Who assists with international student visa renewal support?
+1766,student_services,Student Services,Where do I go for student insurance claims inquiries?
+1767,student_services,Student Services,How do I apply for an official transcript copy?
+1768,student_services,Student Services,Where can I drop off student administrative forms?
+1769,student_services,Student Services,What services are available at the student affairs front desk?
+1770,student_services,Student Services,How do I contact the student welfare department?
+1771,student_services,Student Services,Where can I get help with student club event approval?
+1772,student_services,Student Services,Can Student Affairs issue an enrollment verification letter?
+1773,student_services,Student Services,Where can I inquire about campus transport services?
+1774,student_services,Student Services,How do I file a general student complaint or feedback?
+1775,student_services,Student Services,Where is the student administration counter located?
+1776,student_services,Student Services,What help does student affairs offer for lost items?
+1777,student_services,Student Services,How do I update my residential address in university records?
+1778,student_services,Student Services,Where do I get endorsement for student concession forms?
+1779,student_services,Student Services,Who can provide administrative support for deferment?
+1780,student_services,Student Services,Student Services opening hours
+1781,student_services,Student Services,When is Student Services open?
+1782,student_services,Student Services,Student Affairs office hours
+1783,student_services,Student Services,Is Student Services open today?
+1784,student_services,Student Services,Student services operating hours
+1785,student_services,Student Services,What time does Student Services open?
+1786,student_services,Student Services,What time does Student Services close?
+1787,student_services,Student Services,Student Services Centre hours
+1788,student_services,Student Services,What can Student Affairs help me with?
+1789,student_services,Student Services,Where is the Student Services Centre?
+1790,student_services,Student Services,Where can I request an official letter?
+1791,student_services,Student Services,Who handles student administration?
+1792,student_services,Student Services,What services are provided by student affairs?
+1793,student_services,Student Services,Where can students get administrative support?
+1794,student_services,Student Services,Can Student Affairs help me with my student ID?
+1795,student_services,Student Services,Which office handles student welfare?
+1796,student_services,Student Services,Where can I ask about official documents?
+1797,student_services,Student Services,What does the Student Services Centre do?
+1798,parking,Parking,Where can students park?
+1799,parking,Parking,Student parking
+1800,parking,Parking,Where is the university parking?
+1801,parking,Parking,Can students use campus parking?
+1802,parking,Parking,Parking information
+1803,parking,Parking,Where can I park my car?
+1804,parking,Parking,Is student parking available?
+1805,parking,Parking,How do I apply for a parking permit?
+1806,parking,Parking,Parking permit
+1807,parking,Parking,Where can I get a parking sticker?
+1808,parking,Parking,Campus parking rules
+1809,parking,Parking,Where is the student car park?
+1810,parking,Parking,Can I park on campus?
+1811,parking,Parking,How much is campus parking?
+1812,parking,Parking,University parking area
+1813,parking,Parking,Where can I park my motorcycle?
+1814,parking,Parking,Motorcycle parking
+1815,parking,Parking,Parking application
+1816,parking,Parking,What are the parking regulations?
+1817,parking,Parking,Tell me about campus parking
+1818,parking,Parking,How much does a student parking pass cost per semester?
+1819,parking,Parking,Where can I register my vehicle plate number for parking?
+1820,parking,Parking,Are there designated parking bays for motorcycles?
+1821,parking,Parking,What is the penalty for parking without a valid permit?
+1822,parking,Parking,Is overnight parking permitted in the campus carpark?
+1823,parking,Parking,Where is the visitor parking area located on campus?
+1824,parking,Parking,How do I pay for campus parking using my touch n go?
+1825,parking,Parking,Why was my car clamped at the student carpark?
+1826,parking,Parking,Where can I find available parking slots in Block A?
+1827,parking,Parking,What time do campus parking gates open in the morning?
+1828,parking,Parking,Are there electric vehicle charging stations on campus?
+1829,parking,Parking,How do I appeal a campus parking fine ticket?
+1830,parking,Parking,Where do I renew my seasonal student parking sticker?
+1831,parking,Parking,Is parking free on campus during weekends?
+1832,parking,Parking,Which zone is designated for student car parking?
+1833,parking,Parking,Parking
+1834,parking,Parking,Campus parking
+1835,parking,Parking,Where to park
+1836,parking,Parking,Where can I park my car on campus?
+1837,parking,Parking,Where is student car parking?
+1838,parking,Parking,Where are the student parking lots?
+1839,parking,Parking,Can students park near Gate 1?
+1840,parking,Parking,Is parking available near the sports complex?
+1841,parking,Parking,Where is motorcycle parking?
+1842,parking,Parking,Where can staff park?
+1843,parking,Parking,Where is the staff car park?
+1844,parking,Parking,How do I find a student parking lot?
+1845,parking,Parking,Where is parking near Block PA?
+1846,parking,Parking,Where can I park near East Campus?
+1847,parking,Parking,Which gate is convenient for student parking?
+1848,parking,Parking,Where can I park a motorcycle on campus?
+1849,parking,Parking,Where are the campus parking areas?
+1850,parking,Parking,Where is Student Parking?
+1851,parking,Parking,How do I get to Student Parking?
+1852,parking,Parking,Which gate is closest to Student Parking?
+1853,parking,Parking,Can students use Student Parking?
+1854,parking,Parking,Where is Staff Parking?
+1855,parking,Parking,How do I get to Staff Parking?
+1856,parking,Parking,Which gate is closest to Staff Parking?
+1857,parking,Parking,Can students use Staff Parking?
+1858,parking,Parking,How do I get to Motorcycle Parking?
+1859,parking,Parking,Which gate is closest to Motorcycle Parking?
+1860,parking,Parking,Can students use Motorcycle Parking?
+1861,parking,Parking,I need information about campus parking
+1862,parking,Parking,Can someone help me find parking?
+1863,parking,Parking,I have a question about student parking
+1864,printing,Printing,Where can I print documents?
+1865,printing,Printing,Can I print on campus?
+1866,printing,Printing,Where is the printer?
+1867,printing,Printing,Printing service
+1868,printing,Printing,How can I print documents?
+1869,printing,Printing,Where can students print?
+1870,printing,Printing,Is there a printing shop on campus?
+1871,printing,Printing,Where can I photocopy documents?
+1872,printing,Printing,Can I photocopy at the library?
+1873,printing,Printing,Printing facilities
+1874,printing,Printing,How much does printing cost?
+1875,printing,Printing,Where can I print my assignment?
+1876,printing,Printing,I need to print a document
+1877,printing,Printing,Where can I scan documents?
+1878,printing,Printing,Printing and photocopying service
+1879,printing,Printing,Can students use the library printer?
+1880,printing,Printing,Where is the campus printing service?
+1881,printing,Printing,How do I print from a university computer?
+1882,printing,Printing,Is printing available in the computer lab?
+1883,printing,Printing,Tell me where I can print
+1884,printing,Printing,Where can I find a photocopy machine on campus?
+1885,printing,Printing,How do I reload credit on my campus printing account?
+1886,printing,Printing,Is there a 3D printing service available in the engineering lab?
+1887,printing,Printing,Where can I scan paper documents to PDF on campus?
+1888,printing,Printing,How much does black and white printing cost per page?
+1889,printing,Printing,Where can I print colour posters or slides?
+1890,printing,Printing,Can I print assignments directly from a USB flash drive?
+1891,printing,Printing,Where is the print shop for binding assignment reports?
+1892,printing,Printing,How do I connect my laptop to the library printer network?
+1893,printing,Printing,Where can I get laminating or Comb binding services?
+1894,printing,Printing,Is there a self-service printing kiosk in Block B?
+1895,printing,Printing,Where can I buy paper or print hard copies?
+1896,printing,Printing,How do I send print jobs from my phone to the campus printer?
+1897,printing,Printing,What are the charges for A3 size printing on campus?
+1898,printing,Printing,Where can students make photocopies of textbook pages?
+1899,printing,Printing,Where is the nearest scanner machine for student use?
+1900,printing,Printing,Can I print my final project report in the computer lab?
+1901,printing,Printing,Where is the dedicated document printing station located?
+1902,printing,Printing,How do I top up my student card balance for printing?
+1903,printing,Printing,Where can I print double-sided assignment pages?
+1904,printing,Printing,Is there a printing quota given to students each term?
+1905,printing,Printing,Where can I photocopy my ID card copy on campus?
+1906,printing,Printing,How do I clear a paper jam on the library printer?
+1907,printing,Printing,Where is the photocopy machine in the main building?
+1908,printing,Printing,Where can I scan multi-page documents to my email?
+1909,printing,Printing,Is colour printing available at the computer laboratory?
+1910,printing,Printing,Where can I get fast printing and binding for my thesis?
+1911,printing,Printing,How do I use the web printing portal to upload files?
+1912,printing,Printing,Printing
+1913,printing,Printing,Print documents
+1914,printing,Printing,Photocopy
+1915,printing,Printing,Where to print
+1916,printing,Printing,Where can I print an assignment?
+1917,printing,Printing,Is there a printer on campus?
+1918,printing,Printing,Can students print in the library?
+1919,printing,Printing,Where can I print near the library?
+1920,printing,Printing,How do I use the campus printing service?
+1921,printing,Printing,Is photocopying available?
+1922,printing,Printing,Where can I print study materials?
+1923,printing,Printing,Can I print my coursework on campus?
+1924,printing,Printing,Where is the nearest place to print?
+1925,printing,Printing,How much does campus printing cost?
+1926,printing,Printing,Can I make copies of documents on campus?
+1927,printing,Printing,Where are the printing facilities?
+1928,printing,Printing,I need help with campus printing
+1929,printing,Printing,Where can I get printing support?
+1930,printing,Printing,Can someone tell me about printing facilities?
+1931,academic_advising,Academic Advising,I need academic advice
+1932,academic_advising,Academic Advising,How can I contact an academic advisor?
+1933,academic_advising,Academic Advising,Academic advising
+1934,academic_advising,Academic Advising,Can I meet an academic advisor?
+1935,academic_advising,Academic Advising,I need an advisor to discuss my subject choices
+1936,academic_advising,Academic Advising,Who can advise me about my studies?
+1937,academic_advising,Academic Advising,Where can I get academic advice?
+1938,academic_advising,Academic Advising,How do I book an academic advisor?
+1939,academic_advising,Academic Advising,Academic consultation
+1940,academic_advising,Academic Advising,I want to talk to my academic advisor
+1941,academic_advising,Academic Advising,Can an advisor help me choose subjects?
+1942,academic_advising,Academic Advising,Where is the academic office?
+1943,academic_advising,Academic Advising,How can I get study advice?
+1944,academic_advising,Academic Advising,I need help planning my courses
+1945,academic_advising,Academic Advising,Can I speak with a lecturer about my subjects?
+1946,academic_advising,Academic Advising,Academic guidance
+1947,academic_advising,Academic Advising,Which academic advisor can help me plan course selection?
+1948,academic_advising,Academic Advising,I need to consult an advisor about my programme plan
+1949,academic_advising,Academic Advising,Can I schedule academic advising?
+1950,academic_advising,Academic Advising,Tell me about academic advising
+1951,academic_advising,Academic Advising,How do I book a consultation session with my academic advisor?
+1952,academic_advising,Academic Advising,Who is assigned as my academic advisor for this year?
+1953,academic_advising,Academic Advising,Can an academic advisor help me plan my degree pathway?
+1954,academic_advising,Academic Advising,Where can I discuss my academic probation status?
+1955,academic_advising,Academic Advising,How do I check who my academic mentor is on the portal?
+1956,academic_advising,Academic Advising,Can an academic advisor guide me on dropping a subject?
+1957,academic_advising,Academic Advising,How do I schedule a face-to-face meeting with my advisor?
+1958,academic_advising,Academic Advising,Where can I get academic counseling for failing a course?
+1959,academic_advising,Academic Advising,Can my lecturer advise me on my graduation requirements?
+1960,academic_advising,Academic Advising,How do I request a change of academic advisor?
+1961,academic_advising,Academic Advising,Where is the academic advising office located?
+1962,academic_advising,Academic Advising,What should I prepare before meeting my academic advisor?
+1963,academic_advising,Academic Advising,Can an advisor help me check my cumulative GPA requirements?
+1964,academic_advising,Academic Advising,How can academic advising help me with credit transfer?
+1965,academic_advising,Academic Advising,Who can I talk to if I am struggling academically?
+1966,academic_advising,Academic Advising,Can an advisor approve my subject add-drop request?
+1967,academic_advising,Academic Advising,How often should I consult my academic advisor?
+1968,academic_advising,Academic Advising,Where do I find my advisor's consultation hours?
+1969,academic_advising,Academic Advising,Can an academic advisor help me map out my semester subjects?
+1970,academic_advising,Academic Advising,How do I email my academic advisor for course guidance?
+1971,academic_advising,Academic Advising,I need an appointment with my faculty academic advisor
+1972,academic_advising,Academic Advising,Can I consult an advisor before changing my study plan?
+1973,academic_advising,Academic Advising,Who is the lecturer or advisor for academic planning?
+1974,academic_advising,Academic Advising,I need academic advising about my graduation pathway
+1975,academic_advising,Academic Advising,How can I arrange an academic consultation?
+1976,academic_advising,Academic Advising,Academic advisor
+1977,academic_advising,Academic Advising,Meet my advisor
+1978,academic_advising,Academic Advising,Advising appointment
+1979,academic_advising,Academic Advising,Who can help me plan my subjects?
+1980,academic_advising,Academic Advising,Can I speak with an academic advisor?
+1981,academic_advising,Academic Advising,Where do I get programme planning advice?
+1982,academic_advising,Academic Advising,Who advises students about subject selection?
+1983,academic_advising,Academic Advising,How do I meet my faculty advisor?
+1984,academic_advising,Academic Advising,Can an advisor help with my study plan?
+1985,academic_advising,Academic Advising,Where can I get academic guidance?
+1986,academic_advising,Academic Advising,Who should I contact about academic progress?
+1987,academic_advising,Academic Advising,How do I book an academic consultation?
+1988,academic_advising,Academic Advising,Which office provides academic advising?
+1989,academic_advising,Academic Advising,Can someone help me choose my modules?
+1990,academic_advising,Academic Advising,I need help planning my programme
+1991,academic_advising,Academic Advising,I need help planning my studies
+1992,academic_advising,Academic Advising,Can someone advise me on my academic plan?
+1993,academic_advising,Academic Advising,I have a question about subject selection
+1994,department_contact,Department Contact,Contact the Finance Office
+1995,department_contact,Department Contact,How do I contact the Finance Office?
+1996,department_contact,Department Contact,What is the Finance Office email address?
+1997,department_contact,Department Contact,Who can help me with a tuition payment?
+1998,department_contact,Department Contact,I need the finance department contact details
+1999,department_contact,Department Contact,Which office handles fee payments?
+2000,department_contact,Department Contact,Where can I ask about refunds?
+2001,department_contact,Department Contact,Who should I contact about an invoice?
+2002,department_contact,Department Contact,Who helps with admissions?
+2003,department_contact,Department Contact,How can I contact Admissions?
+2004,department_contact,Department Contact,What is the Admissions Office email?
+2005,department_contact,Department Contact,I need to speak to someone about applying to the university
+2006,department_contact,Department Contact,Which department handles programme applications?
+2007,department_contact,Department Contact,Who can answer questions about entry requirements?
+2008,department_contact,Department Contact,Please give me the contact for the admissions team
+2009,department_contact,Department Contact,How do I reach the university admissions office?
+2010,department_contact,Department Contact,Contact Student Services
+2011,department_contact,Department Contact,What is the Student Services email address?
+2012,department_contact,Department Contact,How can I get in touch with Student Affairs?
+2013,department_contact,Department Contact,Which office can help with my student documents?
+2014,department_contact,Department Contact,I need the student support office contact details
+2015,department_contact,Department Contact,Who do I contact for an official student letter?
+2016,department_contact,Department Contact,How do I contact the IT Help Desk?
+2017,department_contact,Department Contact,What is the IT support email address?
+2018,department_contact,Department Contact,I need to contact technical support
+2019,department_contact,Department Contact,Who can I email about a system problem?
+2020,department_contact,Department Contact,Please give me the IT Help Desk contact
+2021,department_contact,Department Contact,Where can I get the library contact details?
+2022,department_contact,Department Contact,What is the Library Services email address?
+2023,department_contact,Department Contact,How do I contact the library staff?
+2024,department_contact,Department Contact,Who should I contact about borrowing books?
+2025,department_contact,Department Contact,Give me the contact directory
+2026,department_contact,Department Contact,Show the university department contacts
+2027,department_contact,Department Contact,Which department can help me?
+2028,department_contact,Department Contact,Who is the right person to contact?
+2029,department_contact,Department Contact,I need an office phone number or email
+2030,department_contact,Department Contact,Where can I find campus department email addresses?
+2031,department_contact,Department Contact,Can you show me the university contact list?
+2032,department_contact,Department Contact,Which office should I email for help?
+2033,department_contact,Department Contact,I need to reach a university department
+2034,department_contact,Department Contact,Finance Office opening hours
+2035,department_contact,Department Contact,When is the Finance Office open?
+2036,department_contact,Department Contact,Finance office hours
+2037,department_contact,Department Contact,Is the Finance Office open today?
+2038,department_contact,Department Contact,Finance office operating hours
+2039,department_contact,Department Contact,What time does the Finance Office close?
+2040,department_contact,Department Contact,What time does the Finance Office open?
+2041,department_contact,Department Contact,Who should I contact about university fees?
+2042,department_contact,Department Contact,Who handles admissions enquiries?
+2043,department_contact,Department Contact,Who do I contact about exam results?
+2044,department_contact,Department Contact,Who can help with hostel issues?
+2045,department_contact,Department Contact,Who handles international student support?
+2046,department_contact,Department Contact,Who can help with visa renewal?
+2047,department_contact,Department Contact,Who should I contact about campus maintenance?
+2048,department_contact,Department Contact,Who handles scholarships and financial aid?
+2049,department_contact,Department Contact,Who can help with student welfare?
+2050,department_contact,Department Contact,Who handles library questions?
+2051,department_contact,Department Contact,Who can help with security matters?
+2052,department_contact,Department Contact,Who can I contact for health centre information?
+2053,department_contact,Department Contact,Who handles academic advising?
+2054,department_contact,Department Contact,What is the main university contact number?
+2055,department_contact,Department Contact,Where can I find department contact details?
+2056,department_contact,Department Contact,How do I contact Admissions Office (DACE)?
+2057,department_contact,Department Contact,What is the email for Admissions Office (DACE)?
+2058,department_contact,Department Contact,What is the phone number for Admissions Office (DACE)?
+2059,department_contact,Department Contact,Where is Admissions Office (DACE) located?
+2060,department_contact,Department Contact,What does Admissions Office (DACE) help with?
+2061,department_contact,Department Contact,Who works with Admissions Office (DACE)?
+2062,department_contact,Department Contact,How do I contact Finance Office (DFIN)?
+2063,department_contact,Department Contact,What is the email for Finance Office (DFIN)?
+2064,department_contact,Department Contact,What is the phone number for Finance Office (DFIN)?
+2065,department_contact,Department Contact,Where is Finance Office (DFIN) located?
+2066,department_contact,Department Contact,What does Finance Office (DFIN) help with?
+2067,department_contact,Department Contact,Who works with Finance Office (DFIN)?
+2068,department_contact,Department Contact,How do I contact Student Services Centre (DSA)?
+2069,department_contact,Department Contact,What is the email for Student Services Centre (DSA)?
+2070,department_contact,Department Contact,What is the phone number for Student Services Centre (DSA)?
+2071,department_contact,Department Contact,Where is Student Services Centre (DSA) located?
+2072,department_contact,Department Contact,What does Student Services Centre (DSA) help with?
+2073,department_contact,Department Contact,Who works with Student Services Centre (DSA)?
+2074,department_contact,Department Contact,How do I contact IT Help Desk (CITC)?
+2075,department_contact,Department Contact,What is the email for IT Help Desk (CITC)?
+2076,department_contact,Department Contact,What is the phone number for IT Help Desk (CITC)?
+2077,department_contact,Department Contact,Where is IT Help Desk (CITC) located?
+2078,department_contact,Department Contact,What does IT Help Desk (CITC) help with?
+2079,department_contact,Department Contact,Who works with IT Help Desk (CITC)?
+2080,department_contact,Department Contact,How do I contact Library Services?
+2081,department_contact,Department Contact,What is the email for Library Services?
+2082,department_contact,Department Contact,What is the phone number for Library Services?
+2083,department_contact,Department Contact,Where is Library Services located?
+2084,department_contact,Department Contact,What does Library Services help with?
+2085,department_contact,Department Contact,Who works with Library Services?
+2086,department_contact,Department Contact,How do I contact Examination Unit (DECA)?
+2087,department_contact,Department Contact,What is the email for Examination Unit (DECA)?
+2088,department_contact,Department Contact,What is the phone number for Examination Unit (DECA)?
+2089,department_contact,Department Contact,Where is Examination Unit (DECA) located?
+2090,department_contact,Department Contact,What does Examination Unit (DECA) help with?
+2091,department_contact,Department Contact,Who works with Examination Unit (DECA)?
+2092,department_contact,Department Contact,How do I contact Counselling Centre?
+2093,department_contact,Department Contact,What is the email for Counselling Centre?
+2094,department_contact,Department Contact,What is the phone number for Counselling Centre?
+2095,department_contact,Department Contact,Where is Counselling Centre located?
+2096,department_contact,Department Contact,What does Counselling Centre help with?
+2097,department_contact,Department Contact,Who works with Counselling Centre?
+2098,department_contact,Department Contact,How do I contact Academic Advising (Faculty Offices)?
+2099,department_contact,Department Contact,What is the email for Academic Advising (Faculty Offices)?
+2100,department_contact,Department Contact,What is the phone number for Academic Advising (Faculty Offices)?
+2101,department_contact,Department Contact,Where is Academic Advising (Faculty Offices) located?
+2102,department_contact,Department Contact,What does Academic Advising (Faculty Offices) help with?
+2103,department_contact,Department Contact,Who works with Academic Advising (Faculty Offices)?
+2104,department_contact,Department Contact,How do I contact Scholarship & Financial Aid Unit?
+2105,department_contact,Department Contact,What is the email for Scholarship & Financial Aid Unit?
+2106,department_contact,Department Contact,What is the phone number for Scholarship & Financial Aid Unit?
+2107,department_contact,Department Contact,Where is Scholarship & Financial Aid Unit located?
+2108,department_contact,Department Contact,What does Scholarship & Financial Aid Unit help with?
+2109,department_contact,Department Contact,Who works with Scholarship & Financial Aid Unit?
+2110,department_contact,Department Contact,How do I contact Hostel / Accommodation Office?
+2111,department_contact,Department Contact,What is the email for Hostel / Accommodation Office?
+2112,department_contact,Department Contact,What is the phone number for Hostel / Accommodation Office?
+2113,department_contact,Department Contact,Where is Hostel / Accommodation Office located?
+2114,department_contact,Department Contact,What does Hostel / Accommodation Office help with?
+2115,department_contact,Department Contact,Who works with Hostel / Accommodation Office?
+2116,department_contact,Department Contact,How do I contact Security Office (DOS)?
+2117,department_contact,Department Contact,What is the email for Security Office (DOS)?
+2118,department_contact,Department Contact,What is the phone number for Security Office (DOS)?
+2119,department_contact,Department Contact,Where is Security Office (DOS) located?
+2120,department_contact,Department Contact,What does Security Office (DOS) help with?
+2121,department_contact,Department Contact,Who works with Security Office (DOS)?
+2122,department_contact,Department Contact,How do I contact Campus Health Centre (Klinik LOW)?
+2123,department_contact,Department Contact,What is the email for Campus Health Centre (Klinik LOW)?
+2124,department_contact,Department Contact,What is the phone number for Campus Health Centre (Klinik LOW)?
+2125,department_contact,Department Contact,Where is Campus Health Centre (Klinik LOW) located?
+2126,department_contact,Department Contact,What does Campus Health Centre (Klinik LOW) help with?
+2127,department_contact,Department Contact,Who works with Campus Health Centre (Klinik LOW)?
+2128,department_contact,Department Contact,How do I contact International Student Office (DISO)?
+2129,department_contact,Department Contact,What is the email for International Student Office (DISO)?
+2130,department_contact,Department Contact,What is the phone number for International Student Office (DISO)?
+2131,department_contact,Department Contact,Where is International Student Office (DISO) located?
+2132,department_contact,Department Contact,What does International Student Office (DISO) help with?
+2133,department_contact,Department Contact,Who works with International Student Office (DISO)?
+2134,department_contact,Department Contact,How do I contact Facilities Management (DFM)?
+2135,department_contact,Department Contact,What is the email for Facilities Management (DFM)?
+2136,department_contact,Department Contact,What is the phone number for Facilities Management (DFM)?
+2137,department_contact,Department Contact,Where is Facilities Management (DFM) located?
+2138,department_contact,Department Contact,What does Facilities Management (DFM) help with?
+2139,department_contact,Department Contact,Who works with Facilities Management (DFM)?
+2140,department_contact,Department Contact,How do I contact General Enquiries (Main Line)?
+2141,department_contact,Department Contact,What is the email for General Enquiries (Main Line)?
+2142,department_contact,Department Contact,What is the phone number for General Enquiries (Main Line)?
+2143,department_contact,Department Contact,Where is General Enquiries (Main Line) located?
+2144,department_contact,Department Contact,What does General Enquiries (Main Line) help with?
+2145,department_contact,Department Contact,Who works with General Enquiries (Main Line)?
+2146,department_contact,Department Contact,I need a department contact
+2147,department_contact,Department Contact,Can you give me a university office contact?
+2148,department_contact,Department Contact,Which department should I contact?
+2149,campus_events,Campus Events,What events are happening on campus?
+2150,campus_events,Campus Events,Are there any upcoming campus events?
+2151,campus_events,Campus Events,What is the events calendar for this month?
+2152,campus_events,Campus Events,What workshops are available this semester?
+2153,campus_events,Campus Events,Is there an academic writing workshop?
+2154,campus_events,Campus Events,When is the next student workshop?
+2155,campus_events,Campus Events,What activities are happening this week?
+2156,campus_events,Campus Events,Are there any sports events on campus?
+2157,campus_events,Campus Events,When is the campus sports day?
+2158,campus_events,Campus Events,What clubs can I join as a new student?
+2159,campus_events,Campus Events,Which student clubs are available?
+2160,campus_events,Campus Events,Can you recommend a club for a new student?
+2161,campus_events,Campus Events,What society should I join?
+2162,campus_events,Campus Events,How do I find out about student societies?
+2163,campus_events,Campus Events,What extracurricular activities are available?
+2164,campus_events,Campus Events,Is there a clubs discovery day?
+2165,campus_events,Campus Events,When is the next clubs discovery day?
+2166,campus_events,Campus Events,What wellness activities are available for students?
+2167,campus_events,Campus Events,Are there networking events for students?
+2168,campus_events,Campus Events,What events help freshmen settle in?
+2169,campus_events,Campus Events,Recommend some activities for a new student
+2170,campus_events,Campus Events,What should I join to meet new people on campus?
+2171,campus_events,Campus Events,Is there an orientation event for new students?
+2172,campus_events,Campus Events,When is orientation week?
+2173,campus_events,Campus Events,What happens during orientation week?
+2174,campus_events,Campus Events,Are there any career fairs coming up?
+2175,campus_events,Campus Events,Is there a talent show or performance event?
+2176,campus_events,Campus Events,What cultural events does the university organise?
+2177,campus_events,Campus Events,How do I sign up for a campus workshop?
+2178,campus_events,Campus Events,Where can I see the full list of campus activities?
+2179,campus_events,Campus Events,Campus events
+2180,campus_events,Campus Events,Events calendar
+2181,campus_events,Campus Events,What's on
+2182,campus_events,Campus Events,Upcoming events
+2183,campus_events,Campus Events,Clubs to join
+2184,campus_events,Campus Events,What is happening on campus soon?
+2185,campus_events,Campus Events,What events are coming up?
+2186,campus_events,Campus Events,Are there any workshops this month?
+2187,campus_events,Campus Events,What activities can students join?
+2188,campus_events,Campus Events,Are there any student club events?
+2189,campus_events,Campus Events,What is the next campus activity?
+2190,campus_events,Campus Events,Are there sports and wellness events?
+2191,campus_events,Campus Events,When is the academic writing workshop?
+2192,campus_events,Campus Events,When is the clubs discovery day?
+2193,campus_events,Campus Events,What events are coming up for students?
+2194,campus_events,Campus Events,Is there a campus sports event?
+2195,campus_events,Campus Events,Where can I see the events calendar?
+2196,campus_events,Campus Events,What activities are happening in September?
+2197,campus_events,Campus Events,When is Student Clubs Discovery Day?
+2198,campus_events,Campus Events,Where is Student Clubs Discovery Day held?
+2199,campus_events,Campus Events,What is Student Clubs Discovery Day?
+2200,campus_events,Campus Events,Who can attend Student Clubs Discovery Day?
+2201,campus_events,Campus Events,Can students attend Student Clubs Discovery Day?
+2202,campus_events,Campus Events,When is Academic Writing Workshop?
+2203,campus_events,Campus Events,Where is Academic Writing Workshop held?
+2204,campus_events,Campus Events,What is Academic Writing Workshop?
+2205,campus_events,Campus Events,Who can attend Academic Writing Workshop?
+2206,campus_events,Campus Events,Can students attend Academic Writing Workshop?
+2207,campus_events,Campus Events,When is Campus Sports and Wellness Day?
+2208,campus_events,Campus Events,Where is Campus Sports and Wellness Day held?
+2209,campus_events,Campus Events,What is Campus Sports and Wellness Day?
+2210,campus_events,Campus Events,Who can attend Campus Sports and Wellness Day?
+2211,campus_events,Campus Events,Can students attend Campus Sports and Wellness Day?
+2212,campus_events,Campus Events,When is New Student Orientation Week?
+2213,campus_events,Campus Events,Where is New Student Orientation Week held?
+2214,campus_events,Campus Events,What is New Student Orientation Week?
+2215,campus_events,Campus Events,Who can attend New Student Orientation Week?
+2216,campus_events,Campus Events,Can students attend New Student Orientation Week?
+2217,campus_events,Campus Events,When is Career & Internship Fair?
+2218,campus_events,Campus Events,Where is Career & Internship Fair held?
+2219,campus_events,Campus Events,What is Career & Internship Fair?
+2220,campus_events,Campus Events,Who can attend Career & Internship Fair?
+2221,campus_events,Campus Events,Can students attend Career & Internship Fair?
+2222,feedback,Feedback,I want to give feedback
+2223,feedback,Feedback,How do I rate this chatbot?
+2224,feedback,Feedback,I want to rate my experience
+2225,feedback,Feedback,Can I leave a comment about this service?
+2226,feedback,Feedback,How do I submit feedback about the chatbot?
+2227,feedback,Feedback,I have a complaint about the chatbot
+2228,feedback,Feedback,This chatbot was not helpful
+2229,feedback,Feedback,I want to report an issue with this service
+2230,feedback,Feedback,How do I share suggestions for improvement?
+2231,feedback,Feedback,Where can I rate the university services?
+2232,feedback,Feedback,I want to give a satisfaction rating
+2233,feedback,Feedback,How do I complain about a service?
+2234,feedback,Feedback,Can I provide a review of this chatbot?
+2235,feedback,Feedback,I would like to leave a rating
+2236,feedback,Feedback,How can I tell you the chatbot gave a wrong answer?
+2237,feedback,Feedback,Is there a feedback form?
+2238,feedback,Feedback,How do I contact you with feedback?
+2239,feedback,Feedback,I want to rate how helpful this was
+2240,feedback,Feedback,Can I submit a suggestion?
+2241,feedback,Feedback,I'd like to report a problem with the chatbot's answer
+2242,feedback,Feedback,Feedback
+2243,feedback,Feedback,Rate chatbot
+2244,feedback,Feedback,Leave feedback
+2245,feedback,Feedback,Report a problem
+2246,feedback,Feedback,How can I rate this chatbot?
+2247,feedback,Feedback,Where can I submit feedback?
+2248,feedback,Feedback,Can I report an incorrect answer?
+2249,feedback,Feedback,How do I leave a comment?
+2250,feedback,Feedback,Where can I give suggestions?
+2251,feedback,Feedback,Can I review my chatbot experience?
+2252,feedback,Feedback,How do I tell you a response was wrong?
+2253,feedback,Feedback,Where do I send a complaint?
+2254,feedback,Feedback,Can I give a satisfaction rating?
+2255,feedback,Feedback,How do I submit a chatbot issue?
+2256,feedback,Feedback,Where is the feedback form?
+2257,feedback,Feedback,I want to rate the service
+2258,feedback,Feedback,I want to give a rating
+2259,feedback,Feedback,I have feedback about the assistant
+2260,feedback,Feedback,Where can I report a chatbot problem?
+2261,admission_requirements,Admission Requirements,Admission requirements
+2262,admission_requirements,Admission Requirements,What are the admission requirements?
+2263,admission_requirements,Admission Requirements,What do I need to apply?
+2264,admission_requirements,Admission Requirements,How do I qualify for admission?
+2265,admission_requirements,Admission Requirements,What are the entry requirements?
+2266,admission_requirements,Admission Requirements,What qualifications do I need to apply?
+2267,admission_requirements,Admission Requirements,What is the minimum entry requirement?
+2268,admission_requirements,Admission Requirements,How can I apply for admission?
+2269,admission_requirements,Admission Requirements,What documents do I need for admission?
+2270,admission_requirements,Admission Requirements,What CGPA do I need to get in?
+2271,admission_requirements,Admission Requirements,Am I eligible to apply?
+2272,admission_requirements,Admission Requirements,What are the requirements to join this university?
+2273,admission_requirements,Admission Requirements,What SPM or STPM results do I need?
+2274,admission_requirements,Admission Requirements,How do I check if I meet the entry requirements?
+2275,admission_requirements,Admission Requirements,What is needed to enrol in this programme?
+2276,admission_requirements,Admission Requirements,Can I apply without a diploma?
+2277,admission_requirements,Admission Requirements,What is the application process for new students?
+2278,admission_requirements,Admission Requirements,Where can I check programme entry requirements?
+2279,admission_requirements,Admission Requirements,Do I need an interview to be admitted?
+2280,admission_requirements,Admission Requirements,What is the minimum qualification for admission?
+2281,admission_requirements,Admission Requirements,How do international students apply?
+2282,admission_requirements,Admission Requirements,What is the application deadline for new intake?
+2283,admission_requirements,Admission Requirements,Entry requirements for Computer Science
+2284,admission_requirements,Admission Requirements,What grades do I need for this programme?
+2285,admission_requirements,Admission Requirements,How do I submit my application for admission?
+2286,admission_requirements,Admission Requirements,What qualifications do I need for admission?
+2287,admission_requirements,Admission Requirements,What documents are needed to apply?
+2288,admission_requirements,Admission Requirements,How do I apply to the university?
+2289,admission_requirements,Admission Requirements,What grades are required for entry?
+2290,admission_requirements,Admission Requirements,What are the programme entry requirements?
+2291,admission_requirements,Admission Requirements,What is needed for a new student application?
+2292,admission_requirements,Admission Requirements,Can international students apply?
+2293,admission_requirements,Admission Requirements,What are the admission criteria?
+2294,admission_requirements,Admission Requirements,Where do I submit an application?
+2295,admission_requirements,Admission Requirements,Do I need an interview for admission?
+2296,admission_requirements,Admission Requirements,Where can I check entry requirements?
+2297,admission_requirements,Admission Requirements,What do I need before I enrol?
+2298,admission_requirements,Admission Requirements,How do I know whether I am eligible?
+2299,admission_requirements,Admission Requirements,I need information about applying
+2300,admission_requirements,Admission Requirements,Can you explain university admission?
+2301,admission_requirements,Admission Requirements,I have a question about entry requirements
+2302,office_hours,Office Hours,Office hours
+2303,office_hours,Office Hours,University office hours
+2304,office_hours,Office Hours,What are the general office hours?
+2305,office_hours,Office Hours,Campus Health Centre opening hours
+2306,office_hours,Office Hours,When is the health centre open?
+2307,office_hours,Office Hours,Health centre operating hours
+2308,office_hours,Office Hours,Is the health centre open today?
+2309,office_hours,Office Hours,What time does the health centre close?
+2310,office_hours,Office Hours,What time does the health centre open?
+2311,office_hours,Office Hours,Which offices are open today?
+2312,office_hours,Office Hours,What are the operating hours for campus offices?
+2313,office_hours,Office Hours,Are administrative offices open on weekends?
+2314,office_hours,Office Hours,Are university offices open on public holidays?
+2315,office_hours,Office Hours,What time do administrative offices close?
+2316,office_hours,Office Hours,When are university offices open?
+2317,office_hours,Office Hours,What time does the admissions office open?
+2318,office_hours,Office Hours,When can I visit the finance office?
+2319,office_hours,Office Hours,What are the Student Services Centre hours?
+2320,office_hours,Office Hours,What time is the IT office open?
+2321,office_hours,Office Hours,When is the health centre available?
+2322,office_hours,Office Hours,Which campus offices are open on Saturday?
+2323,office_hours,Office Hours,Are offices closed on public holidays?
+2324,office_hours,Office Hours,What are the administrative office hours?
+2325,office_hours,Office Hours,When can I contact university offices?
+2326,office_hours,Office Hours,What time do offices close on weekdays?
+2327,office_hours,Office Hours,What are the hours for Admissions Office (DACE)?
+2328,office_hours,Office Hours,When is Admissions Office (DACE) open?
+2329,office_hours,Office Hours,When does Admissions Office (DACE) close?
+2330,office_hours,Office Hours,Is Admissions Office (DACE) open on weekdays?
+2331,office_hours,Office Hours,Can I visit Admissions Office (DACE) on Saturday?
+2332,office_hours,Office Hours,What are the opening hours of Admissions Office (DACE)?
+2333,office_hours,Office Hours,What are the hours for Finance Office (DFIN)?
+2334,office_hours,Office Hours,When is Finance Office (DFIN) open?
+2335,office_hours,Office Hours,When does Finance Office (DFIN) close?
+2336,office_hours,Office Hours,Is Finance Office (DFIN) open on weekdays?
+2337,office_hours,Office Hours,Can I visit Finance Office (DFIN) on Saturday?
+2338,office_hours,Office Hours,What are the opening hours of Finance Office (DFIN)?
+2339,office_hours,Office Hours,What are the hours for Student Services Centre (DSA)?
+2340,office_hours,Office Hours,When is Student Services Centre (DSA) open?
+2341,office_hours,Office Hours,When does Student Services Centre (DSA) close?
+2342,office_hours,Office Hours,Is Student Services Centre (DSA) open on weekdays?
+2343,office_hours,Office Hours,Can I visit Student Services Centre (DSA) on Saturday?
+2344,office_hours,Office Hours,What are the opening hours of Student Services Centre (DSA)?
+2345,office_hours,Office Hours,What are the hours for IT Help Desk (CITC)?
+2346,office_hours,Office Hours,When is IT Help Desk (CITC) open?
+2347,office_hours,Office Hours,When does IT Help Desk (CITC) close?
+2348,office_hours,Office Hours,Is IT Help Desk (CITC) open on weekdays?
+2349,office_hours,Office Hours,Can I visit IT Help Desk (CITC) on Saturday?
+2350,office_hours,Office Hours,What are the opening hours of IT Help Desk (CITC)?
+2351,office_hours,Office Hours,What are the hours for Library?
+2352,office_hours,Office Hours,When is Library open?
+2353,office_hours,Office Hours,When does Library close?
+2354,office_hours,Office Hours,Is Library open on weekdays?
+2355,office_hours,Office Hours,Can I visit Library on Saturday?
+2356,office_hours,Office Hours,What are the opening hours of Library?
+2357,office_hours,Office Hours,What are the hours for Examination Unit (DECA)?
+2358,office_hours,Office Hours,When is Examination Unit (DECA) open?
+2359,office_hours,Office Hours,When does Examination Unit (DECA) close?
+2360,office_hours,Office Hours,Is Examination Unit (DECA) open on weekdays?
+2361,office_hours,Office Hours,Can I visit Examination Unit (DECA) on Saturday?
+2362,office_hours,Office Hours,What are the opening hours of Examination Unit (DECA)?
+2363,office_hours,Office Hours,What are the hours for Counselling Centre?
+2364,office_hours,Office Hours,When is Counselling Centre open?
+2365,office_hours,Office Hours,When does Counselling Centre close?
+2366,office_hours,Office Hours,Is Counselling Centre open on weekdays?
+2367,office_hours,Office Hours,Can I visit Counselling Centre on Saturday?
+2368,office_hours,Office Hours,What are the opening hours of Counselling Centre?
+2369,office_hours,Office Hours,What are the hours for Academic Advising (Faculty Offices)?
+2370,office_hours,Office Hours,When is Academic Advising (Faculty Offices) open?
+2371,office_hours,Office Hours,When does Academic Advising (Faculty Offices) close?
+2372,office_hours,Office Hours,Is Academic Advising (Faculty Offices) open on weekdays?
+2373,office_hours,Office Hours,Can I visit Academic Advising (Faculty Offices) on Saturday?
+2374,office_hours,Office Hours,What are the opening hours of Academic Advising (Faculty Offices)?
+2375,office_hours,Office Hours,What are the hours for Scholarship & Financial Aid Unit?
+2376,office_hours,Office Hours,When is Scholarship & Financial Aid Unit open?
+2377,office_hours,Office Hours,When does Scholarship & Financial Aid Unit close?
+2378,office_hours,Office Hours,Is Scholarship & Financial Aid Unit open on weekdays?
+2379,office_hours,Office Hours,Can I visit Scholarship & Financial Aid Unit on Saturday?
+2380,office_hours,Office Hours,What are the opening hours of Scholarship & Financial Aid Unit?
+2381,office_hours,Office Hours,What are the hours for Hostel / Accommodation Office?
+2382,office_hours,Office Hours,When is Hostel / Accommodation Office open?
+2383,office_hours,Office Hours,When does Hostel / Accommodation Office close?
+2384,office_hours,Office Hours,Is Hostel / Accommodation Office open on weekdays?
+2385,office_hours,Office Hours,Can I visit Hostel / Accommodation Office on Saturday?
+2386,office_hours,Office Hours,What are the opening hours of Hostel / Accommodation Office?
+2387,office_hours,Office Hours,What are the hours for Security Office (DOS)?
+2388,office_hours,Office Hours,When is Security Office (DOS) open?
+2389,office_hours,Office Hours,When does Security Office (DOS) close?
+2390,office_hours,Office Hours,Is Security Office (DOS) open on weekdays?
+2391,office_hours,Office Hours,Can I visit Security Office (DOS) on Saturday?
+2392,office_hours,Office Hours,What are the opening hours of Security Office (DOS)?
+2393,office_hours,Office Hours,What are the hours for Campus Health Centre (Klinik LOW)?
+2394,office_hours,Office Hours,When is Campus Health Centre (Klinik LOW) open?
+2395,office_hours,Office Hours,When does Campus Health Centre (Klinik LOW) close?
+2396,office_hours,Office Hours,Is Campus Health Centre (Klinik LOW) open on weekdays?
+2397,office_hours,Office Hours,Can I visit Campus Health Centre (Klinik LOW) on Saturday?
+2398,office_hours,Office Hours,What are the opening hours of Campus Health Centre (Klinik LOW)?
+2399,office_hours,Office Hours,What are the hours for International Student Office (DISO)?
+2400,office_hours,Office Hours,When is International Student Office (DISO) open?
+2401,office_hours,Office Hours,When does International Student Office (DISO) close?
+2402,office_hours,Office Hours,Is International Student Office (DISO) open on weekdays?
+2403,office_hours,Office Hours,Can I visit International Student Office (DISO) on Saturday?
+2404,office_hours,Office Hours,What are the opening hours of International Student Office (DISO)?
+2405,office_hours,Office Hours,What are the hours for Facilities Management (DFM)?
+2406,office_hours,Office Hours,When is Facilities Management (DFM) open?
+2407,office_hours,Office Hours,When does Facilities Management (DFM) close?
+2408,office_hours,Office Hours,Is Facilities Management (DFM) open on weekdays?
+2409,office_hours,Office Hours,Can I visit Facilities Management (DFM) on Saturday?
+2410,office_hours,Office Hours,What are the opening hours of Facilities Management (DFM)?
+2411,office_hours,Office Hours,What are the hours for Sports Complex?
+2412,office_hours,Office Hours,When is Sports Complex open?
+2413,office_hours,Office Hours,When does Sports Complex close?
+2414,office_hours,Office Hours,Is Sports Complex open on weekdays?
+2415,office_hours,Office Hours,Can I visit Sports Complex on Saturday?
+2416,office_hours,Office Hours,What are the opening hours of Sports Complex?
+2417,office_hours,Office Hours,I need office opening hours
+2418,office_hours,Office Hours,Can you tell me when a university office is open?
+2419,office_hours,Office Hours,What time can I visit a campus office?
+2420,unknown,Unknown,I want to buy a cup of coffee
+2421,unknown,Unknown,Where can I replace my lost access card?
+2422,unknown,Unknown,What's the weather like today?
+2423,unknown,Unknown,Tell me a joke
+2424,unknown,Unknown,What is the meaning of life?
+2425,unknown,Unknown,Who won the football match last night?
+2426,unknown,Unknown,Can you recommend a good movie?
+2427,unknown,Unknown,What's your favourite food?
+2428,unknown,Unknown,How old are you?
+2429,unknown,Unknown,Are you a real person?
+2430,unknown,Unknown,What is the capital of France?
+2431,unknown,Unknown,Can you help me with my homework in chemistry?
+2432,unknown,Unknown,What is the best pizza place nearby?
+2433,unknown,Unknown,Can you play music for me?
+2434,unknown,Unknown,Tell me a story
+2435,unknown,Unknown,What is 2 plus 2?
+2436,unknown,Unknown,Do you have a girlfriend?
+2437,unknown,Unknown,What is your name?
+2438,unknown,Unknown,Can you book a flight for me?
+2439,unknown,Unknown,What time is it right now?
+2440,unknown,Unknown,Can you order food for me?
+2441,unknown,Unknown,How do I fix my car?
+2442,unknown,Unknown,What is the stock price of Apple?
+2443,unknown,Unknown,Can you write me a poem?
+2444,unknown,Unknown,"I'm bored, entertain me"
+2445,unknown,Unknown,What is your opinion on politics?
+2446,unknown,Unknown,Where can I buy new shoes?
+2447,unknown,Unknown,Can you translate this to French?
+2448,unknown,Unknown,How do I lose weight fast?
+2449,unknown,Unknown,What is the meaning of AI?
+2450,unknown,Unknown,Do you like cats or dogs?
+2451,unknown,Unknown,Can you send an email for me?
+2452,unknown,Unknown,What is the best programming language in general?
+2453,unknown,Unknown,Can you tell me the news headlines today?
+2454,unknown,Unknown,How do I get a passport?
+2455,unknown,Unknown,Who is the vice chancellor
+2456,unknown,Unknown,Can you do my taxes
+2457,unknown,Unknown,Tell me a fun fact
+2458,unknown,Unknown,What's the exchange rate today
+2459,unknown,Unknown,Recommend a restaurant nearby
+2460,unknown,Unknown,Can you hack into a system
+2461,unknown,Unknown,Give me lottery numbers
+2462,unknown,Unknown,What's trending on social media
+2463,unknown,Unknown,Can you tell me a joke?
+2464,unknown,Unknown,What is the weather today?
+2465,unknown,Unknown,Who won the football match?
+2466,unknown,Unknown,Recommend a movie for me
+2467,unknown,Unknown,What is the capital of Japan?
+2468,unknown,Unknown,Tell me a random fact
+2469,unknown,Unknown,What is your favourite song?
+2470,unknown,Unknown,Can you help me write a poem?
+2471,unknown,Unknown,Who is the current president?
+2472,unknown,Unknown,Can you translate this sentence?
+2473,unknown,Unknown,What should I eat tonight?
+2474,unknown,Unknown,Tell me about a celebrity
+2475,unknown,Unknown,Can you play a game with me?
+2476,unknown,Unknown,Are you a human?
+2477,unknown,Unknown,Tell me a cooking recipe
+2478,course_fee_inquiry,Course Fee Inquiry,What is the price for each course?
+2479,course_fee_inquiry,Course Fee Inquiry,How much does each course cost?
+2480,course_fee_inquiry,Course Fee Inquiry,What is the course fee?
+2481,course_fee_inquiry,Course Fee Inquiry,How much is the tuition fee for foundation?
+2482,course_fee_inquiry,Course Fee Inquiry,How much does a degree cost?
+2483,course_fee_inquiry,Course Fee Inquiry,What is the price for diploma?
+2484,course_fee_inquiry,Course Fee Inquiry,Course price
+2485,course_fee_inquiry,Course Fee Inquiry,Foundation price
+2486,course_fee_inquiry,Course Fee Inquiry,Diploma fee
+2487,course_fee_inquiry,Course Fee Inquiry,Degree tuition fee
+2488,course_fee_inquiry,Course Fee Inquiry,How much to study computer science?
+2489,course_fee_inquiry,Course Fee Inquiry,What is the price of the programme?
+2490,course_fee_inquiry,Course Fee Inquiry,Check course price
+2491,course_fee_inquiry,Course Fee Inquiry,How much do I need to pay for a degree?
+2492,course_fee_inquiry,Course Fee Inquiry,Tell me the fees for foundation and degree
+2493,course_fee_inquiry,Course Fee Inquiry,diploma
+2494,course_fee_inquiry,Course Fee Inquiry,degree
+2495,course_fee_inquiry,Course Fee Inquiry,foundation
+2496,course_fee_inquiry,Course Fee Inquiry,for diploma
+2497,course_fee_inquiry,Course Fee Inquiry,diploma please
+2498,course_fee_inquiry,Course Fee Inquiry,degree price
+2499,course_fee_inquiry,Course Fee Inquiry,diploma price
+2500,course_fee_inquiry,Course Fee Inquiry,foundation cost
+2501,course_fee_inquiry,Course Fee Inquiry,What is the fee for Foundation in Computing?
+2502,course_fee_inquiry,Course Fee Inquiry,How much is Foundation in Business?
+2503,course_fee_inquiry,Course Fee Inquiry,What is the tuition for Foundation in Engineering?
+2504,course_fee_inquiry,Course Fee Inquiry,How much is Diploma in Computer Science?
+2505,course_fee_inquiry,Course Fee Inquiry,What is the Diploma in Business Administration fee?
+2506,course_fee_inquiry,Course Fee Inquiry,How much is Diploma in Information Technology?
+2507,course_fee_inquiry,Course Fee Inquiry,What is the fee for Bachelor of Computer Science?
+2508,course_fee_inquiry,Course Fee Inquiry,How much is Bachelor of Software Engineering?
+2509,course_fee_inquiry,Course Fee Inquiry,What is the Bachelor of Business Administration tuition?
+2510,course_fee_inquiry,Course Fee Inquiry,How much is the Bachelor of Engineering?
+2511,course_fee_inquiry,Course Fee Inquiry,What are the course fees for diploma programmes?
+2512,course_fee_inquiry,Course Fee Inquiry,What are the course fees for degree programmes?
+2513,course_fee_inquiry,Course Fee Inquiry,What are the foundation programme fees?
+2514,course_fee_inquiry,Course Fee Inquiry,Can you show me the estimated programme fees?
+2515,course_fee_inquiry,Course Fee Inquiry,How much should an international student expect to pay?
+2516,course_fee_inquiry,Course Fee Inquiry,How much is Foundation in Computing?
+2517,course_fee_inquiry,Course Fee Inquiry,What is the tuition fee for Foundation in Computing?
+2518,course_fee_inquiry,Course Fee Inquiry,What is the estimated fee for Foundation in Computing?
+2519,course_fee_inquiry,Course Fee Inquiry,How much would Foundation in Computing cost for a Malaysian student?
+2520,course_fee_inquiry,Course Fee Inquiry,How much would Foundation in Computing cost for an international student?
+2521,course_fee_inquiry,Course Fee Inquiry,What is the duration of Foundation in Computing?
+2522,course_fee_inquiry,Course Fee Inquiry,Can I see the fee for Foundation in Computing?
+2523,course_fee_inquiry,Course Fee Inquiry,What is the tuition fee for Foundation in Business?
+2524,course_fee_inquiry,Course Fee Inquiry,What is the estimated fee for Foundation in Business?
+2525,course_fee_inquiry,Course Fee Inquiry,How much would Foundation in Business cost for a Malaysian student?
+2526,course_fee_inquiry,Course Fee Inquiry,How much would Foundation in Business cost for an international student?
+2527,course_fee_inquiry,Course Fee Inquiry,What is the duration of Foundation in Business?
+2528,course_fee_inquiry,Course Fee Inquiry,Can I see the fee for Foundation in Business?
+2529,course_fee_inquiry,Course Fee Inquiry,How much is Foundation in Engineering?
+2530,course_fee_inquiry,Course Fee Inquiry,What is the tuition fee for Foundation in Engineering?
+2531,course_fee_inquiry,Course Fee Inquiry,What is the estimated fee for Foundation in Engineering?
+2532,course_fee_inquiry,Course Fee Inquiry,How much would Foundation in Engineering cost for a Malaysian student?
+2533,course_fee_inquiry,Course Fee Inquiry,How much would Foundation in Engineering cost for an international student?
+2534,course_fee_inquiry,Course Fee Inquiry,What is the duration of Foundation in Engineering?
+2535,course_fee_inquiry,Course Fee Inquiry,Can I see the fee for Foundation in Engineering?
+2536,course_fee_inquiry,Course Fee Inquiry,What is the tuition fee for Diploma in Computer Science?
+2537,course_fee_inquiry,Course Fee Inquiry,What is the estimated fee for Diploma in Computer Science?
+2538,course_fee_inquiry,Course Fee Inquiry,How much would Diploma in Computer Science cost for a Malaysian student?
+2539,course_fee_inquiry,Course Fee Inquiry,How much would Diploma in Computer Science cost for an international student?
+2540,course_fee_inquiry,Course Fee Inquiry,What is the duration of Diploma in Computer Science?
+2541,course_fee_inquiry,Course Fee Inquiry,Can I see the fee for Diploma in Computer Science?
+2542,course_fee_inquiry,Course Fee Inquiry,How much is Diploma in Business Administration?
+2543,course_fee_inquiry,Course Fee Inquiry,What is the tuition fee for Diploma in Business Administration?
+2544,course_fee_inquiry,Course Fee Inquiry,What is the estimated fee for Diploma in Business Administration?
+2545,course_fee_inquiry,Course Fee Inquiry,How much would Diploma in Business Administration cost for a Malaysian student?
+2546,course_fee_inquiry,Course Fee Inquiry,How much would Diploma in Business Administration cost for an international student?
+2547,course_fee_inquiry,Course Fee Inquiry,What is the duration of Diploma in Business Administration?
+2548,course_fee_inquiry,Course Fee Inquiry,Can I see the fee for Diploma in Business Administration?
+2549,course_fee_inquiry,Course Fee Inquiry,What is the tuition fee for Diploma in Information Technology?
+2550,course_fee_inquiry,Course Fee Inquiry,What is the estimated fee for Diploma in Information Technology?
+2551,course_fee_inquiry,Course Fee Inquiry,How much would Diploma in Information Technology cost for a Malaysian student?
+2552,course_fee_inquiry,Course Fee Inquiry,How much would Diploma in Information Technology cost for an international student?
+2553,course_fee_inquiry,Course Fee Inquiry,What is the duration of Diploma in Information Technology?
+2554,course_fee_inquiry,Course Fee Inquiry,Can I see the fee for Diploma in Information Technology?
+2555,course_fee_inquiry,Course Fee Inquiry,How much is Bachelor of Computer Science (Hons)?
+2556,course_fee_inquiry,Course Fee Inquiry,What is the tuition fee for Bachelor of Computer Science (Hons)?
+2557,course_fee_inquiry,Course Fee Inquiry,What is the estimated fee for Bachelor of Computer Science (Hons)?
+2558,course_fee_inquiry,Course Fee Inquiry,How much would Bachelor of Computer Science (Hons) cost for a Malaysian student?
+2559,course_fee_inquiry,Course Fee Inquiry,How much would Bachelor of Computer Science (Hons) cost for an international student?
+2560,course_fee_inquiry,Course Fee Inquiry,What is the duration of Bachelor of Computer Science (Hons)?
+2561,course_fee_inquiry,Course Fee Inquiry,Can I see the fee for Bachelor of Computer Science (Hons)?
+2562,course_fee_inquiry,Course Fee Inquiry,How much is Bachelor of Software Engineering (Hons)?
+2563,course_fee_inquiry,Course Fee Inquiry,What is the tuition fee for Bachelor of Software Engineering (Hons)?
+2564,course_fee_inquiry,Course Fee Inquiry,What is the estimated fee for Bachelor of Software Engineering (Hons)?
+2565,course_fee_inquiry,Course Fee Inquiry,How much would Bachelor of Software Engineering (Hons) cost for a Malaysian student?
+2566,course_fee_inquiry,Course Fee Inquiry,How much would Bachelor of Software Engineering (Hons) cost for an international student?
+2567,course_fee_inquiry,Course Fee Inquiry,What is the duration of Bachelor of Software Engineering (Hons)?
+2568,course_fee_inquiry,Course Fee Inquiry,Can I see the fee for Bachelor of Software Engineering (Hons)?
+2569,course_fee_inquiry,Course Fee Inquiry,How much is Bachelor of Business Administration (Hons)?
+2570,course_fee_inquiry,Course Fee Inquiry,What is the tuition fee for Bachelor of Business Administration (Hons)?
+2571,course_fee_inquiry,Course Fee Inquiry,What is the estimated fee for Bachelor of Business Administration (Hons)?
+2572,course_fee_inquiry,Course Fee Inquiry,How much would Bachelor of Business Administration (Hons) cost for a Malaysian student?
+2573,course_fee_inquiry,Course Fee Inquiry,How much would Bachelor of Business Administration (Hons) cost for an international student?
+2574,course_fee_inquiry,Course Fee Inquiry,What is the duration of Bachelor of Business Administration (Hons)?
+2575,course_fee_inquiry,Course Fee Inquiry,Can I see the fee for Bachelor of Business Administration (Hons)?
+2576,course_fee_inquiry,Course Fee Inquiry,How much is Bachelor of Engineering (Hons) Electrical and Electronics?
+2577,course_fee_inquiry,Course Fee Inquiry,What is the tuition fee for Bachelor of Engineering (Hons) Electrical and Electronics?
+2578,course_fee_inquiry,Course Fee Inquiry,What is the estimated fee for Bachelor of Engineering (Hons) Electrical and Electronics?
+2579,course_fee_inquiry,Course Fee Inquiry,How much would Bachelor of Engineering (Hons) Electrical and Electronics cost for a Malaysian student?
+2580,course_fee_inquiry,Course Fee Inquiry,How much would Bachelor of Engineering (Hons) Electrical and Electronics cost for an international student?
+2581,course_fee_inquiry,Course Fee Inquiry,What is the duration of Bachelor of Engineering (Hons) Electrical and Electronics?
+2582,course_fee_inquiry,Course Fee Inquiry,Can I see the fee for Bachelor of Engineering (Hons) Electrical and Electronics?
+2583,course_fee_inquiry,Course Fee Inquiry,foundation fee please
+2584,course_fee_inquiry,Course Fee Inquiry,diploma fee please
+2585,course_fee_inquiry,Course Fee Inquiry,degree fee please
+2586,course_fee_inquiry,Course Fee Inquiry,how much diploma
+2587,course_fee_inquiry,Course Fee Inquiry,how much degree
+2588,course_fee_inquiry,Course Fee Inquiry,computer science fee
+2589,course_fee_inquiry,Course Fee Inquiry,software engineering fee
+2590,borrowing_books,Borrowing Books,How do I borrow a book?
+2591,borrowing_books,Borrowing Books,How can I borrow a book from the library?
+2592,borrowing_books,Borrowing Books,How do I borrow a book from the library?
+2593,borrowing_books,Borrowing Books,Steps to borrow a book
+2594,borrowing_books,Borrowing Books,How does book borrowing work?
+2595,borrowing_books,Borrowing Books,How do I check out a book?
+2596,borrowing_books,Borrowing Books,Book borrowing process
+2597,borrowing_books,Borrowing Books,What is the process to borrow a book?
+2598,borrowing_books,Borrowing Books,How do I loan a book?
+2599,borrowing_books,Borrowing Books,Can you explain how to borrow books?
+2600,borrowing_books,Borrowing Books,How do I renew a borrowed library book?
+2601,borrowing_books,Borrowing Books,Can I renew my books online?
+2602,borrowing_books,Borrowing Books,What is the library book loan period?
+2603,borrowing_books,Borrowing Books,How long can I keep a borrowed book?
+2604,borrowing_books,Borrowing Books,What happens if I return a library book late?
+2605,borrowing_books,Borrowing Books,Is there a fine for overdue library books?
+2606,borrowing_books,Borrowing Books,How many books can I borrow?
+2607,borrowing_books,Borrowing Books,What is the maximum borrowing limit?
+2608,borrowing_books,Borrowing Books,Where do I return books?
+2609,borrowing_books,Borrowing Books,How do I reserve a book?
+2610,borrowing_books,Borrowing Books,Can I borrow reference books?
+2611,borrowing_books,Borrowing Books,How do I check if a book is available?
+2612,borrowing_books,Borrowing Books,Do I need my student ID to borrow a book?
+2613,borrowing_books,Borrowing Books,What if I lose a borrowed book?
+2614,borrowing_books,Borrowing Books,How do I check out a library book?
+2615,borrowing_books,Borrowing Books,What are the steps to borrow a book?
+2616,borrowing_books,Borrowing Books,How can I loan a book from the library?
+2617,borrowing_books,Borrowing Books,How do I borrow a textbook?
+2618,borrowing_books,Borrowing Books,Can I renew a library loan?
+2619,borrowing_books,Borrowing Books,How do I renew a book I borrowed?
+2620,borrowing_books,Borrowing Books,Where can I renew my library books?
+2621,borrowing_books,Borrowing Books,What happens if the book I want is unavailable?
+2622,borrowing_books,Borrowing Books,How many books may I borrow?
+2623,borrowing_books,Borrowing Books,What is the overdue fine for a book?
+2624,borrowing_books,Borrowing Books,How do I check my borrowed books?
+2625,borrowing_books,Borrowing Books,Where can I see my library loans?
+2626,library_collection,Library Collection,Do you have comics?
+2627,library_collection,Library Collection,Where can I find comics?
+2628,library_collection,Library Collection,Does the library have a comics section?
+2629,library_collection,Library Collection,Where are the dictionaries?
+2630,library_collection,Library Collection,Do you have dictionaries?
+2631,library_collection,Library Collection,Where can I find a dictionary?
+2632,library_collection,Library Collection,What book categories are available?
+2633,library_collection,Library Collection,What types of books do you have?
+2634,library_collection,Library Collection,Does the library have novels?
+2635,library_collection,Library Collection,Where is the fiction section?
+2636,library_collection,Library Collection,Do you have textbooks?
+2637,library_collection,Library Collection,Where can I find textbooks?
+2638,library_collection,Library Collection,Where is the reference section?
+2639,library_collection,Library Collection,What genres are available in the library?
+2640,library_collection,Library Collection,Does the library have magazines?
+2641,library_collection,Library Collection,Do you have newspapers?
+2642,library_collection,Library Collection,What collections does the library have?
+2643,library_collection,Library Collection,Where can I find academic journals?
+2644,library_collection,Library Collection,Is there a children's book section?
+2645,library_collection,Library Collection,What sections does the library have?
+2646,library_collection,Library Collection,Does the library have reference books?
+2647,library_collection,Library Collection,Can I find novels in the library?
+2648,library_collection,Library Collection,Does the library have textbooks for computing?
+2649,library_collection,Library Collection,Where are the reference books?
+2650,library_collection,Library Collection,Where is the fiction collection?
+2651,library_collection,Library Collection,Does the library have dictionaries and reference materials?
+2652,library_collection,Library Collection,Where can I find academic books?
+2653,library_collection,Library Collection,Are there study books in the library?
+2654,library_collection,Library Collection,Can I find books on business?
+2655,library_collection,Library Collection,Can I find books on engineering?
+2656,library_collection,Library Collection,Does the library have books for programming?
+2657,library_collection,Library Collection,Where are the printed books located?
+2658,library_collection,Library Collection,What types of resources are available in the library?
+2659,library_collection,Library Collection,What categories of books can I find?
+2660,campus_dining,Campus Dining,Where can I eat on campus?
+2661,campus_dining,Campus Dining,What food options are available on campus?
+2662,campus_dining,Campus Dining,Recommend a good place to eat on campus
+2663,campus_dining,Campus Dining,What's the best cafeteria on campus?
+2664,campus_dining,Campus Dining,Where is the nearest cafeteria?
+2665,campus_dining,Campus Dining,Which cafeteria is closest to Gate 1?
+2666,campus_dining,Campus Dining,Which cafeteria is closest to the library?
+2667,campus_dining,Campus Dining,Is there a cafe near the sports complex?
+2668,campus_dining,Campus Dining,Where is Red Bricks Cafeteria?
+2669,campus_dining,Campus Dining,Where is Yum Yum Cafeteria?
+2670,campus_dining,Campus Dining,Where is Casuarina Cafe?
+2671,campus_dining,Campus Dining,What food is available in the East Campus?
+2672,campus_dining,Campus Dining,Is there a cafe inside the library?
+2673,campus_dining,Campus Dining,Where can I get coffee on campus?
+2674,campus_dining,Campus Dining,What's open for lunch near Gate 2?
+2675,campus_dining,Campus Dining,Recommend somewhere to eat near the hostel
+2676,campus_dining,Campus Dining,Where can I buy food near CITC?
+2677,campus_dining,Campus Dining,What dining options are near the club house?
+2678,campus_dining,Campus Dining,Which cafeteria is cheapest?
+2679,campus_dining,Campus Dining,Where can I grab a quick snack between classes?
+2680,campus_dining,Campus Dining,Is there halal food on campus?
+2681,campus_dining,Campus Dining,What are my options for food on campus?
+2682,campus_dining,Campus Dining,Where's a good spot for breakfast on campus?
+2683,campus_dining,Campus Dining,Recommend the closest food place to Block M
+2684,campus_dining,Campus Dining,Where can I get food near Gate 1?
+2685,campus_dining,Campus Dining,Where is the nearest café to the library?
+2686,campus_dining,Campus Dining,Where can I eat near Gate 3?
+2687,campus_dining,Campus Dining,What dining places are in West Campus?
+2688,campus_dining,Campus Dining,Where can I find a café near Gate 2?
+2689,campus_dining,Campus Dining,What is the nearest food outlet to CITC?
+2690,campus_dining,Campus Dining,Where can I get food near the sports complex?
+2691,campus_dining,Campus Dining,Where is Sunnydew?
+2692,campus_dining,Campus Dining,Where is FM Café?
+2693,campus_dining,Campus Dining,Where is Heritage Kitchen?
+2694,campus_dining,Campus Dining,Which café is near East Campus?
+2695,campus_dining,Campus Dining,Is there food inside the library?
+2696,campus_dining,Campus Dining,Which dining place is near Block L?
+2697,campus_dining,Campus Dining,How do I get to Red Bricks Cafeteria?
+2698,campus_dining,Campus Dining,Which gate is closest to Red Bricks Cafeteria?
+2699,campus_dining,Campus Dining,What is near Red Bricks Cafeteria?
+2700,campus_dining,Campus Dining,How do I get to Yum Yum Cafeteria?
+2701,campus_dining,Campus Dining,Which gate is closest to Yum Yum Cafeteria?
+2702,campus_dining,Campus Dining,What is near Yum Yum Cafeteria?
+2703,campus_dining,Campus Dining,How do I get to Casuarina Cafe?
+2704,campus_dining,Campus Dining,Which gate is closest to Casuarina Cafe?
+2705,campus_dining,Campus Dining,What is near Casuarina Cafe?
+2706,campus_dining,Campus Dining,How do I get to Heritage Kitchen?
+2707,campus_dining,Campus Dining,Which gate is closest to Heritage Kitchen?
+2708,campus_dining,Campus Dining,What is near Heritage Kitchen?
+2709,campus_dining,Campus Dining,How do I get to FM Café?
+2710,campus_dining,Campus Dining,Which gate is closest to FM Café?
+2711,campus_dining,Campus Dining,What is near FM Café?
+2712,campus_dining,Campus Dining,How do I get to Sunnydew?
+2713,campus_dining,Campus Dining,Which gate is closest to Sunnydew?
+2714,campus_dining,Campus Dining,What is near Sunnydew?

@@ -663,6 +663,48 @@ def extract_entities(data: Dict[str, Any], query: str) -> Dict[str, str]:
     return {key: value for key, value in entities.items() if value}
 
 
+
+def decide_visual_response(intent: str, query: str = "") -> Dict[str, Any]:
+    """Decide whether an intent should use an image, table, contact card, or text."""
+    if intent in {"library_location", "campus_location", "parking", "hostel", "campus_dining"}:
+        key_map = {
+            "library_location": "library_map",
+            "campus_location": "campus_map",
+            "parking": "parking_map",
+            "hostel": "hostel_map",
+            "campus_dining": "dining_map",
+        }
+        return {
+            "needs_image": True,
+            "type": "pdf",
+            "visual_key": "campus_map_pdf",
+            "title": "Campus Location Map",
+            "reason": "This intent is location-oriented, so the provided campus map PDF can complement the text answer.",
+        }
+    if intent in {"course_fee_inquiry", "timetable", "exam", "office_hours"}:
+        return {
+            "needs_image": False,
+            "type": "table",
+            "visual_key": None,
+            "title": "Structured data response",
+            "reason": "Structured information is clearer as a table than as an image.",
+        }
+    if intent == "department_contact":
+        return {
+            "needs_image": False,
+            "type": "contact",
+            "visual_key": None,
+            "title": "Contact information",
+            "reason": "Contact details are clearer in a contact card.",
+        }
+    return {
+        "needs_image": False,
+        "type": "text",
+        "visual_key": None,
+        "title": "Text response",
+        "reason": "A text response is sufficient for this intent.",
+    }
+
 def dynamic_response(data: Dict[str, Any], intent: str, query: str) -> str | None:
     entities = extract_entities(data, query)
 

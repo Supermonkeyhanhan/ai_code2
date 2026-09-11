@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import base64
 import csv
 import hashlib
+import html
 import json
 import time
 from datetime import datetime
@@ -21,7 +23,9 @@ from engine import (
     ModelBundle,
     average_inference_ms,
     build_quality_report,
+    clean_text,
     dataset_statistics,
+    decide_visual_response,
     evaluate_all,
     evaluate_challenge_set,
     extract_entities,
@@ -37,6 +41,7 @@ DATASET_PATH = BASE_DIR / "dataset.json"
 RESPONSES_PATH = BASE_DIR / "responses.json"
 CHALLENGE_PATH = BASE_DIR / "challenge_test.json"
 FEEDBACK_PATH = BASE_DIR / "feedback.csv"
+CAMPUS_MAP_PATH = BASE_DIR / "assets" / "campus_map.pdf"
 
 st.set_page_config(
     page_title="CampusConnect University Chatbot",
@@ -142,6 +147,16 @@ html, body, [class*="css"] {
 .comparison-win { padding:.8rem 1rem; background:#eff6ff; color:#174ea6; border:1px solid #bfdbfe; border-radius:.85rem; }
 
 .engine-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin:1rem 0 1.25rem; }
+.single-engine-wrap { max-width: 860px; margin: 1rem auto 1.25rem; }
+.single-selector-heading { margin: 1.6rem 0 .75rem; }
+ .single-card-kicker { margin-bottom: 1rem; }
+ .selected-engine-row { display:flex; flex-wrap:wrap; gap:.55rem; align-items:center; margin:.55rem 0; }
+ .engine-tech-inline { color:#5b6f8c; font-size:.88rem; }
+ .single-answer-text { color:#263a58; line-height:1.7; font-size:1.04rem; white-space:pre-line; margin:1rem 0; }
+.single-selector-heading h2 { color: var(--ink); font-size: 1.35rem; margin: .15rem 0 .3rem; }
+.single-selector-heading p { color: var(--muted); margin: 0; font-size: .98rem; line-height: 1.5; }
+.selector-title { color: var(--ink); font-weight: 800; font-size: 1rem; margin-bottom: .3rem; }
+.view-mode-chip { display:inline-flex; padding:.42rem .75rem; border-radius:999px; background:#f8fafc; color:#475569; border:1px solid var(--line); font-weight:800; font-size:.82rem; }
 .engine-answer-card { background:rgba(255,255,255,.96); border:1px solid var(--line); border-radius:1.05rem; padding:1.15rem; min-height:240px; box-shadow:0 10px 28px rgba(15,35,64,.06); position:relative; overflow:hidden; }
 .engine-answer-card.focused { border:2px solid #2563eb; box-shadow:0 14px 32px rgba(37,99,235,.12); }
 .engine-answer-card .engine-title { font-size:1.12rem; font-weight:850; color:var(--ink); margin-bottom:.18rem; }
@@ -154,10 +169,23 @@ html, body, [class*="css"] {
 .answer-status.ok { color:var(--success); }
 .answer-status.fallback { color:var(--danger); }
 .compare-summary { padding:.8rem 1rem; background:#f8fbff; border:1px solid #dbeafe; border-radius:.9rem; margin:1rem 0; color:#35506f; }
+.map-pdf-panel { margin-top:.85rem; padding:.85rem; border:1px solid #dbeafe; border-radius:.95rem; background:#f8fbff; }
+.map-pdf-title { color:#174ea6; font-weight:800; font-size:.95rem; margin-bottom:.55rem; }
+.map-pdf-note { color:#64748b; font-size:.82rem; line-height:1.45; margin-top:.5rem; }
 @media (max-width: 1050px) { .engine-grid { grid-template-columns:1fr; } }
 
 @media (max-width: 900px) { .metric-grid, .kpi-row { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (max-width: 760px) { html{font-size:16px;} .block-container{padding:1.25rem 1rem 2.5rem;} .hero{padding:1.65rem 1.4rem;border-radius:1rem;} .metric-grid,.kpi-row{grid-template-columns:1fr;} }
+
+.visual-support { margin:1rem 0 .25rem; padding:.85rem; border:1px solid #dbeafe; border-radius:.9rem; background:#f8fbff; }
+.visual-support-title { color:#174ea6; font-weight:800; font-size:.9rem; margin-bottom:.55rem; }
+.visual-support-reason { color:#64748b; font-size:.8rem; margin-top:.5rem; line-height:1.45; }
+.visual-svg-wrap { width:100%; overflow:hidden; border-radius:.75rem; border:1px solid #dbeafe; background:#fff; }
+.visual-data-badge { display:inline-flex; padding:.22rem .5rem; border-radius:999px; background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; font-weight:800; font-size:.77rem; }
+.visual-contact { display:grid; gap:.28rem; padding:.65rem .75rem; background:#fff; border:1px solid #e6ecf4; border-radius:.7rem; color:#334155; font-size:.88rem; }
+.visual-table { width:100%; border-collapse:collapse; font-size:.82rem; margin-top:.4rem; }
+.visual-table th,.visual-table td { text-align:left; padding:.45rem .5rem; border-bottom:1px solid #e6ecf4; }
+.visual-table th { color:#475569; background:#f8fafc; }
 </style>
 """
 
@@ -247,6 +275,8 @@ def ensure_session_state() -> None:
     st.session_state.setdefault("feedback_ids", set())
     st.session_state.setdefault("last_compare", None)
     st.session_state.setdefault("pending_question", None)
+    st.session_state.setdefault("view_mode", "Compare View")
+    st.session_state.setdefault("single_engine", "SVM")
     st.session_state.setdefault("threshold", DEFAULT_FALLBACK_THRESHOLD)
     st.session_state.setdefault("margin_threshold", DEFAULT_MARGIN_THRESHOLD)
 
@@ -291,40 +321,26 @@ def render_sidebar() -> tuple[str, str]:
         st.markdown('<div class="sidebar-label">Navigation</div>', unsafe_allow_html=True)
         page = st.radio(
             "Navigation",
-            ["Chatbot", "Model Evaluation", "Dataset Explorer", "System Workflow", "Feedback Analytics"],
-            label_visibility="collapsed",
-        )
-        st.markdown('<div class="sidebar-label">Highlighted Engine</div>', unsafe_allow_html=True)
-        engine = st.radio(
-            "Engine",
-            ENGINE_NAMES,
-            index=1,
-            key="engine_choice",
+            ["Chatbot", "Model Evaluation", "Dataset Explorer", "Feedback Analytics"],
             label_visibility="collapsed",
         )
 
-        st.markdown('<div class="sidebar-label">Confidence Control</div>', unsafe_allow_html=True)
-        st.session_state.threshold = st.slider(
-            "Fallback threshold",
-            min_value=0.40,
-            max_value=0.90,
-            value=float(st.session_state.threshold),
-            step=0.05,
-            help="Predictions below this confidence are treated as uncertain.",
+        st.markdown('<div class="sidebar-label">Answer Display</div>', unsafe_allow_html=True)
+        view_mode = st.radio(
+            "Answer display mode",
+            ["Compare View", "Single Engine View"],
+            index=0 if st.session_state.view_mode == "Compare View" else 1,
+            key="view_mode_choice",
+            label_visibility="collapsed",
+            help="Compare View shows all three answers. Single Engine View shows only the algorithm selected in the main content.",
         )
-        st.session_state.margin_threshold = st.slider(
-            "Top-1 / Top-2 margin",
-            min_value=0.00,
-            max_value=0.25,
-            value=float(st.session_state.margin_threshold),
-            step=0.01,
-            help="Small probability gaps can indicate model uncertainty.",
-        )
+        st.session_state.view_mode = view_mode
 
         if st.button("Clear chat history", use_container_width=True):
             st.session_state.messages = []
             st.session_state.last_compare = None
             st.session_state.feedback_ids = set()
+            st.session_state.pending_question = None
             st.rerun()
 
         data = get_data(file_signature(DATASET_PATH))
@@ -338,10 +354,138 @@ def render_sidebar() -> tuple[str, str]:
             f'Shared 80/20 stratified split</div></div>',
             unsafe_allow_html=True,
         )
-    return page, engine
+    return page, view_mode
 
 
-def engine_card(engine_name: str, item: Dict[str, Any], question: str, group_id: str, focused: bool = False) -> None:
+def _svg_visual(kind: str, target: str = "") -> str:
+    """Create a compact illustrative visual directly inside app.py."""
+    target = html.escape(target or "Campus")
+    title_map = {"library_map":"Library", "campus_map":"Campus Location", "parking_map":"Parking", "hostel_map":"Hostel", "dining_map":"Dining"}
+    title = title_map.get(kind, target)
+    y_map = {"library_map":105, "campus_map":70, "parking_map":135, "hostel_map":165, "dining_map":105}
+    y = y_map.get(kind,105)
+    return "".join([
+        f'<svg viewBox="0 0 760 270" width="100%" role="img" aria-label="Illustrative {html.escape(title)} visual">',
+        '<rect x="0" y="0" width="760" height="270" rx="16" fill="#f8fbff"/>',
+        '<path d="M40 210 C120 160 150 120 220 150 S360 235 430 170 S580 60 720 95" fill="none" stroke="#cbd5e1" stroke-width="26" stroke-linecap="round"/>',
+        '<path d="M55 42 L705 42" stroke="#dbeafe" stroke-width="4"/><path d="M85 230 L690 230" stroke="#dbeafe" stroke-width="4"/>',
+        '<rect x="70" y="72" width="110" height="58" rx="10" fill="#e0ecff" stroke="#93c5fd"/><text x="125" y="106" text-anchor="middle" font-size="16" fill="#1e3a8a">Gate 1</text>',
+        '<rect x="250" y="58" width="140" height="76" rx="12" fill="#eef2ff" stroke="#a5b4fc"/><text x="320" y="102" text-anchor="middle" font-size="16" fill="#3730a3">Block M</text>',
+        '<rect x="470" y="145" width="140" height="76" rx="12" fill="#eff6ff" stroke="#93c5fd"/><text x="540" y="189" text-anchor="middle" font-size="16" fill="#1d4ed8">West Campus</text>',
+        f'<circle cx="430" cy="{y}" r="22" fill="#2563eb" opacity=".15"/><circle cx="430" cy="{y}" r="10" fill="#2563eb"/>',
+        f'<line x1="430" y1="{y-13}" x2="430" y2="{y-38}" stroke="#2563eb" stroke-width="2"/>',
+        f'<rect x="350" y="{y-76}" width="160" height="30" rx="15" fill="#102a5c"/><text x="430" y="{y-56}" text-anchor="middle" font-size="13" fill="white">{target}</text>',
+        f'<text x="34" y="28" font-size="17" font-weight="700" fill="#10233f">Illustrative {html.escape(title)}</text>',
+        '<text x="725" y="28" text-anchor="end" font-size="11" fill="#64748b">Not an official map</text></svg>'
+    ])
+
+
+
+def show_campus_map_pdf(
+    query: str,
+    title: str = "Campus Location Map",
+    button_key: str | None = None,
+) -> None:
+    """Display the supplied campus_map.pdf without requiring the optional Streamlit PDF component."""
+    if not CAMPUS_MAP_PATH.exists():
+        st.warning("Campus map PDF is not available in the assets folder.")
+        return
+
+    st.markdown(
+        f'<div class="map-pdf-panel"><div class="map-pdf-title">🗺️ {html.escape(title)}</div>',
+        unsafe_allow_html=True,
+    )
+
+    # Use a browser-native PDF iframe instead of st.pdf().
+    # This avoids the `streamlit-pdf` optional component dependency entirely.
+    pdf_bytes = CAMPUS_MAP_PATH.read_bytes()
+    encoded = base64.b64encode(pdf_bytes).decode("ascii")
+    st.markdown(
+        f'<iframe src="data:application/pdf;base64,{encoded}" '
+        'width="100%" height="650" loading="lazy" '
+        'style="border:1px solid #dbeafe;border-radius:12px;background:#fff;"></iframe>',
+        unsafe_allow_html=True,
+    )
+
+    st.download_button(
+        "Download Campus Map PDF",
+        data=pdf_bytes,
+        file_name="campus_map.pdf",
+        mime="application/pdf",
+        use_container_width=True,
+        key=button_key or f"campus_map_download_{abs(hash((query, title))) % 10**12}",
+    )
+
+    st.markdown(
+        '<div class="map-pdf-note">The campus map PDF is displayed because this question is location/map related.</div></div>',
+        unsafe_allow_html=True,
+    )
+
+
+def should_show_campus_map_pdf(intent: str, query: str, data: Dict[str, Any]) -> bool:
+    """Return True for map/location questions that can be supported by the campus map PDF."""
+    location_intents = {
+        "library_location",
+        "campus_location",
+        "parking",
+        "hostel",
+        "campus_dining",
+    }
+    if intent in location_intents:
+        return True
+
+    q = clean_text(query)
+    location_phrases = (
+        "map", "location", "located", "where", "direction", "directions",
+        "route", "get to", "find", "near", "block", "gate"
+    )
+    has_location_language = any(p in q for p in location_phrases)
+    entities = extract_entities(data, query)
+    has_place_entity = any(k in entities for k in ("place", "department", "gate"))
+    return has_location_language and has_place_entity
+
+def render_visual_support(visual: Dict[str, Any], data: Dict[str, Any], query: str) -> None:
+    if not visual or visual.get("type") == "text":
+        return
+    entities = extract_entities(data, query)
+    target = entities.get("place") or entities.get("department") or entities.get("programme") or visual.get("title", "")
+    title = html.escape(str(visual.get("title", "Visual support")))
+    reason = html.escape(str(visual.get("reason", "")))
+
+    if visual.get("type") in {"image", "pdf"} and visual.get("needs_image"):
+        show_campus_map_pdf(
+            query,
+            str(visual.get("title", "Campus Location Map")),
+            button_key=f"map_download_visual_{abs(hash((query, str(visual.get('title', 'Campus Location Map'))))) % 10**12}",
+        )
+        return
+
+    if visual.get("type") == "table" and visual.get("intent") == "course_fee_inquiry" and data.get("course_fees"):
+        q = clean_text(query)
+        matches=[]
+        for row in data["course_fees"]:
+            programme=clean_text(str(row.get("Programme", "")))
+            level=clean_text(str(row.get("Level", "")))
+            if (programme and programme in q) or (level and level in q):
+                matches.append(row)
+        if not matches: matches=data["course_fees"][:3]
+        rows=''.join(f'<tr><td>{html.escape(str(r.get("Programme", "")))}</td><td>{html.escape(str(r.get("Level", "")))}</td><td>{html.escape(str(r.get("Estimated_Fee_Malaysian", "")))}</td></tr>' for r in matches[:3])
+        table='<table class="visual-table"><tr><th>Programme</th><th>Level</th><th>MY Fee</th></tr>'+rows+'</table>'
+        st.markdown(f'<div class="visual-support"><div class="visual-support-title">📊 {title}</div>{table}<div class="visual-support-reason">{reason}</div></div>', unsafe_allow_html=True)
+        return
+
+    if visual.get("type") == "contact" and data.get("department_contacts"):
+        q=clean_text(query)
+        matches=[]
+        for row in data["department_contacts"]:
+            name=clean_text(str(row.get("Department", "")))
+            if name and name in q: matches.append(row)
+        if not matches: matches=data["department_contacts"][:1]
+        row=matches[0]
+        st.markdown(f'<div class="visual-support"><div class="visual-support-title">👤 {title}</div><div class="visual-contact"><b>{html.escape(str(row.get("Department", "")))}</b><span>{html.escape(str(row.get("Help with", "")))}</span><span>📍 {html.escape(str(row.get("Location", "N/A")))}</span><span>☎ {html.escape(str(row.get("Phone", "N/A")))}</span></div><div class="visual-support-reason">{reason}</div></div>', unsafe_allow_html=True)
+
+
+def engine_card(engine_name: str, item: Dict[str, Any], question: str, group_id: str, data: Dict[str, Any], focused: bool = False) -> None:
     title = engine_name
     tech_map = {
         "Naive Bayes": "TF-IDF + Multinomial Naive Bayes",
@@ -352,10 +496,22 @@ def engine_card(engine_name: str, item: Dict[str, Any], question: str, group_id:
     confidence = float(item.get("confidence", 0.0))
     fallback = bool(item.get("fallback", False))
     response = str(item.get("response", ""))
+    visual = item.get("visual", {}) or {}
     focused_class = " focused" if focused else ""
     status_text = "Low-confidence fallback" if fallback else "Answer generated from university data"
     status_class = "fallback" if fallback else "ok"
+    visual_badge = "🗺️ Map PDF" if visual.get("needs_image") else ("📊 Data" if visual.get("type") == "table" else ("👤 Contact" if visual.get("type") == "contact" else "📝 Text"))
+    visual_html = ""
+    # The actual PDF is rendered with Streamlit below the HTML answer card,
+    # because a native PDF viewer cannot be safely nested inside raw HTML.
 
+    safe_response = (
+        response.replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace("\n", "<br>")
+        .replace("\r", "")
+    )
     st.markdown(
         f'<div class="engine-answer-card{focused_class}">'
         f'<div class="engine-title">{title}</div>'
@@ -364,12 +520,24 @@ def engine_card(engine_name: str, item: Dict[str, Any], question: str, group_id:
         f'<span class="engine-badge">{engine_name}</span>'
         f'<span class="intent-badge">{intent.replace("_", " ")}</span>'
         f'{confidence_badge(confidence)}'
+        f'<span class="intent-badge">{visual_badge}</span>'
         f'</div>'
         f'<div class="answer-status {status_class}">{status_text}</div>'
-        f'<div class="answer-text">{response.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\\n", "<br>")}</div>'
+        f'<div class="answer-text">{safe_response}</div>'
         f'</div>',
         unsafe_allow_html=True,
     )
+
+    # Streamlit-native visual components are rendered immediately below the HTML card.
+    # The PDF remains visually associated with this model card.
+    if visual.get("type") in {"image", "pdf"} and visual.get("needs_image"):
+        show_campus_map_pdf(
+            question,
+            str(visual.get("title", "Campus Location Map")),
+            button_key=f"map_download_{group_id}_{engine_name.lower().replace(' ', '_')}",
+        )
+    elif visual.get("type") != "image":
+        render_visual_support(visual, data, question)
 
     alternatives = item.get("alternatives", [])
     if alternatives:
@@ -401,43 +569,193 @@ def engine_card(engine_name: str, item: Dict[str, Any], question: str, group_id:
             st.rerun()
 
 
-def render_message_details(message: Dict[str, Any]) -> None:
+def _render_single_engine_card(
+    engine_name: str,
+    item: Dict[str, Any],
+    question: str,
+    group_id: str,
+    data: Dict[str, Any],
+) -> None:
+    """Render the single-engine answer with the algorithm selector INSIDE the answer card."""
+    tech_map = {
+        "Naive Bayes": "TF-IDF + Multinomial Naive Bayes",
+        "SVM": "TF-IDF + Linear SVM",
+        "LSTM": "Embedding + BiLSTM",
+    }
+    intent = str(item.get("intent", "unknown"))
+    confidence = float(item.get("confidence", 0.0))
+    fallback = bool(item.get("fallback", False))
+    response = str(item.get("response", ""))
+    status_text = "Low-confidence fallback" if fallback else "Answer generated from university data"
+    status_class = "fallback" if fallback else "ok"
+
+    # The bordered Streamlit container is the answer card. The algorithm buttons are
+    # deliberately created inside this container so they visually belong to the card.
+    with st.container(border=True):
+        st.markdown(
+            '<div class="single-card-kicker"><div class="eyebrow">Single Engine View</div>'
+            '<h2>University chatbot answer</h2>'
+            '<p>Choose the algorithm inside this answer card. The original question is kept unchanged.</p></div>',
+            unsafe_allow_html=True,
+        )
+
+        st.markdown('<div class="selector-title">Algorithm</div>', unsafe_allow_html=True)
+        current = st.session_state.single_engine
+        if hasattr(st, "pills"):
+            chosen = st.pills(
+                "Algorithm",
+                ENGINE_NAMES,
+                default=current,
+                selection_mode="single",
+                label_visibility="collapsed",
+                key=f"single_engine_pills_{group_id}",
+            )
+        else:
+            chosen = st.radio(
+                "Algorithm",
+                ENGINE_NAMES,
+                index=ENGINE_NAMES.index(current),
+                horizontal=True,
+                label_visibility="collapsed",
+                key=f"single_engine_radio_{group_id}",
+            )
+
+        if chosen and chosen != st.session_state.single_engine:
+            st.session_state.single_engine = chosen
+            st.rerun()
+
+        selected = st.session_state.single_engine
+        item = st.session_state.get("last_compare", {}).get(selected, item)
+        intent = str(item.get("intent", "unknown"))
+        visual = item.get("visual", {}) or {}
+        confidence = float(item.get("confidence", 0.0))
+        fallback = bool(item.get("fallback", False))
+        response = str(item.get("response", ""))
+        status_text = "Low-confidence fallback" if fallback else "Answer generated from university data"
+        status_class = "fallback" if fallback else "ok"
+
+        visual_badge = "🗺️ Map PDF" if visual.get("needs_image") else ("📊 Data" if visual.get("type") == "table" else ("👤 Contact" if visual.get("type") == "contact" else "📝 Text"))
+        st.markdown(
+            f'<div class="selected-engine-row"><span class="engine-badge">{selected}</span>'
+            f'<span class="engine-tech-inline">{tech_map.get(selected, "ML Intent Classifier")}</span>'
+            f'<span class="intent-badge">{visual_badge}</span></div>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            f'<div class="meta-row">'
+            f'<span class="intent-badge">{intent.replace("_", " ")}</span>'
+            f'{confidence_badge(confidence)}</div>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            f'<div class="answer-status {status_class}">{status_text}</div>',
+            unsafe_allow_html=True,
+        )
+        safe_response = (
+            response.replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace("\\n", "<br>")
+            .replace("\n", "<br>")
+        )
+        st.markdown(f'<div class="single-answer-text">{safe_response}</div>', unsafe_allow_html=True)
+
+        visual_now = item.get("visual", {}) or {}
+        if visual_now.get("type") == "pdf" and visual_now.get("needs_image"):
+            show_campus_map_pdf(
+                question,
+                str(visual_now.get("title", "Campus Location Map")),
+                button_key=f"map_download_single_{group_id}_{selected.lower().replace(' ', '_')}",
+            )
+        else:
+            render_visual_support(visual_now, data, question)
+
+        alternatives = item.get("alternatives", [])
+        if alternatives:
+            with st.expander(f"{selected}: top predictions"):
+                rows = [
+                    {"Rank": i, "Intent": tag.replace("_", " "), "Confidence": f"{prob:.2%}"}
+                    for i, (tag, prob) in enumerate(alternatives[:3], 1)
+                ]
+                st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
+
+        key_base = f"{group_id}_{selected.lower().replace(' ', '_')}"
+        already_rated = any(
+            key in st.session_state.feedback_ids
+            for key in (f"{key_base}_up", f"{key_base}_down")
+        )
+        if already_rated:
+            st.caption(f"Feedback recorded for {selected}.")
+        else:
+            fb1, fb2 = st.columns([1, 1])
+            with fb1:
+                if st.button(
+                    "👍",
+                    key=f"{key_base}_up",
+                    use_container_width=True,
+                    help=f"Mark {selected} answer as helpful",
+                ):
+                    log_feedback(question, selected, intent, confidence, "Helpful")
+                    st.session_state.feedback_ids.add(f"{key_base}_up")
+                    st.rerun()
+            with fb2:
+                if st.button(
+                    "👎",
+                    key=f"{key_base}_down",
+                    use_container_width=True,
+                    help=f"Mark {selected} answer as not helpful",
+                ):
+                    log_feedback(question, selected, intent, confidence, "Not helpful")
+                    st.session_state.feedback_ids.add(f"{key_base}_down")
+                    st.rerun()
+
+
+def render_message_details(message: Dict[str, Any], view_mode: str, selected_engine: str, data: Dict[str, Any]) -> None:
     if message["role"] != "assistant":
         st.write(message["content"])
         return
 
-    # New format: one question followed by all three engine answers.
     if message.get("type") == "comparison":
         question = message.get("question", "")
         results = message.get("results", {})
-        focus_engine = message.get("focus_engine", "")
         group_id = message.get("id", "comparison")
 
-        st.markdown(
-            '<div class="section-heading"><div class="eyebrow">Three-engine response</div>'
-            '<h2>Same question, three model answers</h2>'
-            '<p>Each engine independently classified the same user question and produced its own answer.</p></div>',
-            unsafe_allow_html=True,
-        )
-
-        agree_intents = {item.get("intent", "unknown") for item in results.values()}
-        if len(agree_intents) == 1:
+        if view_mode == "Compare View":
             st.markdown(
-                f'<div class="success-box"><b>Model agreement:</b> all three engines predicted '
-                f'<b>{next(iter(agree_intents)).replace("_", " ")}</b>.</div>',
+                '<div class="section-heading"><div class="eyebrow">Compare View</div>'
+                '<h2>Same question, three model answers</h2>'
+                '<p>Each engine independently classified the same user question and produced its own answer.</p></div>',
                 unsafe_allow_html=True,
             )
+
+            agree_intents = {item.get("intent", "unknown") for item in results.values()}
+            if len(agree_intents) == 1:
+                st.markdown(
+                    f'<div class="success-box"><b>Model agreement:</b> all three engines predicted '
+                    f'<b>{next(iter(agree_intents)).replace("_", " ")}</b>.</div>',
+                    unsafe_allow_html=True,
+                )
+            else:
+                st.markdown(
+                    '<div class="warning-box"><b>Model disagreement:</b> at least one engine predicted a different intent. '
+                    'This is useful evidence for model comparison.</div>',
+                    unsafe_allow_html=True,
+                )
+
+            cols = st.columns(3)
+            for col, engine_name in zip(cols, ENGINE_NAMES):
+                with col:
+                    engine_card(engine_name, results[engine_name], question, group_id, data, False)
         else:
-            st.markdown(
-                '<div class="warning-box"><b>Model disagreement:</b> at least one engine predicted a different intent. '
-                'This is useful evidence for model comparison.</div>',
-                unsafe_allow_html=True,
+            # IMPORTANT: no fixed algorithm selector above the answer anymore.
+            # The selector lives inside the single answer card itself.
+            _render_single_engine_card(
+                st.session_state.single_engine,
+                results[st.session_state.single_engine],
+                question,
+                group_id,
+                data,
             )
-
-        cols = st.columns(3)
-        for col, engine_name in zip(cols, ENGINE_NAMES):
-            with col:
-                engine_card(engine_name, results[engine_name], question, group_id, engine_name == focus_engine)
 
         entities = message.get("entities", {})
         if entities:
@@ -480,7 +798,6 @@ def render_message_details(message: Dict[str, Any]) -> None:
             entity_rows = [{"Entity": key.replace("_", " ").title(), "Value": value} for key, value in entities.items()]
             st.dataframe(pd.DataFrame(entity_rows), hide_index=True, use_container_width=True)
 
-
 def add_comparison_turn(
     question: str,
     results: Dict[str, Dict[str, Any]],
@@ -502,19 +819,36 @@ def add_comparison_turn(
         }
     )
 
-def render_chatbot(models: ModelBundle, data: Dict[str, Any], responses: Dict[str, List[str]], engine: str) -> None:
+def render_chatbot(
+    models: ModelBundle,
+    data: Dict[str, Any],
+    responses: Dict[str, List[str]],
+    view_mode: str,
+) -> None:
+    if view_mode == "Compare View":
+        hero_title = "Ask one question. Compare three ML answers."
+        hero_desc = (
+            "Every question is processed by Naive Bayes, SVM and LSTM at the same time. "
+            "The three answers are displayed together so you can directly compare intent predictions, confidence and response quality."
+        )
+    else:
+        hero_title = "Ask one question. View one ML answer."
+        hero_desc = (
+            "Every question is still evaluated by all three classifiers, but this view displays only the algorithm "
+            "you choose below. Switch algorithms without retyping the question."
+        )
+
     st.markdown(
-        '<div class="hero"><div class="eyebrow">University FAQ Assistant</div>'
-        '<h1>Ask one question. Get three ML answers.</h1>'
-        '<p>Every question is processed by Naive Bayes, SVM and LSTM at the same time. '
-        'The three answers are displayed together so you can directly compare intent predictions, confidence and response quality.</p>'
-        '<div class="access-badge"><span class="access-dot"></span> All three models are trained and ready</div></div>',
+        f'<div class="hero"><div class="eyebrow">University FAQ Assistant</div>'
+        f'<h1>{hero_title}</h1>'
+        f'<p>{hero_desc}</p>'
+        f'<div class="access-badge"><span class="access-dot"></span> All three models are trained and ready</div></div>',
         unsafe_allow_html=True,
     )
 
     c1, c2, c3, c4 = st.columns(4)
     with c1:
-        metric_card("Highlighted Engine", engine, "Selected for visual focus")
+        metric_card("Answer View", view_mode, "Current display mode")
     with c2:
         metric_card("Fallback Threshold", f"{st.session_state.threshold:.0%}", "Applied to all models")
     with c3:
@@ -522,11 +856,20 @@ def render_chatbot(models: ModelBundle, data: Dict[str, Any], responses: Dict[st
     with c4:
         metric_card("Dataset Intents", str(len(data.get("intents", []))), "Supported topics")
 
-    st.markdown(
-        '<div class="compare-summary"><b>Comparison mode is always on.</b> '
-        'One user question is sent to all three classifiers. Each engine returns its own intent, confidence score and university answer.</div>',
-        unsafe_allow_html=True,
-    )
+    selected_engine = st.session_state.single_engine
+
+    if view_mode == "Compare View":
+        st.markdown(
+            '<div class="compare-summary"><b>Compare View is active.</b> One user question is sent to all three classifiers. '
+            'Each engine returns its own intent, confidence score and university answer.</div>',
+            unsafe_allow_html=True,
+        )
+    else:
+        st.markdown(
+            '<div class="compare-summary"><b>Single Engine View is active.</b> The algorithm selector is inside each answer card. '
+            'The same question is still evaluated by all three models in the background.</div>',
+            unsafe_allow_html=True,
+        )
 
     st.markdown(
         '<div class="section-heading"><div class="eyebrow">Quick Questions</div>'
@@ -551,7 +894,7 @@ def render_chatbot(models: ModelBundle, data: Dict[str, Any], responses: Dict[st
         role = message["role"]
         avatar = "🎓" if role == "assistant" else "🧑‍🎓"
         with st.chat_message(role, avatar=avatar):
-            render_message_details(message)
+            render_message_details(message, view_mode, selected_engine, data)
 
     user_prompt = st.chat_input("Ask about courses, exams, fees, library, campus, IT support...")
     pending = st.session_state.pop("pending_question", None)
@@ -575,15 +918,26 @@ def render_chatbot(models: ModelBundle, data: Dict[str, Any], responses: Dict[st
                 else:
                     answer = response_for_intent(data, responses, intent, question)
 
+                visual = decide_visual_response(intent, question)
+                if should_show_campus_map_pdf(intent, question, data):
+                    visual = {
+                        "needs_image": True,
+                        "type": "pdf",
+                        "visual_key": "campus_map_pdf",
+                        "title": "Campus Location Map",
+                        "reason": "This question is location/map related, so the provided campus map PDF is shown alongside the answer.",
+                    }
+                visual["intent"] = intent
                 comparison[model_name] = {
                     "intent": intent,
                     "confidence": result.confidence,
                     "fallback": result.is_fallback,
                     "response": answer,
                     "alternatives": result.alternatives,
+                    "visual": visual,
                 }
 
-        add_comparison_turn(question, comparison, entities, engine)
+        add_comparison_turn(question, comparison, entities, selected_engine)
         st.session_state.last_compare = comparison
         st.rerun()
 
@@ -734,7 +1088,7 @@ def render_dataset_explorer(data: Dict[str, Any]) -> None:
     quality = build_quality_report(data)
     st.markdown(
         '<div class="hero"><div class="eyebrow">Dataset Explorer</div><h1>The supplied University dataset.</h1>'
-        '<p>Inspect intents, training patterns, responses, structured university records and data-quality signals.</p></div>',
+        '<p>Inspect intent coverage, training distribution and data-quality signals.</p></div>',
         unsafe_allow_html=True,
     )
     c1, c2, c3, c4 = st.columns(4)
@@ -774,23 +1128,6 @@ def render_dataset_explorer(data: Dict[str, Any]) -> None:
     intent_df = pd.DataFrame(records).sort_values("Training Patterns", ascending=False)
     st.dataframe(intent_df, hide_index=True, use_container_width=True)
 
-    selected_intent = st.selectbox("Inspect intent", intent_df["Intent"].tolist())
-    item = next(x for x in data["intents"] if x["tag"] == selected_intent)
-    c1, c2 = st.columns(2)
-    with c1:
-        st.markdown('<div class="info-card"><h3>Training patterns</h3><p>Examples used by the classifiers.</p></div>', unsafe_allow_html=True)
-        for pattern in item.get("patterns", []):
-            st.write("•", pattern)
-    with c2:
-        st.markdown('<div class="info-card"><h3>Prepared responses</h3><p>Controlled answers for this intent.</p></div>', unsafe_allow_html=True)
-        for response in item.get("responses", []):
-            st.write("•", response)
-
-    st.markdown('<div class="section-heading"><h2>Structured university data</h2><p>Records used by the decision/data layer.</p></div>', unsafe_allow_html=True)
-    structured_keys = list(stats["structured_sections"].keys())
-    if structured_keys:
-        section = st.selectbox("Section", structured_keys, format_func=lambda x: x.replace("_", " ").title())
-        st.dataframe(pd.DataFrame(data.get(section, [])), hide_index=True, use_container_width=True)
 
 
 def render_workflow() -> None:
@@ -894,6 +1231,7 @@ def render_feedback_analytics() -> None:
         file_name="feedback.csv",
         mime="text/csv",
         use_container_width=True,
+        key="download_feedback_csv",
     )
 
 
@@ -911,17 +1249,15 @@ def main() -> None:
     with st.spinner("Training Naive Bayes, SVM and LSTM models..."):
         models = get_models(signature)
 
-    page, engine = render_sidebar()
+    page, view_mode = render_sidebar()
 
     if page == "Chatbot":
-        render_chatbot(models, data, responses, engine)
+        render_chatbot(models, data, responses, view_mode)
     elif page == "Model Evaluation":
         evaluations = get_evaluations(signature)
         render_evaluation(evaluations, models, signature)
     elif page == "Dataset Explorer":
         render_dataset_explorer(data)
-    elif page == "System Workflow":
-        render_workflow()
     else:
         render_feedback_analytics()
 
