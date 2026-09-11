@@ -411,33 +411,34 @@ def render_sidebar() -> tuple[str, str, bool]:
             st.markdown('<div class="sidebar-label">Access</div>', unsafe_allow_html=True)
             st.markdown(
                 '<div class="profile-card"><div class="profile-name">Engineer Mode</div>'
-                '<div class="profile-meta">Advanced evaluation and model-comparison tools are enabled.</div></div>',
+                '<div class="profile-meta">Evaluation, dataset and feedback tools are enabled.</div></div>',
                 unsafe_allow_html=True,
             )
 
+            # Engineer sidebar is intentionally limited to engineering tools.
+            # Chatbot navigation and Answer Display controls are hidden from the engineer UI.
             st.markdown('<div class="sidebar-label">Navigation</div>', unsafe_allow_html=True)
+            engineer_pages = ["Model Evaluation", "Dataset Explorer", "Feedback Analytics"]
+            current_page = st.session_state.get("engineer_navigation", "Model Evaluation")
+            if current_page not in engineer_pages:
+                current_page = "Model Evaluation"
             page = st.radio(
                 "Navigation",
-                ["Chatbot", "Model Evaluation", "Dataset Explorer", "Feedback Analytics"],
+                engineer_pages,
+                index=engineer_pages.index(current_page),
                 label_visibility="collapsed",
                 key="engineer_navigation",
             )
 
-            st.markdown('<div class="sidebar-label">Answer Display</div>', unsafe_allow_html=True)
-            view_mode = st.radio(
-                "Answer display mode",
-                ["Compare View", "Single Engine View"],
-                index=0 if st.session_state.view_mode == "Compare View" else 1,
-                key="view_mode_choice",
-                label_visibility="collapsed",
-                help="Compare View shows all three answers. Single Engine View shows only the algorithm selected inside the answer card.",
-            )
-            st.session_state.view_mode = view_mode
+            # No Engineer Answer Display section here by design.
+            # Keep the value internally stable but do not expose Compare/Single controls.
+            view_mode = st.session_state.get("view_mode", "Single Engine View")
 
             if st.button("Engineer logout", use_container_width=True, key="engineer_logout"):
                 st.session_state.access_role = "Public"
                 st.session_state.view_mode = "Single Engine View"
                 st.session_state.single_engine = "Naive Bayes"
+                st.session_state.engineer_navigation = "Model Evaluation"
                 st.session_state.pending_question = None
                 st.rerun()
         else:
@@ -1445,13 +1446,18 @@ def main() -> None:
 
     page, view_mode, engineer = render_sidebar()
 
-    # Server-side access guard: public sessions can never render engineer pages or Compare View.
+    # Server-side access guards. Public is chatbot-only; Engineer is tools-only.
     if not engineer:
         page = "Chatbot"
         view_mode = "Single Engine View"
         st.session_state.view_mode = "Single Engine View"
+    else:
+        if page == "Chatbot" or page not in {"Model Evaluation", "Dataset Explorer", "Feedback Analytics"}:
+            page = "Model Evaluation"
+        # Engineer Answer Display controls are hidden and cannot be selected from the UI.
+        view_mode = "Single Engine View"
 
-    if page == "Chatbot":
+    if page == "Chatbot" and not engineer:
         render_chatbot(models, data, responses, view_mode)
     elif page == "Model Evaluation" and engineer:
         evaluations = get_evaluations(signature)
@@ -1462,7 +1468,11 @@ def main() -> None:
         render_feedback_analytics()
     else:
         # Fallback guard for any unexpected navigation state.
-        render_chatbot(models, data, responses, "Single Engine View")
+        if engineer:
+            evaluations = get_evaluations(signature)
+            render_evaluation(evaluations, models, signature)
+        else:
+            render_chatbot(models, data, responses, "Single Engine View")
 
 
 if __name__ == "__main__":
