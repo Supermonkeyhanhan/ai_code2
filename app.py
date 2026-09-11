@@ -5,6 +5,7 @@ import csv
 import hashlib
 import html
 import json
+import os
 import time
 from datetime import datetime
 from pathlib import Path
@@ -14,6 +15,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import streamlit as st
+import streamlit.components.v1 as components
 from sklearn.metrics import precision_recall_fscore_support
 
 from engine import (
@@ -107,6 +109,40 @@ html, body, [class*="css"] {
 .profile-card { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.16); padding:.9rem; border-radius:.9rem; margin-bottom:.5rem; }
 .profile-name { font-weight:750; font-size:1.05rem; }
 .profile-meta { color:#c8d7f1; font-size:.9rem; margin-top:.23rem; line-height:1.45; }
+
+/* Engineer Access intentionally uses a real Streamlit container so it has the same
+   visual card treatment as Public Use without relying on Expander styling. */
+[data-testid="stSidebar"] .st-key-engineer_access_card {
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: .9rem;
+    padding: .9rem;
+    margin-top: .5rem;
+    margin-bottom: .55rem;
+    box-shadow: none;
+}
+[data-testid="stSidebar"] .st-key-engineer_access_card [data-testid="stTextInput"] > div {
+    margin-top: .15rem;
+}
+[data-testid="stSidebar"] .st-key-engineer_access_card [data-baseweb="input"] {
+    background: #ffffff !important;
+    border: 1px solid rgba(255,255,255,.28) !important;
+    border-radius: 10px !important;
+}
+[data-testid="stSidebar"] .st-key-engineer_access_card input {
+    color: #10233f !important;
+    -webkit-text-fill-color: #10233f !important;
+}
+[data-testid="stSidebar"] .st-key-engineer_access_card input::placeholder {
+    color: #64748b !important;
+    -webkit-text-fill-color: #64748b !important;
+    opacity: 1 !important;
+}
+[data-testid="stSidebar"] .st-key-engineer_access_card [data-testid="stFormSubmitButton"] > button {
+    width: 100%;
+    margin-top: .25rem;
+}
+
 .hero { overflow:hidden; position:relative; padding:2.35rem 2.5rem; border-radius:1.35rem; color:#fff; background:linear-gradient(120deg,#102a5c 0%,#174fa7 58%,#2774c9 100%); box-shadow:0 18px 45px rgba(23,79,167,.22); margin-bottom:1.5rem; }
 .hero::after { content:""; position:absolute; width:23rem; height:23rem; border-radius:50%; top:-14rem; right:-6rem; background:rgba(191,219,254,.16); }
 .hero .eyebrow { color:#bfdbfe; margin-bottom:.65rem; }
@@ -168,6 +204,7 @@ html, body, [class*="css"] {
 .answer-status { font-size:.8rem; font-weight:800; margin-top:.25rem; }
 .answer-status.ok { color:var(--success); }
 .answer-status.fallback { color:var(--danger); }
+#latest-ai-answer { scroll-margin-top: 90px; }
 .compare-summary { padding:.8rem 1rem; background:#f8fbff; border:1px solid #dbeafe; border-radius:.9rem; margin:1rem 0; color:#35506f; }
 .map-pdf-panel { margin-top:.85rem; padding:.85rem; border:1px solid #dbeafe; border-radius:.95rem; background:#f8fbff; }
 .map-pdf-title { color:#174ea6; font-weight:800; font-size:.95rem; margin-bottom:.55rem; }
@@ -275,10 +312,58 @@ def ensure_session_state() -> None:
     st.session_state.setdefault("feedback_ids", set())
     st.session_state.setdefault("last_compare", None)
     st.session_state.setdefault("pending_question", None)
-    st.session_state.setdefault("view_mode", "Compare View")
-    st.session_state.setdefault("single_engine", "SVM")
+    st.session_state.setdefault("scroll_to_answer", False)
+    st.session_state.setdefault("view_mode", "Single Engine View")
+    st.session_state.setdefault("single_engine", "Naive Bayes")
     st.session_state.setdefault("threshold", DEFAULT_FALLBACK_THRESHOLD)
     st.session_state.setdefault("margin_threshold", DEFAULT_MARGIN_THRESHOLD)
+    st.session_state.setdefault("access_role", "Public")
+
+
+def get_engineer_password() -> str:
+    """Read the engineer password from Streamlit secrets or an environment variable.
+
+    A local demo fallback is kept for assignment use. For deployment, set
+    CAMPUSCONNECT_ENGINEER_PASSWORD or the engineer_password Streamlit secret.
+    """
+    try:
+        secret_value = st.secrets.get("engineer_password")
+        if secret_value:
+            return str(secret_value)
+    except Exception:
+        pass
+    return os.getenv("CAMPUSCONNECT_ENGINEER_PASSWORD", "12345678")
+
+
+def is_engineer() -> bool:
+    return st.session_state.get("access_role") == "Engineer"
+
+
+def public_engine() -> str:
+    """Public users are restricted to Naive Bayes only."""
+    return "Naive Bayes"
+
+
+def scroll_to_latest_answer() -> None:
+    """Scroll the parent Streamlit page to the latest chatbot answer."""
+    components.html(
+        """
+        <script>
+        (() => {
+            const target = window.parent.document.getElementById('latest-ai-answer');
+            if (!target) return;
+            setTimeout(() => {
+                target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            }, 120);
+        })();
+        </script>
+        """,
+        height=0,
+    )
+
+
+def render_latest_answer_anchor() -> None:
+    st.markdown('<div id="latest-ai-answer" style="height:1px;scroll-margin-top:90px;"></div>', unsafe_allow_html=True)
 
 
 def log_feedback(
@@ -310,51 +395,115 @@ def read_feedback() -> pd.DataFrame:
         return pd.DataFrame()
 
 
-def render_sidebar() -> tuple[str, str]:
+def render_sidebar() -> tuple[str, str, bool]:
+    """Render role-aware navigation. Public users are hard-limited to chatbot + single view."""
     with st.sidebar:
         st.markdown(
             '<div class="brand-mark"><div class="brand-symbol">🎓</div><div>'
-            '<div class="brand-name">CampusConnect</div><div class="brand-subtitle">ML Intent Classification</div>'
+            '<div class="brand-name">CampusConnect</div><div class="brand-subtitle">University Chatbot</div>'
             '</div></div>',
             unsafe_allow_html=True,
         )
-        st.markdown('<div class="sidebar-label">Navigation</div>', unsafe_allow_html=True)
-        page = st.radio(
-            "Navigation",
-            ["Chatbot", "Model Evaluation", "Dataset Explorer", "Feedback Analytics"],
-            label_visibility="collapsed",
-        )
 
-        st.markdown('<div class="sidebar-label">Answer Display</div>', unsafe_allow_html=True)
-        view_mode = st.radio(
-            "Answer display mode",
-            ["Compare View", "Single Engine View"],
-            index=0 if st.session_state.view_mode == "Compare View" else 1,
-            key="view_mode_choice",
-            label_visibility="collapsed",
-            help="Compare View shows all three answers. Single Engine View shows only the algorithm selected in the main content.",
-        )
-        st.session_state.view_mode = view_mode
+        engineer = is_engineer()
 
-        if st.button("Clear chat history", use_container_width=True):
+        if engineer:
+            st.markdown('<div class="sidebar-label">Access</div>', unsafe_allow_html=True)
+            st.markdown(
+                '<div class="profile-card"><div class="profile-name">Engineer Mode</div>'
+                '<div class="profile-meta">Advanced evaluation and model-comparison tools are enabled.</div></div>',
+                unsafe_allow_html=True,
+            )
+
+            st.markdown('<div class="sidebar-label">Navigation</div>', unsafe_allow_html=True)
+            page = st.radio(
+                "Navigation",
+                ["Chatbot", "Model Evaluation", "Dataset Explorer", "Feedback Analytics"],
+                label_visibility="collapsed",
+                key="engineer_navigation",
+            )
+
+            st.markdown('<div class="sidebar-label">Answer Display</div>', unsafe_allow_html=True)
+            view_mode = st.radio(
+                "Answer display mode",
+                ["Compare View", "Single Engine View"],
+                index=0 if st.session_state.view_mode == "Compare View" else 1,
+                key="view_mode_choice",
+                label_visibility="collapsed",
+                help="Compare View shows all three answers. Single Engine View shows only the algorithm selected inside the answer card.",
+            )
+            st.session_state.view_mode = view_mode
+
+            if st.button("Engineer logout", use_container_width=True, key="engineer_logout"):
+                st.session_state.access_role = "Public"
+                st.session_state.view_mode = "Single Engine View"
+                st.session_state.single_engine = "Naive Bayes"
+                st.session_state.pending_question = None
+                st.rerun()
+        else:
+            # Public users cannot select pages or compare mode.
+            page = "Chatbot"
+            view_mode = "Single Engine View"
+            st.session_state.view_mode = view_mode
+
+            st.markdown('<div class="sidebar-label">Access</div>', unsafe_allow_html=True)
+            st.markdown(
+                '<div class="profile-card"><div class="profile-name">Public Use</div>'
+                '<div class="profile-meta">Chatbot and Single Engine View only.</div></div>',
+                unsafe_allow_html=True,
+            )
+
+        if st.button("Clear chat history", use_container_width=True, key="clear_chat_history"):
             st.session_state.messages = []
             st.session_state.last_compare = None
             st.session_state.feedback_ids = set()
             st.session_state.pending_question = None
+            st.session_state.scroll_to_answer = False
             st.rerun()
 
-        data = get_data(file_signature(DATASET_PATH))
-        stats = dataset_statistics(data)
-        st.markdown(
-            f'<div class="profile-card"><div class="profile-name">Development Approach</div>'
-            f'<div class="profile-meta">Option 1: NLP + Machine Learning<br>'
-            f'TF-IDF → Naive Bayes / SVM<br>Embedding → BiLSTM</div></div>'
-            f'<div class="profile-card"><div class="profile-name">Dataset</div>'
-            f'<div class="profile-meta">{stats["intents"]} intents · {stats["patterns"]} patterns<br>'
-            f'Shared 80/20 stratified split</div></div>',
-            unsafe_allow_html=True,
-        )
-    return page, view_mode
+        if not engineer:
+            # Public users see Engineer Access as a card with the same visual treatment
+            # as Public Use. It is always visible, but engineer-only pages stay hidden
+            # until the password is verified.
+            with st.container(key="engineer_access_card", border=True):
+                st.markdown(
+                    '<div class="profile-name">Engineer Access</div>'
+                    '<div class="profile-meta">For engineering, evaluation and model-comparison tools.</div>',
+                    unsafe_allow_html=True,
+                )
+                with st.form("engineer_login_form", clear_on_submit=False, border=False):
+                    password = st.text_input(
+                        "Engineer password",
+                        type="password",
+                        key="engineer_password_input",
+                        placeholder="Enter engineer password",
+                        label_visibility="visible",
+                    )
+                    submitted = st.form_submit_button("Engineer sign in", use_container_width=True)
+                    if submitted:
+                        if password == get_engineer_password():
+                            st.session_state.access_role = "Engineer"
+                            st.session_state.view_mode = "Compare View"
+                            st.session_state.pending_question = None
+                            st.rerun()
+                        else:
+                            st.error("Incorrect engineer password.")
+
+        # Dataset / development metadata is engineer-only.
+        if engineer:
+            data = get_data(file_signature(DATASET_PATH))
+            stats = dataset_statistics(data)
+            st.markdown(
+                f'<div class="profile-card"><div class="profile-name">Development Approach</div>'
+                f'<div class="profile-meta">Option 1: NLP + Machine Learning<br>'
+                f'TF-IDF → Naive Bayes / SVM<br>Embedding → BiLSTM</div></div>'
+                f'<div class="profile-card"><div class="profile-name">Dataset</div>'
+                f'<div class="profile-meta">{stats["intents"]} intents · {stats["patterns"]} patterns<br>'
+                f'Shared 80/20 stratified split</div></div>',
+                unsafe_allow_html=True,
+            )
+
+    return page, view_mode, engineer
 
 
 def _svg_visual(kind: str, target: str = "") -> str:
@@ -592,39 +741,51 @@ def _render_single_engine_card(
     # The bordered Streamlit container is the answer card. The algorithm buttons are
     # deliberately created inside this container so they visually belong to the card.
     with st.container(border=True):
-        st.markdown(
-            '<div class="single-card-kicker"><div class="eyebrow">Single Engine View</div>'
-            '<h2>University chatbot answer</h2>'
-            '<p>Choose the algorithm inside this answer card. The original question is kept unchanged.</p></div>',
-            unsafe_allow_html=True,
-        )
-
-        st.markdown('<div class="selector-title">Algorithm</div>', unsafe_allow_html=True)
-        current = st.session_state.single_engine
-        if hasattr(st, "pills"):
-            chosen = st.pills(
-                "Algorithm",
-                ENGINE_NAMES,
-                default=current,
-                selection_mode="single",
-                label_visibility="collapsed",
-                key=f"single_engine_pills_{group_id}",
+        if is_engineer():
+            card_intro = (
+                '<div class="single-card-kicker"><div class="eyebrow">Single Engine View</div>'
+                '<h2>University chatbot answer</h2>'
+                '<p>Choose the algorithm inside this answer card. The original question is kept unchanged.</p></div>'
             )
         else:
-            chosen = st.radio(
-                "Algorithm",
-                ENGINE_NAMES,
-                index=ENGINE_NAMES.index(current),
-                horizontal=True,
-                label_visibility="collapsed",
-                key=f"single_engine_radio_{group_id}",
+            card_intro = (
+                '<div class="single-card-kicker"><div class="eyebrow">Single Engine View</div>'
+                '<h2>University chatbot answer</h2>'
+                '<p>Public mode uses Naive Bayes for chatbot responses.</p></div>'
             )
+        st.markdown(card_intro, unsafe_allow_html=True)
 
-        if chosen and chosen != st.session_state.single_engine:
-            st.session_state.single_engine = chosen
-            st.rerun()
+        if is_engineer():
+            st.markdown('<div class="selector-title">Algorithm</div>', unsafe_allow_html=True)
+            current = st.session_state.single_engine
+            if hasattr(st, "pills"):
+                chosen = st.pills(
+                    "Algorithm",
+                    ENGINE_NAMES,
+                    default=current,
+                    selection_mode="single",
+                    label_visibility="collapsed",
+                    key=f"single_engine_pills_{group_id}",
+                )
+            else:
+                chosen = st.radio(
+                    "Algorithm",
+                    ENGINE_NAMES,
+                    index=ENGINE_NAMES.index(current),
+                    horizontal=True,
+                    label_visibility="collapsed",
+                    key=f"single_engine_radio_{group_id}",
+                )
 
-        selected = st.session_state.single_engine
+            if chosen and chosen != st.session_state.single_engine:
+                st.session_state.single_engine = chosen
+                st.rerun()
+
+            selected = st.session_state.single_engine
+        else:
+            # Public UI: Naive Bayes only. No algorithm selector is rendered.
+            selected = public_engine()
+            st.session_state.single_engine = selected
         item = st.session_state.get("last_compare", {}).get(selected, item)
         intent = str(item.get("intent", "unknown"))
         visual = item.get("visual", {}) or {}
@@ -833,10 +994,16 @@ def render_chatbot(
         )
     else:
         hero_title = "Ask one question. View one ML answer."
-        hero_desc = (
-            "Every question is still evaluated by all three classifiers, but this view displays only the algorithm "
-            "you choose below. Switch algorithms without retyping the question."
-        )
+        if is_engineer():
+            hero_desc = (
+                "Every question is evaluated by Naive Bayes, SVM and LSTM in the background. "
+                "Switch the displayed algorithm inside the answer card without retyping the question."
+            )
+        else:
+            hero_desc = (
+                "Public mode uses Naive Bayes for university chatbot responses. "
+                "The engineering model-selection controls are hidden."
+            )
 
     st.markdown(
         f'<div class="hero"><div class="eyebrow">University FAQ Assistant</div>'
@@ -856,7 +1023,11 @@ def render_chatbot(
     with c4:
         metric_card("Dataset Intents", str(len(data.get("intents", []))), "Supported topics")
 
-    selected_engine = st.session_state.single_engine
+    selected_engine = st.session_state.single_engine if is_engineer() else public_engine()
+    if not is_engineer():
+        view_mode = "Single Engine View"
+        st.session_state.view_mode = view_mode
+        st.session_state.single_engine = public_engine()
 
     if view_mode == "Compare View":
         st.markdown(
@@ -865,11 +1036,17 @@ def render_chatbot(
             unsafe_allow_html=True,
         )
     else:
-        st.markdown(
-            '<div class="compare-summary"><b>Single Engine View is active.</b> The algorithm selector is inside each answer card. '
-            'The same question is still evaluated by all three models in the background.</div>',
-            unsafe_allow_html=True,
-        )
+        if is_engineer():
+            single_summary = (
+                '<div class="compare-summary"><b>Single Engine View is active.</b> The algorithm selector is inside each answer card. '
+                'The same question is still evaluated by all three models in the background.</div>'
+            )
+        else:
+            single_summary = (
+                '<div class="compare-summary"><b>Public Single Engine View is active.</b> '
+                'Naive Bayes is used for chatbot responses.</div>'
+            )
+        st.markdown(single_summary, unsafe_allow_html=True)
 
     st.markdown(
         '<div class="section-heading"><div class="eyebrow">Quick Questions</div>'
@@ -889,8 +1066,17 @@ def render_chatbot(
         with cols[idx % 3]:
             if st.button(prompt, key=f"quick_{idx}", use_container_width=True):
                 st.session_state.pending_question = prompt
+                st.session_state.scroll_to_answer = True
 
-    for message in st.session_state.messages:
+    last_assistant_index = max(
+        (idx for idx, message in enumerate(st.session_state.messages) if message.get("role") == "assistant"),
+        default=-1,
+    )
+    for idx, message in enumerate(st.session_state.messages):
+        if idx == last_assistant_index:
+            # Anchor immediately before the newest AI answer so Quick Questions can
+            # smoothly scroll the viewport to the response rather than the input box.
+            render_latest_answer_anchor()
         role = message["role"]
         avatar = "🎓" if role == "assistant" else "🧑‍🎓"
         with st.chat_message(role, avatar=avatar):
@@ -905,8 +1091,10 @@ def render_chatbot(
         margin_threshold = st.session_state.margin_threshold
         comparison: Dict[str, Dict[str, Any]] = {}
         entities = extract_entities(data, question)
-        with st.spinner("Running Naive Bayes, SVM and LSTM..."):
-            for model_name in ENGINE_NAMES:
+        models_to_run = ENGINE_NAMES if is_engineer() else [public_engine()]
+        spinner_text = "Running Naive Bayes, SVM and LSTM..." if is_engineer() else "Running Naive Bayes..."
+        with st.spinner(spinner_text):
+            for model_name in models_to_run:
                 result = predict(models, model_name, question, threshold, margin_threshold)
                 intent = "unknown" if result.is_fallback else result.intent
                 if result.is_fallback:
@@ -939,7 +1127,13 @@ def render_chatbot(
 
         add_comparison_turn(question, comparison, entities, selected_engine)
         st.session_state.last_compare = comparison
+        # The next rerun renders the new answer, then scroll_to_answer will move the viewport to it.
+        st.session_state.scroll_to_answer = True if pending is not None else st.session_state.get("scroll_to_answer", False)
         st.rerun()
+
+    if st.session_state.get("scroll_to_answer"):
+        scroll_to_latest_answer()
+        st.session_state.scroll_to_answer = False
 
     st.markdown(
         '<div class="notice"><div class="notice-icon">!</div><div><b>Important:</b> '
@@ -1249,17 +1443,26 @@ def main() -> None:
     with st.spinner("Training Naive Bayes, SVM and LSTM models..."):
         models = get_models(signature)
 
-    page, view_mode = render_sidebar()
+    page, view_mode, engineer = render_sidebar()
+
+    # Server-side access guard: public sessions can never render engineer pages or Compare View.
+    if not engineer:
+        page = "Chatbot"
+        view_mode = "Single Engine View"
+        st.session_state.view_mode = "Single Engine View"
 
     if page == "Chatbot":
         render_chatbot(models, data, responses, view_mode)
-    elif page == "Model Evaluation":
+    elif page == "Model Evaluation" and engineer:
         evaluations = get_evaluations(signature)
         render_evaluation(evaluations, models, signature)
-    elif page == "Dataset Explorer":
+    elif page == "Dataset Explorer" and engineer:
         render_dataset_explorer(data)
-    else:
+    elif page == "Feedback Analytics" and engineer:
         render_feedback_analytics()
+    else:
+        # Fallback guard for any unexpected navigation state.
+        render_chatbot(models, data, responses, "Single Engine View")
 
 
 if __name__ == "__main__":

@@ -1,13 +1,9 @@
 # CampusConnect University Chatbot
 # Python 3.11+ recommended
 
-streamlit>=1.40
+streamlit[pdf]>=1.40
 numpy>=1.26
 pandas>=2.2
 scikit-learn>=1.5
 matplotlib>=3.9
 torch>=2.5
-
-# Note:
-# The chatbot displays campus_map.pdf using the browser's built-in PDF viewer.
-# streamlit[pdf] is NOT required for the current version.
