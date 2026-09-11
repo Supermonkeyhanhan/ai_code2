@@ -395,6 +395,17 @@ def read_feedback() -> pd.DataFrame:
         return pd.DataFrame()
 
 
+def _engineer_logout_callback() -> None:
+    """Reset role-related state before the next Streamlit rerun."""
+    st.session_state.access_role = "Public"
+    st.session_state.view_mode = "Single Engine View"
+    st.session_state.single_engine = "Naive Bayes"
+    st.session_state.pending_question = None
+    # Remove widget-owned state here, before the next run instantiates widgets.
+    st.session_state.pop("engineer_navigation", None)
+    st.session_state.pop("view_mode_choice", None)
+
+
 def render_sidebar() -> tuple[str, str, bool]:
     """Render role-aware navigation. Public users are hard-limited to chatbot + single view."""
     with st.sidebar:
@@ -431,21 +442,21 @@ def render_sidebar() -> tuple[str, str, bool]:
             )
 
             # No Engineer Answer Display section here by design.
-            # Keep the value internally stable but do not expose Compare/Single controls.
+            # Keep Single Engine View internally; Engineer has no sidebar view switch.
             view_mode = st.session_state.get("view_mode", "Single Engine View")
 
-            if st.button("Engineer logout", use_container_width=True, key="engineer_logout"):
-                st.session_state.access_role = "Public"
-                st.session_state.view_mode = "Single Engine View"
-                st.session_state.single_engine = "Naive Bayes"
-                st.session_state.engineer_navigation = "Model Evaluation"
-                st.session_state.pending_question = None
-                st.rerun()
+            st.button(
+                "Engineer logout",
+                use_container_width=True,
+                key="engineer_logout",
+                on_click=_engineer_logout_callback,
+            )
         else:
             # Public users cannot select pages or compare mode.
             page = "Chatbot"
             view_mode = "Single Engine View"
             st.session_state.view_mode = view_mode
+            st.session_state.single_engine = "Naive Bayes"
 
             st.markdown('<div class="sidebar-label">Access</div>', unsafe_allow_html=True)
             st.markdown(
