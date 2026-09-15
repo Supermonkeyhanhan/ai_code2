@@ -1,43 +1,23 @@
-# CampusConnect University Chatbot — Public / Engineer Access
+# CampusConnect - 12 Question Feedback Survey
 
-## Access model
+This version replaces the old thumbs-up / thumbs-down feedback UI with a post-conversation usability and answer-quality survey.
 
-### Public Use
-- Chatbot only
-- Single Engine View only
-- Algorithm selector remains inside the chatbot answer card
-- Can switch Naive Bayes / SVM / LSTM for the displayed answer
-- Can submit answer feedback
-- Cannot access Model Evaluation, Dataset Explorer, Feedback Analytics, or Compare View
-- Confidence controls and system workflow are hidden
+## Survey
+12 questions using a 1-5 scale:
+1. Ease of use
+2. Layout and navigation clarity
+3. Findability of chat input and Quick Questions
+4. Visual appeal
+5. Readability
+6. Answer relevance
+7. Answer accuracy
+8. Answer completeness
+9. Helpfulness for university enquiries
+10. Response speed
+11. Confidence in using the chatbot again
+12. Overall satisfaction
 
-### Engineer Use
-- Chatbot
-- Single Engine View
-- Compare View
-- Model Evaluation
-- Dataset Explorer
-- Feedback Analytics
-- Compare View is engineer-only
+It also asks whether the chatbot was helpful and allows an optional comment.
 
-## Engineer login
-
-Default local demo password: `engineer123`
-
-For a different password, set either:
-- Streamlit secret: `engineer_password`
-- Environment variable: `CAMPUSCONNECT_ENGINEER_PASSWORD`
-
-Example on Windows PowerShell:
-
-```powershell
-$env:CAMPUSCONNECT_ENGINEER_PASSWORD="your-password"
-streamlit run app.py
-```
-
-## Run
-
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-```
+## Data
+Survey responses are stored in `feedback.csv` with the question responses, average score, selected engine, intent and confidence so Engineer Mode can analyse the results.

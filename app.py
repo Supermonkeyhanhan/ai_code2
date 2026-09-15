@@ -43,6 +43,7 @@ DATASET_PATH = BASE_DIR / "dataset.json"
 RESPONSES_PATH = BASE_DIR / "responses.json"
 CHALLENGE_PATH = BASE_DIR / "challenge_test.json"
 FEEDBACK_PATH = BASE_DIR / "feedback.csv"
+SURVEY_FEEDBACK_PATH = BASE_DIR / "feedback_survey.csv"
 CAMPUS_MAP_PATH = BASE_DIR / "assets" / "campus_map.pdf"
 
 st.set_page_config(
@@ -310,6 +311,7 @@ def confidence_badge(confidence: float) -> str:
 def ensure_session_state() -> None:
     st.session_state.setdefault("messages", [])
     st.session_state.setdefault("feedback_ids", set())
+    st.session_state.setdefault("feedback_survey_submitted", set())
     st.session_state.setdefault("last_compare", None)
     st.session_state.setdefault("pending_question", None)
     st.session_state.setdefault("scroll_to_answer", False)
@@ -709,25 +711,6 @@ def engine_card(engine_name: str, item: Dict[str, Any], question: str, group_id:
             ]
             st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
 
-    fb1, fb2 = st.columns([1, 1])
-    key_base = f"{group_id}_{engine_name.lower().replace(' ', '_')}"
-    already_rated = any(
-        key in st.session_state.feedback_ids
-        for key in (f"{key_base}_up", f"{key_base}_down")
-    )
-    if already_rated:
-        st.caption(f"Feedback recorded for {engine_name}.")
-        return
-    with fb1:
-        if st.button("👍", key=f"{key_base}_up", use_container_width=True, help=f"Mark {engine_name} answer as helpful"):
-            log_feedback(question, engine_name, intent, confidence, "Helpful")
-            st.session_state.feedback_ids.add(f"{key_base}_up")
-            st.rerun()
-    with fb2:
-        if st.button("👎", key=f"{key_base}_down", use_container_width=True, help=f"Mark {engine_name} answer as not helpful"):
-            log_feedback(question, engine_name, intent, confidence, "Not helpful")
-            st.session_state.feedback_ids.add(f"{key_base}_down")
-            st.rerun()
 
 
 def _render_single_engine_card(
@@ -852,35 +835,196 @@ def _render_single_engine_card(
                 ]
                 st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
 
-        key_base = f"{group_id}_{selected.lower().replace(' ', '_')}"
-        already_rated = any(
-            key in st.session_state.feedback_ids
-            for key in (f"{key_base}_up", f"{key_base}_down")
+
+
+
+SURVEY_QUESTIONS = [
+    "How easy was the chatbot UI to use?",
+    "How clear was the chatbot layout and navigation?",
+    "How easy was it to find the chat input and Quick Questions?",
+    "How visually appealing was the chatbot interface?",
+    "How readable were the chatbot's questions and answers?",
+    "How relevant was the chatbot's answer to your question?",
+    "How accurate did the chatbot's answer appear to be?",
+    "How complete was the chatbot's answer?",
+    "How helpful was the chatbot in solving your university-related question?",
+    "How satisfied are you with the chatbot's response speed?",
+    "How confident would you be using this chatbot for another university enquiry?",
+    "Overall, how satisfied are you with the chatbot experience?",
+]
+
+
+def _survey_label(score: int) -> str:
+    return {
+        1: "1 — Very Poor",
+        2: "2 — Poor",
+        3: "3 — Average",
+        4: "4 — Good",
+        5: "5 — Excellent",
+    }[score]
+
+
+def log_feedback_survey(
+    question: str,
+    engine: str,
+    intent: str,
+    confidence: float,
+    scores: List[int],
+    helpful: str,
+    comment: str,
+) -> None:
+    """Persist the 12-question usability and answer-quality survey as one CSV row."""
+    if len(scores) != len(SURVEY_QUESTIONS):
+        raise ValueError("Expected one score for each survey question.")
+
+    file_exists = SURVEY_FEEDBACK_PATH.exists()
+    headers = [
+        "timestamp", "question", "engine", "intent", "confidence",
+        "ui_ease", "layout_navigation", "input_quick_questions", "visual_appeal",
+        "readability", "answer_relevance", "answer_accuracy", "answer_completeness",
+        "answer_helpfulness", "response_speed", "reuse_confidence", "overall_satisfaction",
+        "helpful", "comment", "overall_score", "rating",
+    ]
+    overall_score = round(sum(scores) / len(scores), 2)
+    rating = "Helpful" if helpful == "Yes" else ("Partly helpful" if helpful == "Somewhat" else "Not helpful")
+    row = [
+        datetime.now().isoformat(timespec="seconds"), question, engine, intent,
+        f"{confidence:.6f}", *scores[:12], helpful, comment, overall_score, rating,
+    ]
+    with open(SURVEY_FEEDBACK_PATH, "a", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        if not file_exists:
+            writer.writerow(headers)
+        writer.writerow(row)
+
+
+def render_feedback_survey(question: str, engine: str, intent: str, confidence: float) -> None:
+    """Render a 12-question feedback survey in a clean two-column layout.
+
+    Left column: 5 UI questions.
+    Right column: 5 chatbot-answer questions.
+    Bottom row: 2 overall questions.
+    """
+    survey_id = hashlib.sha256(
+        f"{question}|{engine}|{intent}|{confidence:.6f}".encode("utf-8")
+    ).hexdigest()[:16]
+
+    st.markdown(
+        '<div class="feedback-survey-card">'
+        '<div class="feedback-survey-header"><div>'
+        '<div class="eyebrow">Feedback</div>'
+        '<h2>Rate your chatbot experience</h2>'
+        '<p>Your feedback helps us improve both the interface and the quality of chatbot answers.</p>'
+        '</div></div>',
+        unsafe_allow_html=True,
+    )
+
+    if survey_id in st.session_state.feedback_survey_submitted:
+        st.markdown(
+            '<div class="success-box"><b>✓ Thanks!</b> Your feedback has been recorded. '
+            'Your responses will be used for the chatbot usability evaluation.</div></div>',
+            unsafe_allow_html=True,
         )
-        if already_rated:
-            st.caption(f"Feedback recorded for {selected}.")
-        else:
-            fb1, fb2 = st.columns([1, 1])
-            with fb1:
-                if st.button(
-                    "👍",
-                    key=f"{key_base}_up",
-                    use_container_width=True,
-                    help=f"Mark {selected} answer as helpful",
-                ):
-                    log_feedback(question, selected, intent, confidence, "Helpful")
-                    st.session_state.feedback_ids.add(f"{key_base}_up")
-                    st.rerun()
-            with fb2:
-                if st.button(
-                    "👎",
-                    key=f"{key_base}_down",
-                    use_container_width=True,
-                    help=f"Mark {selected} answer as not helpful",
-                ):
-                    log_feedback(question, selected, intent, confidence, "Not helpful")
-                    st.session_state.feedback_ids.add(f"{key_base}_down")
-                    st.rerun()
+        return
+
+    scores: List[int] = []
+    with st.form(key=f"feedback_survey_form_{survey_id}", clear_on_submit=False, border=False):
+        left_col, right_col = st.columns(2, gap="large")
+
+        # Left: exactly five interface questions.
+        with left_col:
+            st.markdown(
+                '<div class="feedback-section-title">How was the interface?</div>',
+                unsafe_allow_html=True,
+            )
+            for idx, prompt in enumerate(SURVEY_QUESTIONS[:5], start=1):
+                score = st.slider(
+                    prompt,
+                    min_value=1,
+                    max_value=5,
+                    value=3,
+                    step=1,
+                    format="%d",
+                    key=f"feedback_q_{survey_id}_{idx}",
+                )
+                st.caption(_survey_label(score))
+                scores.append(score)
+
+        # Right: five chatbot-answer questions.
+        with right_col:
+            st.markdown(
+                '<div class="feedback-section-title">How was the chatbot answer?</div>',
+                unsafe_allow_html=True,
+            )
+            for idx, prompt in enumerate(SURVEY_QUESTIONS[5:10], start=6):
+                score = st.slider(
+                    prompt,
+                    min_value=1,
+                    max_value=5,
+                    value=3,
+                    step=1,
+                    format="%d",
+                    key=f"feedback_q_{survey_id}_{idx}",
+                )
+                st.caption(_survey_label(score))
+                scores.append(score)
+
+        # Bottom: two overall questions spanning the full width.
+        st.markdown(
+            '<div class="feedback-section-title feedback-overall-title">Overall experience</div>',
+            unsafe_allow_html=True,
+        )
+        overall_left, overall_right = st.columns(2, gap="large")
+        with overall_left:
+            for idx, prompt in enumerate(SURVEY_QUESTIONS[10:11], start=11):
+                score = st.slider(
+                    prompt,
+                    min_value=1,
+                    max_value=5,
+                    value=3,
+                    step=1,
+                    format="%d",
+                    key=f"feedback_q_{survey_id}_{idx}",
+                )
+                st.caption(_survey_label(score))
+                scores.append(score)
+        with overall_right:
+            for idx, prompt in enumerate(SURVEY_QUESTIONS[11:12], start=12):
+                score = st.slider(
+                    prompt,
+                    min_value=1,
+                    max_value=5,
+                    value=3,
+                    step=1,
+                    format="%d",
+                    key=f"feedback_q_{survey_id}_{idx}",
+                )
+                st.caption(_survey_label(score))
+                scores.append(score)
+
+        helpful = st.selectbox(
+            "Was the chatbot helpful?",
+            ["Yes", "Somewhat", "No"],
+            index=0,
+            key=f"feedback_helpful_{survey_id}",
+        )
+        comment = st.text_area(
+            "Optional comment",
+            placeholder="Tell us what was good or what should be improved...",
+            key=f"feedback_comment_{survey_id}",
+        )
+        submitted = st.form_submit_button("Submit feedback", use_container_width=True)
+
+    if submitted:
+        log_feedback_survey(question, engine, intent, confidence, scores, helpful, comment.strip())
+        st.session_state.feedback_survey_submitted.add(survey_id)
+        st.rerun()
+
+    st.markdown(
+        '<div class="feedback-scale-note">1 = Very Poor &nbsp; · &nbsp; 2 = Poor &nbsp; · &nbsp; 3 = Average &nbsp; · &nbsp; 4 = Good &nbsp; · &nbsp; 5 = Excellent</div>'
+        '</div>',
+        unsafe_allow_html=True,
+    )
 
 
 def render_message_details(message: Dict[str, Any], view_mode: str, selected_engine: str, data: Dict[str, Any]) -> None:
@@ -1147,6 +1291,19 @@ def render_chatbot(
         scroll_to_latest_answer()
         st.session_state.scroll_to_answer = False
 
+    latest_assistant = next((m for m in reversed(st.session_state.messages) if m.get("role") == "assistant"), None)
+    latest_user_question = next((m.get("content", "") for m in reversed(st.session_state.messages) if m.get("role") == "user"), "")
+    if latest_assistant and latest_user_question:
+        if latest_assistant.get("type") == "comparison":
+            survey_item = latest_assistant.get("results", {}).get(public_engine(), {})
+            survey_intent = str(survey_item.get("intent", "unknown"))
+            survey_confidence = float(survey_item.get("confidence", 0.0))
+        else:
+            survey_item = latest_assistant
+            survey_intent = str(survey_item.get("intent", "unknown"))
+            survey_confidence = float(survey_item.get("confidence", 0.0))
+        render_feedback_survey(latest_user_question, public_engine(), survey_intent, survey_confidence)
+
     st.markdown(
         '<div class="notice"><div class="notice-icon">!</div><div><b>Important:</b> '
         'Answers come from the supplied university dataset. Verify official fees, deadlines, '
@@ -1406,38 +1563,73 @@ UNIVERSITY CHATBOT
 def render_feedback_analytics() -> None:
     st.markdown(
         '<div class="hero"><div class="eyebrow">Feedback Analytics</div><h1>Measure user satisfaction.</h1>'
-        '<p>Chatbot feedback is persisted locally as CSV so it can be reviewed and included in usability evaluation.</p></div>',
+        '<p>Survey responses are persisted locally as CSV for usability and chatbot answer-quality evaluation.</p></div>',
         unsafe_allow_html=True,
     )
-    df = read_feedback()
-    if df.empty:
-        st.info("No persistent feedback has been recorded yet. Use 👍 or 👎 on chatbot answers to create the first records.")
+    survey_df = pd.DataFrame()
+    if SURVEY_FEEDBACK_PATH.exists():
+        try:
+            survey_df = pd.read_csv(SURVEY_FEEDBACK_PATH)
+        except Exception:
+            survey_df = pd.DataFrame()
+
+    if survey_df.empty:
+        legacy_df = read_feedback()
+        if legacy_df.empty:
+            st.info("No feedback has been recorded yet. Complete the feedback survey after a chatbot answer.")
+            return
+        helpful = int((legacy_df["rating"] == "Helpful").sum())
+        not_helpful = int((legacy_df["rating"] == "Not helpful").sum())
+        total = len(legacy_df)
+        satisfaction = helpful / total if total else 0.0
+        c1, c2, c3, c4 = st.columns(4)
+        with c1: metric_card("Legacy Ratings", str(total), "Older feedback records")
+        with c2: metric_card("Helpful", str(helpful), "Positive ratings")
+        with c3: metric_card("Not Helpful", str(not_helpful), "Negative ratings")
+        with c4: metric_card("Satisfaction", f"{satisfaction:.1%}", "Helpful / total")
+        st.dataframe(legacy_df, hide_index=True, use_container_width=True)
         return
 
-    helpful = int((df["rating"] == "Helpful").sum())
-    not_helpful = int((df["rating"] == "Not helpful").sum())
-    total = len(df)
-    satisfaction = helpful / total if total else 0.0
+    numeric_cols = [
+        "ui_ease", "layout_navigation", "input_quick_questions", "visual_appeal",
+        "readability", "answer_relevance", "answer_accuracy", "answer_completeness",
+        "answer_helpfulness", "response_speed", "reuse_confidence", "overall_satisfaction",
+    ]
+    for col in numeric_cols:
+        survey_df[col] = pd.to_numeric(survey_df[col], errors="coerce")
 
     c1, c2, c3, c4 = st.columns(4)
-    with c1: metric_card("Total Ratings", str(total), "Persistent CSV records")
-    with c2: metric_card("Helpful", str(helpful), "Positive ratings")
-    with c3: metric_card("Not Helpful", str(not_helpful), "Negative ratings")
-    with c4: metric_card("Satisfaction", f"{satisfaction:.1%}", "Helpful / total")
+    with c1: metric_card("Survey Responses", str(len(survey_df)), "Completed questionnaires")
+    with c2: metric_card("UI Average", f"{survey_df[["ui_ease","layout_navigation","input_quick_questions","visual_appeal","readability"]].stack().mean():.2f}/5", "Interface questions")
+    with c3: metric_card("Answer Average", f"{survey_df[["answer_relevance","answer_accuracy","answer_completeness","answer_helpfulness"]].stack().mean():.2f}/5", "Answer-quality questions")
+    with c4: metric_card("Overall Satisfaction", f"{survey_df["overall_satisfaction"].mean():.2f}/5", "Question 12 average")
 
-    st.markdown('<div class="section-heading"><h2>Ratings by engine</h2></div>', unsafe_allow_html=True)
-    engine_table = pd.crosstab(df["engine"], df["rating"])
-    st.dataframe(engine_table, use_container_width=True)
+    st.markdown('<div class="section-heading"><h2>Question score averages</h2><p>Higher scores indicate better UI usability and chatbot answer quality.</p></div>', unsafe_allow_html=True)
+    labels = [
+        "UI ease", "Layout / navigation", "Input / Quick Questions", "Visual appeal", "Readability",
+        "Answer relevance", "Answer accuracy", "Answer completeness", "Answer helpfulness",
+        "Response speed", "Reuse confidence", "Overall satisfaction",
+    ]
+    averages = [float(survey_df[col].mean()) for col in numeric_cols]
+    chart_df = pd.DataFrame({"Question": labels, "Average": averages})
+    fig, ax = plt.subplots(figsize=(11, 6))
+    ax.barh(chart_df["Question"], chart_df["Average"])
+    ax.set_xlim(0, 5)
+    ax.invert_yaxis()
+    ax.set_xlabel("Average score (1–5)")
+    ax.set_title("Feedback survey averages")
+    fig.tight_layout()
+    st.pyplot(fig, clear_figure=True)
 
     st.markdown('<div class="section-heading"><h2>Feedback records</h2><p>These rows can be exported for the project report.</p></div>', unsafe_allow_html=True)
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    st.dataframe(survey_df, hide_index=True, use_container_width=True)
     st.download_button(
-        "Download feedback.csv",
-        data=FEEDBACK_PATH.read_bytes(),
-        file_name="feedback.csv",
+        "Download feedback_survey.csv",
+        data=SURVEY_FEEDBACK_PATH.read_bytes(),
+        file_name="feedback_survey.csv",
         mime="text/csv",
         use_container_width=True,
-        key="download_feedback_csv",
+        key="download_feedback_survey_csv",
     )
 
 
