@@ -1,3 +1,5 @@
 timestamp,question,engine,intent,confidence,ui_ease,layout_navigation,input_quick_questions,visual_appeal,readability,answer_relevance,answer_accuracy,answer_completeness,answer_helpfulness,response_speed,reuse_confidence,overall_satisfaction,helpful,comment,overall_score,rating
 2026-09-14T19:08:40,How do I reset my university password?,Naive Bayes,password_problem,1.000000,4,4,4,4,4,4,4,4,4,4,4,1,Somewhat,,3.75,Partly helpful
 2026-09-14T19:23:57,Where can I pay my tuition fee?,Naive Bayes,tuition_fee,1.000000,4,3,3,3,3,3,3,3,3,3,3,1,Yes,,2.92,Helpful
+2026-09-15T16:49:37,Where is the library?,Naive Bayes,library_location,0.999989,3,3,3,3,3,3,3,3,3,3,3,3,Yes,good,3.0,Helpful
+2026-09-15T17:37:29,How do I reset my university password?,Naive Bayes,password_problem,1.000000,3,3,3,3,3,3,3,3,3,3,3,3,Yes,,3.0,Helpful
